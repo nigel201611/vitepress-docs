@@ -18,6 +18,7 @@ export default defineConfig({
       { text: '测试', link: '/jesttest/jestStudy', activeMatch: '/jesttest/' },
       { text: '工具开发', link: '/tools/vscode-plugin', activeMatch: '/tools/' },
       { text: '脚手架', link: '/scaffold/scaffoldYL', activeMatch: '/scaffold/' },
+      { text: '区块链', link: '/blockchain/', activeMatch: '/blockchain/' },
     ],
 
     sidebar: {
@@ -99,6 +100,27 @@ export default defineConfig({
             { text: '脚手架发布架构设计', link: '/scaffold/myClidevPublish' },
             { text: 'GitFlow 模块架构设计', link: '/scaffold/gitFlowDesign' },
             { text: '组件平台架构设计', link: '/scaffold/componentPlatform' },
+          ]
+        }
+      ],
+      '/blockchain/': [
+        {
+          text: '区块链',
+          items: [
+            { text: '区块链索引', link: '/blockchain/' },
+            { text: 'Ethereum', link: '/blockchain/ethereum' },
+            { text: 'Bitcoin', link: '/blockchain/bitcoin' },
+            { text: 'BNB Smart Chain', link: '/blockchain/bsc' },
+            { text: 'TRON', link: '/blockchain/tron' },
+            { text: 'Solana', link: '/blockchain/solana' },
+            { text: 'Base', link: '/blockchain/base' },
+            { text: 'Aptos', link: '/blockchain/aptos' },
+            { text: 'Polygon', link: '/blockchain/polygon' },
+            { text: 'Avalanche', link: '/blockchain/avalanche' },
+            { text: 'Arbitrum', link: '/blockchain/arbitrum' },
+            { text: 'Optimism', link: '/blockchain/optimism' },
+            { text: 'TON', link: '/blockchain/ton' },
+            { text: '区块链工具箱', link: '/blockchain/tools' },
           ]
         }
       ],

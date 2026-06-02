@@ -19,6 +19,9 @@ hero:
     - theme: alt
       text: 脚手架
       link: /scaffold/scaffoldYL
+    - theme: alt
+      text: 区块链
+      link: /blockchain/
 
 features:
   - icon: 📝
@@ -41,6 +44,10 @@ features:
     title: 脚手架
     details: 脚手架开发、Commander、EJS、架构设计等
     link: /scaffold/scaffoldYL
+  - icon: 🔗
+    title: 区块链
+    details: Ethereum、Bitcoin、Solana、TON 等主流公链开发资源与区块链浏览器索引
+    link: /blockchain/
 ---
 
 ## 👋 关于我
