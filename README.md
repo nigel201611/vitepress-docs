@@ -8,12 +8,13 @@
 
 | 目录 | 简介 |
 |------|------|
-| [frontend/](./frontend/) | **前端** — Vue 3、React Native、Rollup、正则、前端监控等 |
-| [serverend/](./serverend/) | **服务端** — Node.js、MongoDB、Docker、OAuth2、Redis、JWT 等 |
-| [jesttest/](./jesttest/) | **测试** — 前端测试实践与工具 |
-| [tools/](./tools/) | **工具开发** — VS Code 插件、Chrome 插件、Git 用法、绘图工具等 |
-| [scaffold/](./scaffold/) | **脚手架** — 脚手架架构设计、Commander、EJS 源码分析等 |
-| [blockchain/](./blockchain/) | **区块链** — Ethereum、Bitcoin、Solana、TON 等主流公链开发资源索引 |
+| `frontend/` | **前端** — Vue 3、React Native、Rollup、正则、前端监控等 |
+| `serverend/` | **服务端** — Node.js、MongoDB、Docker、OAuth2、Redis、JWT 等 |
+| `jesttest/` | **测试** — 前端测试实践与工具 |
+| `tools/` | **工具开发** — VS Code 插件、Chrome 插件、Git 用法、绘图工具等 |
+| `scaffold/` | **脚手架** — 脚手架架构设计、Commander、EJS 源码分析等 |
+| `blockchain/` | **区块链** — Ethereum、Bitcoin、Solana、TON 等主流公链开发资源索引 |
+| `team-sharing/` | **团队分享** — 团队内部技术分享、项目文档与知识沉淀 |
 
 ## 🚀 本地开发
 

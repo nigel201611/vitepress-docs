@@ -19,6 +19,7 @@ export default defineConfig({
       { text: '工具开发', link: '/tools/vscode-plugin', activeMatch: '/tools/' },
       { text: '脚手架', link: '/scaffold/scaffoldYL', activeMatch: '/scaffold/' },
       { text: '区块链', link: '/blockchain/', activeMatch: '/blockchain/' },
+      { text: '团队分享', link: '/team-sharing/', activeMatch: '/team-sharing/' },
     ],
 
     sidebar: {
@@ -121,6 +122,14 @@ export default defineConfig({
             { text: 'Optimism', link: '/blockchain/optimism' },
             { text: 'TON', link: '/blockchain/ton' },
             { text: '区块链工具箱', link: '/blockchain/tools' },
+          ]
+        }
+      ],
+      '/team-sharing/': [
+        {
+          text: '团队分享',
+          items: [
+            { text: '首页', link: '/team-sharing/' },
           ]
         }
       ],

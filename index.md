@@ -22,6 +22,9 @@ hero:
     - theme: alt
       text: 区块链
       link: /blockchain/
+    - theme: alt
+      text: 团队分享
+      link: /team-sharing/
 
 features:
   - icon: 📝
@@ -48,6 +51,10 @@ features:
     title: 区块链
     details: Ethereum、Bitcoin、Solana、TON 等主流公链开发资源与区块链浏览器索引
     link: /blockchain/
+  - icon: 👥
+    title: 团队分享
+    details: 团队内部技术分享、项目文档与知识沉淀
+    link: /team-sharing/
 ---
 
 ## 👋 关于我
