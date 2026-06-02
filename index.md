@@ -8,25 +8,39 @@ hero:
   tagline: 记录工作、学习所思所得
   actions:
     - theme: brand
-      text: 开始阅读
-      link: /markdown-examples
+      text: 前端
+      link: /frontend/regexp
     - theme: alt
-      text: GitHub
-      link: https://github.com/nigel201611
+      text: 服务端
+      link: /serverend/node-learn
+    - theme: alt
+      text: 工具开发
+      link: /tools/vscode-plugin
+    - theme: alt
+      text: 脚手架
+      link: /scaffold/scaffoldYL
 
 features:
-  - icon: 🏀
-    title: 热爱篮球
-    details: 球场上的汗水，是最真实的快乐
-  - icon: 🎨
-    title: 设计自学
-    details: 自学过设计，对美感和交互有自己的追求
-  - icon: 🛠️
-    title: 全栈探索
-    details: 做过小程序、H5、PC端、服务端、谷歌插件、VS Code 插件
   - icon: 📝
-    title: 知识沉淀
-    details: 梳理知识体系，记录日常学习所得，方便复盘和整理总结
+    title: 前端
+    details: 常见正则、Vue 3、Rollup、React Native、前端监控等
+    link: /frontend/regexp
+  - icon: ⚙️
+    title: 服务端
+    details: Node.js、MongoDB、Docker、OAuth2、Redis 等
+    link: /serverend/node-learn
+  - icon: 🧪
+    title: 测试
+    details: 前端测试实践与工具
+    link: /jesttest/jestStudy
+  - icon: 🛠️
+    title: 工具开发
+    details: VS Code 插件、谷歌插件、Git、绘图工具等
+    link: /tools/vscode-plugin
+  - icon: 🏗️
+    title: 脚手架
+    details: 脚手架开发、Commander、EJS、架构设计等
+    link: /scaffold/scaffoldYL
 ---
 
 ## 👋 关于我
