@@ -64,7 +64,3 @@ features:
 随着前端领域知识越来越多、应用越来越广，决定系统地梳理自己的知识体系，记录平时学习所得，方便复盘和总结。
 
 > **这个站点就是我的学习笔记 — 把踩过的坑、学到的知识、思考的过程都记下来。**
-
-<p style="margin-top: 3rem; font-size: 0.85rem; color: var(--vp-c-text-2); text-align: center;">
-  🚀 始于 2016 · 持续更新中
-</p>
