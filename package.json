@@ -21,5 +21,8 @@
   "homepage": "https://github.com/nigel201611/vitepress-docs#readme",
   "devDependencies": {
     "vitepress": "2.0.0-alpha.17"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
   }
 }
