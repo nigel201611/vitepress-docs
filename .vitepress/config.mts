@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "vitepress doc",
-  description: "A VitePress Site",
+  title: "Nigel's Notes",
+  description: "记录工作、学习所思所得",
   base: '/vitepress-docs/',
 
   themeConfig: {
