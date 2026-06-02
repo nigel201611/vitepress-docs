@@ -43,4 +43,4 @@ pnpm docs:preview
 
 ## 📄 许可
 
-ISC © 2025 Nigel
+MIT © 2025 Nigel

@@ -14,7 +14,7 @@
     "url": "git+https://github.com/nigel201611/vitepress-docs.git"
   },
   "author": "nigel",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nigel201611/vitepress-docs/issues"
   },
