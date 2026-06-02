@@ -1,0 +1,25 @@
+{
+  "name": "vitepress-docs",
+  "version": "1.0.0",
+  "description": "vitepress docs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nigel201611/vitepress-docs.git"
+  },
+  "author": "nigel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nigel201611/vitepress-docs/issues"
+  },
+  "homepage": "https://github.com/nigel201611/vitepress-docs#readme",
+  "devDependencies": {
+    "vitepress": "2.0.0-alpha.17"
+  }
+}
