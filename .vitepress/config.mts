@@ -5,6 +5,9 @@ export default defineConfig({
   title: "Nigel's Notes",
   description: "记录工作、学习所思所得",
   base: '/vitepress-docs/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/vitepress-docs/favicon.svg' }],
+  ],
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
