@@ -23,6 +23,9 @@ node_modules
 # vitepress build output
 .vitepress/dist
 
+# vitepress pre-bundle cache (auto-generated)
+.vitepress/cache
+
 # misc
 .DS_Store
 *.pem
