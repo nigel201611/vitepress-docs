@@ -10,7 +10,7 @@ pages:
     - rm -rf public
     - mv .vitepress/dist public
   variables:
-    VITEPRESS_BASE: /frondend-docs/
+    VITEPRESS_BASE: /
   artifacts:
     paths:
       - public
