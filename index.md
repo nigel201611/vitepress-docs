@@ -25,6 +25,12 @@ hero:
     - theme: alt
       text: 团队分享
       link: /team-sharing/
+    - theme: alt
+      text: VARA Frontend
+      link: /vara-fe/development-guide
+    - theme: alt
+      text: AI Agent
+      link: /AI-Agent/
 
 features:
   - title: 前端
@@ -48,6 +54,12 @@ features:
   - title: 团队分享
     details: 团队内部技术分享、项目文档与知识沉淀
     link: /team-sharing/
+  - title: VARA Frontend
+    details: VARA Exchange 前端开发指南 — Next.js 16、MUI v7、React Query 等项目开发规范与流程
+    link: /vara-fe/development-guide
+  - title: AI Agent
+    details: AI 开发工具、Claude Code 插件、Agent 框架等资源汇总
+    link: /AI-Agent/
 ---
 
 ## 关于我
