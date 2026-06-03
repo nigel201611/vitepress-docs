@@ -7,6 +7,7 @@ pages:
     - corepack prepare pnpm@10 --activate
     - pnpm install
     - pnpm docs:build
+    - rm -rf public
     - mv .vitepress/dist public
   artifacts:
     paths:
