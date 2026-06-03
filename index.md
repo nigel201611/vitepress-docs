@@ -27,32 +27,25 @@ hero:
       link: /team-sharing/
 
 features:
-  - icon: 📝
-    title: 前端
+  - title: 前端
     details: 常见正则、Vue 3、Rollup、React Native、前端监控等
     link: /frontend/regexp
-  - icon: ⚙️
-    title: 服务端
+  - title: 服务端
     details: Node.js、MongoDB、Docker、OAuth2、Redis 等
     link: /serverend/node-learn
-  - icon: 🧪
-    title: 测试
+  - title: 测试
     details: 前端测试实践与工具
     link: /jesttest/jestStudy
-  - icon: 🛠️
-    title: 工具开发
+  - title: 工具开发
     details: VS Code 插件、谷歌插件、Git、绘图工具等
     link: /tools/vscode-plugin
-  - icon: 🏗️
-    title: 脚手架
+  - title: 脚手架
     details: 脚手架开发、Commander、EJS、架构设计等
     link: /scaffold/scaffoldYL
-  - icon: 🔗
-    title: 区块链
+  - title: 区块链
     details: Ethereum、Bitcoin、Solana、TON 等主流公链开发资源与区块链浏览器索引
     link: /blockchain/
-  - icon: 👥
-    title: 团队分享
+  - title: 团队分享
     details: 团队内部技术分享、项目文档与知识沉淀
     link: /team-sharing/
 ---
