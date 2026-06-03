@@ -1,12 +1,14 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+const base = process.env.VITEPRESS_BASE || '/vitepress-docs/'
+
 export default defineConfig({
   title: "Nigel's Notes",
   description: "记录工作、学习所思所得",
-  base: '/vitepress-docs/',
+  base,
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/vitepress-docs/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}favicon.svg` }],
   ],
 
   themeConfig: {

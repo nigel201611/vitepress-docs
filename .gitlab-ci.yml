@@ -9,6 +9,8 @@ pages:
     - pnpm docs:build
     - rm -rf public
     - mv .vitepress/dist public
+  variables:
+    VITEPRESS_BASE: /frondend-docs/
   artifacts:
     paths:
       - public
