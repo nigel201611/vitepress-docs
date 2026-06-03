@@ -1,0 +1,15 @@
+image: node:22
+
+pages:
+  stage: deploy
+  script:
+    - corepack enable
+    - corepack prepare pnpm@10 --activate
+    - pnpm install
+    - pnpm docs:build
+    - mv .vitepress/dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
