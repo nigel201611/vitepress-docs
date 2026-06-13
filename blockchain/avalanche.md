@@ -1,24 +1,24 @@
 # Avalanche
 
-## 开发文档
+## Development Docs
 
-- [Avalanche Builder Hub - Primary Network](https://build.avax.network/docs/primary-network) — 构建 Avalanche 应用
-- [Avalanche Builder Hub - Console](https://build.avax.network/console/primary-network/faucet) — Faucet 控制台
-- [Avalanche Developers Guild](https://guild.xyz/avalanche/developers) — 开发者社区
+- [Avalanche Builder Hub - Primary Network](https://build.avax.network/docs/primary-network) — Build Avalanche applications
+- [Avalanche Builder Hub - Console](https://build.avax.network/console/primary-network/faucet) — Faucet console
+- [Avalanche Developers Guild](https://guild.xyz/avalanche/developers) — Developer community
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
-| 主网 | [Snowtrace](https://snowtrace.io/) |
-| 测试网 | [Snowtrace Testnet](https://testnet.snowtrace.io/) |
+| Network | Explorer |
+|---------|---------|
+| Mainnet | [Snowtrace](https://snowtrace.io/) |
+| Testnet | [Snowtrace Testnet](https://testnet.snowtrace.io/) |
 
-## 测试网水龙头
+## Testnet Faucets
 
 - [Avalanche Core Testnet Faucet](https://core.app/tools/testnet-faucet)
 - [Avalanche Builder Hub Faucet](https://build.avax.network/console/primary-network/faucet)
 
-## 节点服务 / RPC
+## Node Services / RPC
 
-- [ZAN API 文档](https://docs.zan.top/reference/api-instructions) — ZAN 节点 RPC 服务
+- [ZAN API Documentation](https://docs.zan.top/reference/api-instructions) — ZAN node RPC service
 - [ZAN - eth_sendRawTransaction](https://docs.zan.top/reference/eth_sendrawtransaction)

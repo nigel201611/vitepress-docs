@@ -1,8 +1,8 @@
-# GitLab Pages 部署
+# GitLab Pages Deployment
 
-核心在于.gitlab-ci.yml文件是否存在，文件语法和用法建议去GitLab文档查看，使用共享runner就足够了。共享runner会有CI/CD最大限制，貌似一个月3000次，一般也够用了。
+The core lies in whether the `.gitlab-ci.yml` file exists. For file syntax and usage, it's recommended to check the GitLab documentation. Using a shared runner is sufficient. Shared runners have a CI/CD maximum limit, apparently 3000 times per month, which is generally enough.
 
-下面.gitlab-ci.yml文件，是作者部署技术博客时使用的
+The following `.gitlab-ci.yml` file is what the author used when deploying their tech blog.
 
 ```bash
 
@@ -27,7 +27,7 @@ pages:
       - public
 
 ```
-下面一个是作者曾写过自动发布到npm包模块的 .gitlab-ci.yml文件
+The following is a `.gitlab-ci.yml` file the author once wrote for automatically publishing an npm package.
 
 ```bash
 image: node:latest
@@ -55,4 +55,3 @@ deploy-job:
     - npm publish --verbose
 
 ```
-

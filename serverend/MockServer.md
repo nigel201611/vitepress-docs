@@ -1,111 +1,111 @@
 # Mock Server & HTML2Canvas
-是否需要选用 express，koa，egg.js 等等成熟的框架？
+Do we need to choose mature frameworks like express, koa, egg.js, etc.?
 
-好用的 Mock Server 需要有的特点
+A good Mock Server should have the following characteristics:
 
-* 快速搭建
-* 支持标准 Restful 操作和路由规则
-  * /templates - 拿全部数据
-  * /templates/${id} - 拿一条数据
-* 一些进阶扩展 - 自定义路由，中间件等等
+* Quick setup
+* Support standard RESTful operations and routing rules
+  * /templates - Get all data
+  * /templates/${id} - Get one item
+* Advanced extensions - Custom routes, middleware, etc.
 
-## 隆重推出 JSON Server
+## Introducing JSON Server
 
 >https://github.com/typicode/json-server#access-control-example
 
-安装
+Installation
 ```bash
 npm install --save-dev json-server
 ```
 
-启动
+Start
 
 ```bash
 npx json-server --watch db.json
 ```
-## HTML2Canvas 截图的原理
+## HTML2Canvas Screenshot Principles
 
 
->目的：一个 canvas 元素，上面有绘制有一系列的 HTML 节点
-局限：Canvas 中没法添加具体的 HTML 节点，它只是一张画布
+>Goal: A canvas element with a series of HTML nodes drawn on it
+>Limitation: Canvas cannot contain actual HTML nodes; it is just a drawing surface
 
-通过 canvas.getContext(“2d”) 可以拿到 canvas 提供的2D 渲染上下文，然后在里面绘制形状，文本，图像和其他对象。
-文档地址：https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D
+Through `canvas.getContext("2d")`, you can get the 2D rendering context provided by canvas, and then draw shapes, text, images, and other objects in it.
+Documentation: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
 
-* 矩形 - fillRect()
-* 文本 - fillText()
-* 图像 - drawImage()
+* Rectangle - fillRect()
+* Text - fillText()
+* Image - drawImage()
   
-## SVG 来拯救我们
-可缩放矢量图形（Scalable Vector Graphics，SVG），是一种用于描述二维的矢量图形，基于 XML 的标记语言。
-SVG 中有一个神奇的元素称之为 foreignObject
+## SVG to the Rescue
+Scalable Vector Graphics (SVG) is an XML-based markup language for describing two-dimensional vector graphics.
+SVG has a magical element called foreignObject.
 
-文档地址 https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/foreignObject
+Documentation: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject
 
-foreignObject 元素允许包含来自不同的XML命名空间的元素。在浏览器的上下文中，很可能是XHTML / HTML
+The foreignObject element allows inclusion of elements from a different XML namespace. In the context of a browser, this is most likely XHTML/HTML.
 
-## 解题思路
+## Solution Approach
 
-* 创建一个 canvas 元素
-* 创建 svg 文件，使用 Blob 构造函数
-* 将 svg 中的值填充 foreignObject，然后填充想要复制节点的 HTML
-* 创建 image 标签，将 image.src = URL.createObjectURL(svg)
-* 在 image 完成读取以后，调用 canvas 的 drawImage 方法，将图片绘制到画布上。
+* Create a canvas element
+* Create an SVG file using the Blob constructor
+* Fill foreignObject inside the SVG with the HTML to be copied
+* Create an image tag, set image.src = URL.createObjectURL(svg)
+* After the image finishes loading, call canvas's drawImage method to draw the image onto the canvas.
 
-## Clipboard.js 基本原理
->Clipboard.js 的使用
-文档地址：https://clipboardjs.com/
+## Clipboard.js Basic Principles
+>Using Clipboard.js
+>Documentation: https://clipboardjs.com/
 
 
-看起来很简单的问题，但是由于不同浏览器之间存在不同的 API 实现和各种 hack，所以它的实现很混乱
+It may seem like a simple problem, but due to different API implementations and various hacks across browsers, the implementation is quite messy.
 
-* 方法一 最现代的 Clipboard API
-文档地址：https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API
-还在 working draft 阶段，浏览器兼容性有待加强。
-* 方案二 document.execCommand() 方法
-文档地址：https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
-它不仅仅是解决复制的场景，而且是给可编辑区域的提供一系列功能
+* Method 1: The most modern Clipboard API
+  Documentation: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
+  Still in working draft stage, browser compatibility needs improvement.
+* Method 2: document.execCommand() method
+  Documentation: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+  It handles more than just copy scenarios, providing a range of features for editable regions.
 
-### document.execCommand(‘copy’) 解决思路分析
+### document.execCommand('copy') Solution Analysis
 
-* 手动创建可编辑元素，比如 textArea，然后将要拷贝的值设置为它的 value
-* 将它插入到页面中，调用textArea 上的方法，对值进行选中
-* 然后再调用 document.execCommand(‘copy’)
-* 特别注意 textArea 要不可见，使用特殊的样式让它不出现在可见区域
-* 最后要将 textArea 节点删除
+* Manually create an editable element, such as a textArea, and set the value to be copied as its value
+* Insert it into the page, call methods on the textArea to select the value
+* Then call document.execCommand('copy')
+* The textArea must be invisible; use special styles to keep it out of the visible area
+* Finally, remove the textArea node
 
-## 下载文件的原理
->A 链接：可以创建通向其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接。
+## File Download Principles
+>An A link can create hyperlinks to other web pages, files, locations within the same page, email addresses, or any other URL.
 
-### A 链接的一个特殊属性：download
+### A Special Attribute of the A Link: download
 
-* 文档地址：https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a
-* 此属性指示浏览器下载 URL 而不是导航到它，因此将提示用户将其保存为本地文件
-### A 链接的另外一个特殊属性：rel
+* Documentation: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+* This attribute instructs the browser to download the URL instead of navigating to it, prompting the user to save it as a local file.
+### Another Special Attribute of the A Link: rel
 
-* 该属性指定了目标对象到链接对象的关系。
-* noopener 一个重要的属性，对于web 安全来说非常关键。
-* 当你使用 target=’_blank’ 打开一个新的标签页时，新页面的 window 对象上有一个属性 opener，它指向的是前一个页面的 window 对象，因此，后一个页面就获得了前一个页面的控制权
+* This attribute specifies the relationship between the target object and the link object.
+* noopener is an important attribute, crucial for web security.
+* When you open a new tab using target='_blank', the new page's window object has an attribute called opener that points to the previous page's window object, giving the latter page control over the former.
 
-### 我们模拟这个过程来完成下载。
+### Simulating the Download Process
 
-* 创建 A 链接
-* 设置 href 以及 download 属性
-* 触发 A 链接的点击事件
-* download 属性仅适用于同源 URL
+* Create an A link
+* Set the href and download attributes
+* Trigger a click event on the A link
+* The download attribute only works for same-origin URLs
 
 ```js
 export const downloadFile = (src: string, fileName = 'default.png') => {
-  // 创建链接
+  // Create link
   const link = document.createElement('a')
   link.download = fileName
   link.rel = 'noopener'
   if (link.origin !== location.origin) {
-    //https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/responseType
+    //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType
     axios.get(src, { responseType: 'blob'}).then(data => {
       link.href = URL.createObjectURL(data.data)
       setTimeout(() => { link.dispatchEvent(new MouseEvent('click')) })
-      // https://developer.mozilla.org/zh-CN/docs/Web/API/URL/revokeObjectURL
+      // https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL
       setTimeout(() => { URL.revokeObjectURL(link.href)}, 10000 )
     }).catch((e) => {
       console.error(e)
@@ -114,19 +114,19 @@ export const downloadFile = (src: string, fileName = 'default.png') => {
       link.dispatchEvent(new MouseEvent('click'))
     })
   } else {
-  // 设置链接属性
+  // Set link attributes
   link.href= src
-  // 触发事件
+  // Trigger event
   link.dispatchEvent(new MouseEvent('click'))
   }
 }
 ```
  
-## 使用 FileSaver.js 完成下载
+## Using FileSaver.js for Download
 
->文档地址：https://github.com/eligrey/FileSaver.js/
+>Documentation: https://github.com/eligrey/FileSaver.js/
 
-借助 HTTP 特殊的响应头，实现浏览器自动下载
-文档地址：https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Disposition
+Leveraging special HTTP response headers to achieve automatic browser downloads
+Documentation: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
 
-Content-Disposition 最佳的下载方式，需要服务器端的支持，并且不需要任何的 Javascript，需要在 HTTP 头部添加
+Content-Disposition is the best download method, requiring server-side support and no JavaScript at all. It needs to be added to the HTTP header.

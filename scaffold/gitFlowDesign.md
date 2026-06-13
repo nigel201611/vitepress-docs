@@ -1,40 +1,40 @@
-# GitFlow 模块架构设计
+# GitFlow Module Architecture Design
 
-GitFlow 模块架构设计图如下：
+The GitFlow module architecture design diagram is as follows:
 
 <img src="/images/gitFlowDesign.jpg">
 
-* Git：Git 自动化的核心类
-* GitServer：Git 远程仓库基类
-* Gitee：继承 GitServer，用于调用 Gitee API 和获取基本信息
-* Github：继承 GitServer，用于调用 Github API 和获取基本信息
-* GiteeRequest：封装 Gitee API 调用基本方法
-* GithubRequest：封装 Github API 调用基本方法
-* CloudBuild：云构建核心类
+* Git: The core class for Git automation
+* GitServer: The base class for Git remote repositories
+* Gitee: Inherits from GitServer, used for calling Gitee API and getting basic info
+* Github: Inherits from GitServer, used for calling Github API and getting basic info
+* GiteeRequest: Encapsulates basic Gitee API call methods
+* GithubRequest: Encapsulates basic Github API call methods
+* CloudBuild: The core class for cloud build
 
-## Github 和 Gitee API 接入
+## Github and Gitee API Integration
 
-### Github API 接入
+### Github API Integration
 
-* 获取 ssh：https://github.com/settings/keys
-* 获取 token：https://github.com/settings/tokens
->创建 SSH 帮助文档：https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
-* 查看 API 列表：https://docs.github.com/cn/rest
-* 调用 API 时需要在 header 中携带 token：
+* Get SSH keys: https://github.com/settings/keys
+* Get token: https://github.com/settings/tokens
+> SSH creation help docs: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+* View API list: https://docs.github.com/cn/rest
+* When calling the API, you need to include the token in the header:
 config.headers['Authorization'] = `token ${this.token}`;
 
 ```js
 config.headers['Authorization'] = `token ${this.token}`;
 ```
 
-### Gitee API 接入
-接入流程：
+### Gitee API Integration
+Integration flow:
 
-* 获取 ssh：https://gitee.com/profile/sshkeys
-* 获取 token：https://gitee.com/personal_access_tokens
-* 创建 SSH 帮助文档：https://gitee.com/help/articles/4191
-* 查看 API 列表：https://gitee.com/api/v5/swagger
-* 调用 API 时需要在参数中携带 access_token：
+* Get SSH keys: https://gitee.com/profile/sshkeys
+* Get token: https://gitee.com/personal_access_tokens
+* SSH creation help docs: https://gitee.com/help/articles/4191
+* View API list: https://gitee.com/api/v5/swagger
+* When calling the API, you need to include `access_token` in the parameters:
 
 ```js
 get(url, params, headers) {
@@ -49,7 +49,7 @@ get(url, params, headers) {
   });
 }
 ```
-默认 .gitignore 模板
+Default .gitignore template
 ```js
 .DS_Store
 node_modules
@@ -75,7 +75,6 @@ pnpm-debug.log*
 *.sln
 *.sw?
 ```
-
 
 
 

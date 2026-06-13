@@ -4,29 +4,29 @@
 const commander = require('commander');
 const pkg = require('../package.json');
 
-// 获取commander的单例
+// Get the commander singleton
 // const { program } = commander;
 
-// 实例化一个Command示例
+// Instantiate a Command instance
 const program = new commander.Command();
 
 program
   .name(Object.keys(pkg.bin)[0])
   .usage('<command> [options]')
   .version(pkg.version)
-  .option('-d, --debug', '是否开启调试模式', false)
-  .option('-e, --envName <envName>', '获取环境变量名称');
+  .option('-d, --debug', 'Enable debug mode', false)
+  .option('-e, --envName <envName>', 'Get environment variable name');
 
-// command 注册命令
+// command registration
 const clone = program.command('clone <source> [destination]');
 clone
   .description('clone a repository')
-  .option('-f, --force', '是否强制克隆')
+  .option('-f, --force', 'Force clone')
   .action((source, destination, cmdObj) => {
     console.log('do clone', source, destination, cmdObj.force);
   });
 
-// addCommand 注册子命令
+// addCommand for subcommands
 const service = new commander.Command('service');
 service
   .command('start [port]')
@@ -44,7 +44,7 @@ service
 program.addCommand(service);
 
 // my-dev-cli install init -> my-cli init
-// 这种用法，可以实现 A脚手架-调用B脚手架命令
+// This usage allows Scaffold A to call Scaffold B commands
 program
   .command('install [name]', 'install package', {
     executableFile: 'my-cli',
@@ -63,7 +63,7 @@ program
 //     console.log(cmd, options);
 //   });
 
-// 高级定制1：自定义help信息
+// Advanced customization 1: Custom help message
 // program.helpInformation = function() {
 //   return '';
 // };
@@ -71,7 +71,7 @@ program
 //   console.log('your help information');
 // });
 
-// 高级定制2：实现debug模式
+// Advanced customization 2: Implement debug mode
 program.on('option:debug', function() {
   if (program.opts().debug) {
     process.env.LOG_LEVEL = 'verbose';
@@ -79,13 +79,13 @@ program.on('option:debug', function() {
   console.log(process.env.LOG_LEVEL);
 });
 
-// 高级定制3：对未知命令监听
+// Advanced customization 3: Listen for unknown commands
 program.on('command:*', function(obj) {
   // console.log(obj);
-  console.error('未知的命令：' + obj[0]);
+  console.error('Unknown command: ' + obj[0]);
   const availableCommands = program.commands.map(cmd => cmd.name());
   // console.log(availableCommands);
-  console.log('可用命令：' + availableCommands.join(','));
+  console.log('Available commands: ' + availableCommands.join(','));
 });
 
 program

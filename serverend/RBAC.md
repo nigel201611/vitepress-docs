@@ -1,33 +1,32 @@
-# 基于 RBAC 的权限验证
+# RBAC-based Permission Verification
 
-## 权限验证的场景以及需求：
+## Permission Verification Scenarios and Requirements:
 
-* 特定的角色的用户才能操作特定的资源
-* 不同的用户能操作同类资源的特定实体
-* 不同的用户操作特定资源的不同属性
-* “谁（User）拥有什么权限（Authority）去操作（Operation）哪些资源（Resource）”
+* Only users with specific roles can operate specific resources
+* Different users can operate specific entities of the same resource type
+* Different users can operate different attributes of the same resource
+* "Who (User) has what permission (Authority) to perform which operations (Operation) on which resources (Resource)"
 
-
-## 根据角色完成权限的控制 - RBAC (role based access control)
+## Role-Based Access Control - RBAC
 
 <img src="/images/RBAC.png">
 
-## Node.js 实现 RBAC 的库
+## Node.js Libraries for RBAC
 
 ### [AccessControl.js](https://github.com/onury/accesscontrol)
-* 1.6k Star
-* 3年没有更新，很多 issue 没人处理
-* 不支持 ts
+* 1.6k Stars
+* No updates for 3 years, many open issues
+* Does not support TypeScript
 
 ### [Casbin](https://github.com/casbin/node-casbin)
-* 1.7k Star
-* ts 编写，支持多种编程语言
-* 概念比较复杂，使用略繁琐
-### [CASL](https://github.com/stalniy/casl)
-* 3.4k Star
-* ts 编写
-* 简单易用，可读性良好
+* 1.7k Stars
+* Written in TypeScript, supports multiple programming languages
+* Complex concepts, slightly cumbersome to use
 
+### [CASL](https://github.com/stalniy/casl)
+* 3.4k Stars
+* Written in TypeScript
+* Simple and easy to use, good readability
 
 ### CASL Define Abilities
 ```js

@@ -1,0 +1,68 @@
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+  name: "Nigel"
+  text: "学无止境，行以致远"
+  tagline: 记录工作、学习所思所得
+  actions:
+    - theme: brand
+      text: 前端
+      link: /zh/frontend/regexp
+    - theme: alt
+      text: 服务端
+      link: /zh/serverend/node-learn
+    - theme: alt
+      text: 测试
+      link: /zh/jesttest/jestStudy
+    - theme: alt
+      text: 工具开发
+      link: /zh/tools/vscode-plugin
+    - theme: alt
+      text: 脚手架
+      link: /zh/scaffold/scaffoldYL
+    - theme: alt
+      text: 区块链
+      link: /zh/blockchain/
+    - theme: alt
+      text: 团队分享
+      link: /zh/team-sharing/
+    - theme: alt
+      text: AI Agent
+      link: /zh/AI-Agent/
+
+features:
+  - title: 前端
+    details: 常见正则、Vue 3、Rollup、React Native、前端监控等
+    link: /zh/frontend/regexp
+  - title: 服务端
+    details: Node.js、MongoDB、Docker、OAuth2、Redis 等
+    link: /zh/serverend/node-learn
+  - title: 测试
+    details: 前端测试实践与工具
+    link: /zh/jesttest/jestStudy
+  - title: 工具开发
+    details: VS Code 插件、谷歌插件、Git、绘图工具等
+    link: /zh/tools/vscode-plugin
+  - title: 脚手架
+    details: 脚手架开发、Commander、EJS、架构设计等
+    link: /zh/scaffold/scaffoldYL
+  - title: 区块链
+    details: Ethereum、Bitcoin、Solana、TON 等主流公链开发资源与区块链浏览器索引
+    link: /zh/blockchain/
+  - title: 团队分享
+    details: 团队内部技术分享、项目文档与知识沉淀
+    link: /zh/team-sharing/
+  - title: AI Agent
+    details: AI 开发工具、Claude Code 插件、Agent 框架等资源汇总
+    link: /zh/AI-Agent/
+---
+
+## 关于我
+
+热爱生活，热爱篮球、羽毛球、台球、游泳、户外运动，爱好广泛。在技术上也喜欢广泛探索，从**小程序、H5、PC 端、服务端、移动端 App 开发、桌面端开发**，到**谷歌插件、VS Code 插件**都有实践经历。
+
+随着前端领域知识越来越多、应用越来越广，决定系统地梳理自己的知识体系，记录平时学习所得，方便复盘和总结。
+
+> **这个站点就是我的学习笔记 — 把踩过的坑、学到的知识、思考的过程都记下来。**

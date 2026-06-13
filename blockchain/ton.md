@@ -1,37 +1,37 @@
 # TON (The Open Network)
 
-## 开发文档
+## Development Docs
 
-- [TON 开发文档](https://docs.ton.org/start-here) — 官方入门
-- [TON 消息机制 - External Messages](https://docs.ton.org/foundations/messages/external-in) — 外部消息详解
-- [详解 TON 区块链平台 (中文)](https://learnblockchain.cn/article/21202) — 登链社区
+- [TON Development Documentation](https://docs.ton.org/start-here) — Official getting started
+- [TON Message Mechanism - External Messages](https://docs.ton.org/foundations/messages/external-in) — External message deep dive
+- [Detailed Explanation of the TON Blockchain Platform](https://learnblockchain.cn/article/21202) — LearnBlockchain community
 
 ## JavaScript SDK
 
-- [GitHub - ton-org/ton](https://github.com/ton-org/ton) — 最流行的 TON TypeScript 库
+- [GitHub - ton-org/ton](https://github.com/ton-org/ton) — Most popular TON TypeScript library
 - [GitHub - toncenter/tonweb](https://github.com/toncenter/tonweb#readme) — JavaScript SDK
-- [TON Wallets - v3/r2 源码](https://github.com/ton-org/ton/blob/main/src/wallets/v3/r2.ts)
+- [TON Wallets - v3/r2 Source Code](https://github.com/ton-org/ton/blob/main/src/wallets/v3/r2.ts)
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
-| 主网 | [Tonscan](https://tonscan.org/) |
-| 主网 | [TONViewer](https://tonviewer.com/) |
-| 测试网 | [Tonscan Testnet](https://testnet.tonscan.org/) |
+| Network | Explorer |
+|---------|---------|
+| Mainnet | [Tonscan](https://tonscan.org/) |
+| Mainnet | [TONViewer](https://tonviewer.com/) |
+| Testnet | [Tonscan Testnet](https://testnet.tonscan.org/) |
 
-## 测试网水龙头
+## Testnet Faucets
 
 - [Chainstack TON Faucet](https://faucet.chainstack.com/ton-testnet-faucet)
-- [TON 文档 - 测试网获取代币](https://docs.ton.org/ecosystem/wallet-apps/get-coins)
+- [TON Docs - Get Testnet Coins](https://docs.ton.org/ecosystem/wallet-apps/get-coins)
 
-## 节点服务 / RPC
+## Node Services / RPC
 
-- [ZAN - sendBoc](https://docs.zan.top/reference/ton-v2-post-sendboc) — TON 交易广播
-- [TON Center API v2](https://toncenter.com/api/v2/#/send/sendBoc_post) — TON Center 节点 API
-- [ChainStack TON 节点](https://console.chainstack.com/projects)
+- [ZAN - sendBoc](https://docs.zan.top/reference/ton-v2-post-sendboc) — TON transaction broadcast
+- [TON Center API v2](https://toncenter.com/api/v2/#/send/sendBoc_post) — TON Center node API
+- [ChainStack TON Node](https://console.chainstack.com/projects)
 
-## 工具 & 资源
+## Tools & Resources
 
-- [TON 生态系统 - 浏览器列表](https://docs.ton.org/ecosystem/explorers/overview)
+- [TON Ecosystem - Explorer List](https://docs.ton.org/ecosystem/explorers/overview)
 - [TON SVG Logo](https://logodad.com/svg/ton?fid=3770)

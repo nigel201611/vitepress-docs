@@ -1,4 +1,4 @@
-# 无限滚动列表
+# Infinite Scroll List
 
 ```vue
 <template>
@@ -67,7 +67,7 @@ export default {
     endIndex(newVal, oldVal) {
       // console.log('endIndex', newVal, oldVal)
       // this.$nextTick(this.initIntersectionObserver)
-      // 滚动过快，会出现模糊抖动现象
+      // Fast scrolling may cause blur and jitter
       setTimeout(this.initIntersectionObserver, 0)
     }
   },
@@ -94,7 +94,7 @@ export default {
       }
     },
     initIntersectionObserver() {
-      // 滚动过快，会出现模糊抖动现象
+      // Fast scrolling may cause blur and jitter
       setTimeout(() => {
         this.resetObservation()
         const observer = this.observer = new IntersectionObserver(this.callback, {
@@ -114,7 +114,7 @@ export default {
       const listlen = this.list.length
       // console.log(1111, document.getElementById("top"), document.getElementById("bottom"))
       entries.forEach((entry, index) => {
-        // 用户上滑或者向上滚动
+        // User scrolls up
         if (entry.isIntersecting && entry.target.id === 'top') {
           const startIndex = this.startIndex
           const newStartIndex = startIndex === 0 ? 0 : (startIndex - 5 > 0 ? startIndex - 5 : 0)

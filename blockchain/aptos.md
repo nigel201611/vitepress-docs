@@ -1,18 +1,18 @@
 # Aptos
 
-## 开发文档
+## Development Docs
 
-- [Aptos 开发者文档 (中文)](https://aptos.dev/zh) — 官方中文文档
-- [Aptos Learn](https://learn.aptoslabs.com/zh/workshops) — Aptos 交互式学习
+- [Aptos Developer Documentation](https://aptos.dev/zh) — Official Chinese documentation
+- [Aptos Learn](https://learn.aptoslabs.com/zh/workshops) — Aptos interactive learning
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
-| 测试网 | [Aptos Explorer](https://explorer.aptoslabs.com/?network=testnet) |
-| 测试网 | [Aptoscan](https://aptoscan.com/?network=testnet) |
+| Network | Explorer |
+|---------|---------|
+| Testnet | [Aptos Explorer](https://explorer.aptoslabs.com/?network=testnet) |
+| Testnet | [Aptoscan](https://aptoscan.com/?network=testnet) |
 
-## 测试网水龙头
+## Testnet Faucets
 
-- [Aptos 官方 Faucet](https://aptos.dev/zh/network/faucet)
+- [Aptos Official Faucet](https://aptos.dev/zh/network/faucet)
 - [Validation Cloud Faucet](https://app.validationcloud.io/faucets/aptos/testnet)

@@ -1,14 +1,14 @@
-# syncvsplugin 插件
->自研 VS Code 插件
-## 主要功能
-* 团队 vscode 插件版本的同步、一键安装插件列表
-* 支持工作目录下自定插件列表（syncvsplugin.config.json）
+# syncvsplugin Plugin
+> Self-developed VS Code Plugin
+## Main Features
+* Team VS Code plugin version synchronization, one-click install plugin list
+* Support custom plugin list in the working directory (syncvsplugin.config.json)
 
-默认插件列表（json）
+Default plugin list (json)
 
 ```javascript
 {
-  "esbenp.prettier-vscode": "9.3.0"  // key 代表 VS Code 插件唯一标识(插件右下角信息查看到)，valu代表当前安装的版本号
+  "esbenp.prettier-vscode": "9.3.0"  // key represents the VS Code plugin unique identifier (can be found in the plugin's bottom-right info), value represents the currently installed version
   "vscode-icons-team.vscode-icons": "11.10.0",
   "qinjia.view-in-browser": "0.0.5",
   "eamodio.gitlens": "12.0.5",
@@ -17,24 +17,24 @@
 }
 ```
 
-## 使用插件
+## Using the Plugin
 
-运行命令(shift+command+p）
-* 同步插件命令 
+Run command (shift+command+p)
+* Sync plugin command
 ```bash
 syncPlugins
 ```
-* 删除插件命令
+* Delete plugin command
 ```bash
-removeAllPlugins # 根据用户配置和默认插件列表，删除所有插件
+removeAllPlugins # Remove all plugins based on user configuration and default plugin list
 
 ```
 
-* 根据需要，配置 showSuccTips = false，静默安装插件 
+* Optionally, configure showSuccTips = false to silently install plugins
    ```javascript
   {
     "showSuccTips": false,
-    "esbenp.prettier-vscode": "9.3.0"  // key 代表 VS Code 插件唯一标识(插件右下角信息查看到)，valu代表当前安装的版本号
+    "esbenp.prettier-vscode": "9.3.0"  // key represents the VS Code plugin unique identifier (can be found in the plugin's bottom-right info), value represents the currently installed version
     "vscode-icons-team.vscode-icons": "11.10.0",
     "qinjia.view-in-browser": "0.0.5",
     "eamodio.gitlens": "12.0.5",
@@ -42,8 +42,3 @@ removeAllPlugins # 根据用户配置和默认插件列表，删除所有插件
     "formulahendry.auto-rename-tag": "0.1.10"
   }
   ```
-
-
-
-
-

@@ -1,46 +1,46 @@
-# 区块链工具箱
+# Blockchain Toolbox
 
-## 通用工具
+## General Tools
 
-- [ChainList](https://chainlist.org/) — 查询网络 Chain ID 和 RPC 地址
-- [SLIP-0044 注册币种列表](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) — 各类币种 Coin Type 注册表
-- [Etherscan Supported Chains](https://docs.etherscan.io/supported-chains) — Etherscan 支持的网络列表
-- [CoinGecko](https://www.coingecko.com/) — 加密货币行情、市值排行
-- [JWT.io](https://jwt.io/) — JSON Web Token 在线调试
+- [ChainList](https://chainlist.org/) — Look up network Chain IDs and RPC addresses
+- [SLIP-0044 Registered Coin Types](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) — Coin type registry for various cryptocurrencies
+- [Etherscan Supported Chains](https://docs.etherscan.io/supported-chains) — List of networks supported by Etherscan
+- [CoinGecko](https://www.coingecko.com/) — Cryptocurrency prices, market cap rankings
+- [JWT.io](https://jwt.io/) — JSON Web Token online debugger
 
-## 节点服务 / RPC
+## Node Services / RPC
 
-- [ZAN Node](https://zan.top/) — 企业级节点 RPC 服务（支持 ETH、Tron、Base、Optimism 等）
-- [Ankr RPC](https://www.ankr.com/rpc/home/) — 公共跨链 RPC 节点
-- [Chainstack](https://console.chainstack.com/projects) — 区块链基础设施平台
-- [GetBlock](https://getblock.io/) — 区块链节点服务
+- [ZAN Node](https://zan.top/) — Enterprise-grade node RPC service (supports ETH, Tron, Base, Optimism, etc.)
+- [Ankr RPC](https://www.ankr.com/rpc/home/) — Public cross-chain RPC nodes
+- [Chainstack](https://console.chainstack.com/projects) — Blockchain infrastructure platform
+- [GetBlock](https://getblock.io/) — Blockchain node service
 
-## 水龙头合集
+## Faucet Collection
 
-- [Alchemy Faucets](https://www.alchemy.com/faucets) — ETH、Matic 等多链水龙头
+- [Alchemy Faucets](https://www.alchemy.com/faucets) — Multi-chain faucets for ETH, Matic, and more
 - [Faucets - Get Testnet ETH and Matic Tokens](https://www.alchemy.com/faucets)
 
-## 钱包 & 交易所
+## Wallets & Exchanges
 
-- [Trust Wallet](https://trustwallet.com/) — 多链钱包
-- [HashKey Exchange](https://www.hashkey.com/zh-CN/) — 香港持牌虚拟资产交易所
-- [OKX Web3 DEX](https://www.okx.com/zh-hans/web3) — DEX 市场洞察
-- [Polymarket](https://polymarket.com/) — 去中心化预测市场
+- [Trust Wallet](https://trustwallet.com/) — Multi-chain wallet
+- [HashKey Exchange](https://www.hashkey.com/zh-CN/) — Hong Kong licensed virtual asset exchange
+- [OKX Web3 DEX](https://www.okx.com/zh-hans/web3) — DEX market insights
+- [Polymarket](https://polymarket.com/) — Decentralized prediction market
 
-## 数据分析
+## Data Analytics
 
-- [Nansen](https://www.nansen.ai/) — 链上数据分析平台
-- [Dune Analytics](https://dune.com/) — 链上数据可视化
-- [DefiLlama](https://defillama.com/) — DeFi TVL 排行
+- [Nansen](https://www.nansen.ai/) — On-chain data analytics platform
+- [Dune Analytics](https://dune.com/) — On-chain data visualization
+- [DefiLlama](https://defillama.com/) — DeFi TVL rankings
 
-## 安全 & KYC
+## Security & KYC
 
-- [Sumsub WebSDK](https://docs.sumsub.com/docs/about-web-sdk) — KYC 集成文档
-- [Sumsub WebSDK 集成入门](https://docs.sumsub.com/docs/get-started-with-web-sdk)
-- [Human Passport](https://app.passport.xyz/#/dashboard) — 去中心化身份
+- [Sumsub WebSDK](https://docs.sumsub.com/docs/about-web-sdk) — KYC integration documentation
+- [Sumsub WebSDK Integration Guide](https://docs.sumsub.com/docs/get-started-with-web-sdk)
+- [Human Passport](https://app.passport.xyz/#/dashboard) — Decentralized identity
 
-## 其它区块链
+## Other Blockchains
 
-- [Truffle Quickstart](https://archive.trufflesuite.com/docs/truffle/quickstart/) — Truffle 框架入门
-- [Cadence 1.0 迁移指南](https://cadence-lang.org/docs/cadence-migration-guide) — Flow 链智能合约语言
-- [EthSum](https://ethsum.netlify.app/) — 以太坊地址校验和工具
+- [Truffle Quickstart](https://archive.trufflesuite.com/docs/truffle/quickstart/) — Truffle framework introduction
+- [Cadence 1.0 Migration Guide](https://cadence-lang.org/docs/cadence-migration-guide) — Flow chain smart contract language
+- [EthSum](https://ethsum.netlify.app/) — Ethereum address checksum tool

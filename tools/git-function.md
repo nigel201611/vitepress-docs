@@ -1,63 +1,62 @@
-# 有用的GIT命令
+# Useful GIT Commands
 
 ## git rebase
 
-有时用了某个bug单提交了代码到你自己私仓，准备向公仓合并，发现bug单已经提前关闭了，这个时候回报合并不了
-这和公司代码管理规则有关，如果你公司也是这样的规则，那么git rebase可以排上用场
+Sometimes, after committing code for a bug ticket to your private repository and preparing to merge it into the public repository, you find that the bug ticket has already been closed. In this case, the merge will fail.
+This is related to the company's code management rules. If your company also follows such rules, then git rebase can come in handy.
 
-### 合并多个commit
+### Squash Multiple Commits
 
 ```bash
-# startpoint,endpoint代表 commit id,表示一个范围
+# startpoint, endpoint represent commit IDs, indicating a range
   git rebase -i  [startpoint]  [endpoint]
-#  表示从当前提交往后的N个提交进行修改
+# Modify N commits starting from the current commit onward
   git rebase -i head~N
 ```
 
-### 将一段commit粘贴到另一个分支上
+### Copy a Range of Commits to Another Branch
 
-比如将develop分支中的C~E部分复制到master分支中，这时我们就可以通过rebase命令来实现（如果只是复制某一两个提交到其他分支，建议使用更简单的命令:git cherry-pick）。
+For example, to copy commits C~E from the develop branch to the master branch, we can use the rebase command (if just copying one or two commits to another branch, it's recommended to use the simpler command: git cherry-pick).
 
 ```bash
  git rebase   [startpoint]   [endpoint]  --onto  [branchName]
  ```
 
- [startpoint] [endpoint] 是一个前开后闭的区间,要让这个区间包含C提交，我们将区间起始点向后退了一步。
+ [startpoint] [endpoint] is a range that includes the start but excludes the end. To include commit C in this range, we move the start point back by one step.
  
- 之后 HEAD处于游离状态，虽然此时HEAD所指向的内容正是我们所需要的，但是master分支是没有任何变化的，git只是将C~E部分的提交内容复制一份粘贴到了master所指向的提交后面，我们需要做的就是将master所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
+ Afterwards, HEAD will be in a detached state. Although the content pointed to by HEAD is what we need, the master branch has not changed at all. Git simply copies the commits C~E and pastes them after the commit pointed to by master. What we need to do is set the commit ID pointed to by master to the commit ID currently pointed to by HEAD, i.e.:
 ```bash
 git checkout master
-git reset --hard  0c72e64  # 假设当前head指向的 commit id
+git reset --hard  0c72e64  # Assume the current HEAD pointed to this commit ID
 ```
 
-## 同步仓库分支
+## Sync Repository Branches
 
-### 同步源仓库分支到fork的私仓
+### Sync Source Repository Branch to Forked Private Repository
 
-1. 私仓不存在该分支
+1. If the private repo doesn't have this branch
    ```bash
-   # 如果本地没有添加源仓库，添加下
+   # If the source repository hasn't been added locally, add it
    git remote add source xxx.igt
-   # 拉取源仓库代码
+   # Fetch the source repository code
    git fetch source
-   # 拉取源仓库分支
+   # Pull the source repository branch
    git checkout -b branchName source/branchName
-   # 上传到自己的私仓
+   # Push to your own private repository
    git push origin branchName
    ```
-2. 私仓已经存在，需要同步代码
+2. If the private repo already has the branch and needs to sync
    ```bash
-   # 切换到需要更新的分支
+   # Switch to the branch that needs updating
    git checkout -b branchName origin/branchName
-   # 拉取源仓库分支代码
+   # Pull the source repository branch code
    git pull source branchName
-   # 上传到自己的私仓
+   # Push to your own private repository
    git push origin branchName
    ```
 
-## 删除远程仓库的文件
+## Delete Files from Remote Repository
 
 ```bash
 git rm -r -f --cached file_or_dir
 ```
-

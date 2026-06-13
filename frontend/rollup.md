@@ -1,4 +1,4 @@
-# Rollup 配置
+# Rollup Configuration
 
 ## rollup.config.js
 ```js

@@ -1,59 +1,59 @@
-# 前端监控
-## 前端监控应用场景
-### 为什么需要前端监控？
-* 页面的访问行为，PV、UV、IP、PV点击率、UV点击率、停留时长
-* 用户的操作行为，模块曝光、模块点击、滑动、表单操作
-* 页面的性能，首屏渲染时间、API请求时间
-* 异常的监控，JS Error、API异常、业务异常
-### 常见的应用场景
-* 流量分析
-* 行为分析
-* 性能监控
-* 异常监控
-## 常见的前端监控平台有哪些？
-### 百度统计
-* 流量统计和分析免费
-* 行为分析需要覆盖
-### 阿里云ARMS
-* 流量分析、性能监控、异常监控
-### 友盟
-* 流量分析
-* 行为分析
-## 为什么要选择自建前端监控平台？
-* 如果你的需求主要是流量分析，建议直接使用百度统计或阿里云ARMS
-* 如果你的需求不仅仅需要做流量分析，还要做行为分析，那么可以考虑自建
-  * 自建成本较高（人力成本），优势是数据掌握自己手里
-  * 现成成本也有一定成本（向平台付费），数据是获取不到
-* 希望数据能够储备在自己的数据库里，希望扩展更多的分析维度和能力时，需要自建
+# Frontend Monitoring
+## Application Scenarios for Frontend Monitoring
+### Why Is Frontend Monitoring Needed?
+* Page access behavior: PV, UV, IP, PV click rate, UV click rate, dwell time
+* User operation behavior: module exposure, module clicks, scrolling, form operations
+* Page performance: first screen rendering time, API request time
+* Exception monitoring: JS Error, API exceptions, business exceptions
+### Common Application Scenarios
+* Traffic analysis
+* Behavior analysis
+* Performance monitoring
+* Exception monitoring
+## Common Frontend Monitoring Platforms
+### Baidu Analytics
+* Traffic statistics and analysis: free
+* Behavior analysis: requires additional setup
+### Alibaba Cloud ARMS
+* Traffic analysis, performance monitoring, exception monitoring
+### Umeng
+* Traffic analysis
+* Behavior analysis
+## Why Build Your Own Frontend Monitoring Platform?
+* If your needs are mainly traffic analysis, it is recommended to use Baidu Analytics or Alibaba Cloud ARMS directly
+* If your needs include not only traffic analysis but also behavior analysis, consider building your own
+  * Building your own has higher costs (labor costs), but the advantage is that you have full control over the data
+  * Using existing solutions also has costs (paying the platform), and you cannot obtain the data
+* If you want the data to be stored in your own database and need to extend more analysis dimensions and capabilities, building your own is the way to go
 
-## 前端监控平台架构设计
+## Frontend Monitoring Platform Architecture Design
 
-## 架构设计
+## Architecture Design
 
-前端监控平台的分层
+Layers of the frontend monitoring platform
 
-* 前端监控JSSDK
-  * 采集
-  * 上报
-    * 默认上报：页面PV、性能
-    * 手动上报：页面操作行为
-* 前端监控API和大数据仓库
-* 接收上报的数据
-* 数据仓库：MaxCompute
-  * 数据存储
-  * 数据查询
-* 前端监控数据可视化
-  * 日志大数据清洗
-  * 大数据回流RDS（非结构化数据=>结构化数据）
-  * 对结构化进行运算生成图表
+* Frontend Monitoring JSSDK
+  * Data collection
+  * Data reporting
+    * Default reporting: page PV, performance
+    * Manual reporting: page operation behavior
+* Frontend Monitoring API and Big Data Warehouse
+* Receiving reported data
+* Data Warehouse: MaxCompute
+  * Data storage
+  * Data query
+* Frontend Monitoring Data Visualization
+  * Log big data cleaning
+  * Big data backflow to RDS (unstructured data => structured data)
+  * Computing structured data to generate charts
 
-## 架构图
+## Architecture Diagram
 
 <img src="/images/monitor.jpg">
 
-## 浏览器的5种 Observer
+## The 5 Browser Observers
 
-### 浏览器的5种 Observer
+### The 5 Browser Observers
 * MutationObserver
 * IntersectionObserver
 * PerformanceObserver
@@ -62,15 +62,15 @@
 
 ### MutationObserver
 
->MutationObserver: 监听 DOM 树的变化（属性、子节点的增删改）
+>MutationObserver: Listens for changes in the DOM tree (attributes, addition/removal of child nodes)
 
-### 语法
+### Syntax
 const observer = new MutationObserver(callback);
-### demo 案例
+### Demo
 ```html
 <div class="MutationObserverDOM">11</div>
-<button class="addChildDOM" onclick="handleAddDom()">添加元素</button>
-<button class="addAttribute" onclick="handleAttribute()">添加属性</button>
+<button class="addChildDOM" onclick="handleAddDom()">Add Element</button>
+<button class="addAttribute" onclick="handleAttribute()">Add Attribute</button>
 ```
 ```js
 const addAttributr = document.querySelector('.addAttribute')
@@ -84,52 +84,52 @@ mutationObserver.observe(MtovDom,{
   childList: true,
   subtree: true
 })
-// 添加元素
+// Add element
 function handleAddDom(){
-  append(MtovDom, 'p', 'childClass', '子元素内容')
+  append(MtovDom, 'p', 'childClass', 'Child element content')
 }
 function append(parentElement,childElement,childClass,childElementContent){
   const child = document.createElement(childElement)
   child.className = childClass
-  child.innerHTML = childElementContent ? childElementContent : '默认内容'
+  child.innerHTML = childElementContent ? childElementContent : 'Default content'
   parentElement.appendChild(child)
 }
 function handleAttribute(){
   MtovDom.setAttribute('data','addName')
 }
 ```
-方法
-* observe: 监听指定的元素节点变化。
-语法: mutationObserver.observe(target[, options])
-* disconnect: 停止监听，直到重新调用observe方法
-语法: mutationObserver.disconnect()
+Methods
+* observe: Starts listening for changes to the specified element node.
+Syntax: mutationObserver.observe(target[, options])
+* disconnect: Stops listening until observe is called again.
+Syntax: mutationObserver.disconnect()
 
-config 配置项
-* childList: 子节点的新增和删除
-* attributes: 属性的变化
-* characterData: 节点内容或节点文本的变化
-* subtree: 是否将该观察作用于该节点的所有后代节点
-* attributeOldValue: 是否需要记录变动前的属性值
-* attributeFilter: 需要观察的特定属性
-* characterDataOldValue: 观察attributes变动时，是否需要记录变动前的属性值
+Config options
+* childList: Addition and removal of child nodes
+* attributes: Attribute changes
+* characterData: Changes to node content or node text
+* subtree: Whether to apply observation to all descendants of this node
+* attributeOldValue: Whether to record the attribute value before the change
+* attributeFilter: Specific attributes to observe
+* characterDataOldValue: Whether to record the attribute value before the change when observing attributes
   
-返回参数
-* type: 如果是属性发生变化,则返回attributes，如果是目标节点的某个子节点发生了变化,则返回childList.
-* target: 返回此次变化影响到的节点即观察的 DOM
-* addedNodes: 返回被添加的节点
-* removedNodes: 返回被删除的节点
-* previousSibling: 返回被添加或被删除的节点的前一个兄弟节点
-* nextSibling: 返回被添加或被删除的节点的后一个兄弟节点
-* oldValue: 跟据type值的不同,返回的值也会不同.如果type为attributes,则返回该属性变化之前的属性值.如果type为* characterData,则返回该节点变化之前的文本数据.如果type为childList,则返回null
+Return parameters
+* type: Returns `attributes` if an attribute changed, `childList` if a child node of the target node changed.
+* target: Returns the DOM node affected by this change (the observed DOM)
+* addedNodes: Returns the nodes that were added
+* removedNodes: Returns the nodes that were removed
+* previousSibling: Returns the previous sibling of the added or removed node
+* nextSibling: Returns the next sibling of the added or removed node
+* oldValue: Returns different values depending on the type. If type is `attributes`, returns the attribute value before the change. If type is `characterData`, returns the text data before the change. If type is `childList`, returns null.
   
 ### IntersectionObserver
 
->IntersectionObserver: 监听一个元素和可视区域相交部分的比例，然后在可视比例达到某个阈值的时候触发回调
+>IntersectionObserver: Listens for the intersection ratio between an element and the viewport, triggering a callback when the visible ratio reaches a certain threshold.
 
-语法
+Syntax
 const observer = new IntersectionObserver(callback, options);
 
-demo 案例
+Demo
 ```html
 .demo1,.demo2{
   width: 120px;
@@ -158,42 +158,42 @@ const intersectionObserver = new IntersectionObserver(
 intersectionObserver.observe( document.querySelector('.demo1'));
 intersectionObserver.observe( document.querySelector('.demo2'));
 ```
-方法
-* observe: 开始监听一个目标元素
-语法: intersectionObserver.disconnect();
-* disconnect: 停止监听
-语法: IntersectionObserver.observe(targetElement);
-* takeRecords: 返回所有观察目标的 IntersectionObserverEntry 对象数组。
-语法: intersectionObserverEntries = intersectionObserver.takeRecords();
-* unobserve: 使 IntersectionObserver 停止监听特定目标元素。
-语法: IntersectionObserver.unobserve(targetElement);
+Methods
+* observe: Starts observing a target element.
+Syntax: intersectionObserver.disconnect();
+* disconnect: Stops observing.
+Syntax: IntersectionObserver.observe(targetElement);
+* takeRecords: Returns an array of IntersectionObserverEntry objects for all observed targets.
+Syntax: intersectionObserverEntries = intersectionObserver.takeRecords();
+* unobserve: Stops the IntersectionObserver from observing a specific target element.
+Syntax: IntersectionObserver.unobserve(targetElement);
 
-配置项
-* targetElement: 目标 DOM
-* root: 指定根目录，也就是当目标元素显示在这个元素中时会触发监控回调
-* rootMargin: 类似于css的margin，设定root元素的边框区域。
-* threshold: 阙值.决定了什么时候触发回调函数
+Config options
+* targetElement: The target DOM element
+* root: Specifies the root element; the monitoring callback is triggered when the target element is visible within this element.
+* rootMargin: Similar to CSS margin, sets the margin area around the root element.
+* threshold: The threshold that determines when the callback function is triggered.
   
-返回参数
+Return parameters
 
-* time: 可见性发生变化的时间，是一个高精度时间戳，单位为毫秒
-* rootBounds: 是在根元素矩形区域的信息
-* intersectionRatio: 目标元素的可见比例
-* intersectionRect: 目标元素与根元素交叉区域的信息
-* isIntersecting: 判断元素是否符合options中的可见条件
-* boundingClientRect: 目标元素的矩形区域的信息
-* target: 被观察的目标元素
-可以参考阮一峰老师的教程：https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html
+* time: The time when visibility changed, a high-precision timestamp in milliseconds.
+* rootBounds: The rectangular area information of the root element.
+* intersectionRatio: The visible ratio of the target element.
+* intersectionRect: Information about the intersection area between the target element and the root element.
+* isIntersecting: Determines whether the element meets the visibility conditions in the options.
+* boundingClientRect: The rectangular area information of the target element.
+* target: The observed target element.
+Reference: Ruan Yifeng's tutorial: https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html
 
 ### PerformanceObserver
 
->PerformanceObserver: 用于监测性能度量事件，在浏览器的性能时间轴记录下一个新的 performance entries 的时候将会被通知。
+>PerformanceObserver: Used to monitor performance measurement events. It is notified when a new performance entry is recorded in the browser's performance timeline.
 
-语法
+Syntax
 
 const observer = new PerformanceObserver(callback);
 
-demo 案例
+Demo
 ```html
 <button onclick="clicked()">Measure</button>
 var observer2 = new PerformanceObserver((list)=>{
@@ -201,32 +201,32 @@ var observer2 = new PerformanceObserver((list)=>{
 });
 observer2.observe({entryTypes: ["measure"]});
 function clicked() {
-    performance.measure('点击事件');
+    performance.measure('Click Event');
 }
 ```
-方法
+Methods
 
-* disconnect: 阻止性能观察者接收任何 PerformanceEntry 事件。
-语法: performanceObserver.disconnect();
-* observe: 用于观察传入的参数中指定的 PerformanceEntry 类型的集合
-语法: observer.observe(options);
-* takeRecords: 返回当前存储在性能观察器中的 PerformanceEntry 列表，将其清空。
-语法: var PerformanceEntry[] = performanceObserver.takeRecords();
-* getEntries: 返回一个列表，该列表包含一些用于承载各种性能数据的对象,
+* disconnect: Prevents the performance observer from receiving any PerformanceEntry events.
+Syntax: performanceObserver.disconnect();
+* observe: Used to observe the specified set of PerformanceEntry types.
+Syntax: observer.observe(options);
+* takeRecords: Returns the current list of PerformanceEntry objects stored in the performance observer and empties it.
+Syntax: var PerformanceEntry[] = performanceObserver.takeRecords();
+* getEntries: Returns a list containing objects that carry various performance data.
   
-配置项
+Config options
 
-* entryTypes: 声明需要观察哪几类性能数据 (mark（时间点）、measure（时间段）、resource（资源加载耗时)
-* buffered: 声明回调函数是立即同步执行还是异步执行
+* entryTypes: Declares which types of performance data to observe (mark (points in time), measure (time periods), resource (resource load time)).
+* buffered: Declares whether the callback should execute synchronously or asynchronously.
 
 
 ### ResizeObserver
 
->ResizeObserver: 接口可以监听到 DOM 的变化（节点的出现和隐藏，节点大小的变化）
-语法
+>ResizeObserver: Can listen for DOM changes (node appearance and hiding, changes in node size).
+Syntax
 var ResizeObserver = new ResizeObserver(callback)
 
-demo 案例
+Demo
 ```html
   <div class="ResizeObserver">ResizeObserver</div>
 const MtovDom = document.querySelector('.ResizeObserver')
@@ -235,27 +235,27 @@ const myObserver = new ResizeObserver(entries => {
   })
   myObserver.observe(MtovDom)
 ```
-方法
-* observe： 初始化观察一个指定元素。
-语法：resizeObserver.observe(target);
-* disconnect： 取消观察某个observer的所有observed目标元素
-语法：resizeObserver.disconnect();
-配置项
+Methods
+* observe: Initializes observing a specified element.
+Syntax: resizeObserver.observe(target);
+* disconnect: Cancels observation of all observed target elements for a given observer.
+Syntax: resizeObserver.disconnect();
+Config options
 
-*options：指定观察设置的可选参数对象
-*target: 被观察的 DOM 元素
+* options: An optional parameters object specifying observation settings.
+* target: The DOM element to be observed.
 
 ### ReportingObserver
 
->ReportingObserver: 监听过时的 api、浏览器的一些干预行为的报告
-语法
+>ReportingObserver: Listens for reports on deprecated APIs and browser intervention behaviors.
+Syntax
 
 vat observe = new ReportingObserver(callback[, options]);
 
-demo 案例
+Demo
 
 ```js
-// deprecation  和 intervention 不好模拟就不模拟了，intervention 可以查看 https://chromestatus.com/features#intervention 
+// deprecation and intervention are not simulated here as they are difficult to simulate. For intervention, see https://chromestatus.com/features#intervention 
 const reportingObserver = new ReportingObserver((reports, observer) => {
     for (const report of reports) {
         console.log(report.body)
@@ -265,14 +265,14 @@ const reportingObserver = new ReportingObserver((reports, observer) => {
 reportingObserver.observe();
 
 ```
-方法
+Methods
 
-* observe: 指示一个报告观察者开始在其报告队列中收集报告。
-* takeRecords: 返回观察者的报告队列中包含的当前报告列表,并清空队列。
-* disconnect: 停止之前已经开始观测的报告观测员收集报告。
+* observe: Instructs a reporting observer to start collecting reports in its report queue.
+* takeRecords: Returns the current list of reports in the observer's report queue and empties the queue.
+* disconnect: Stops a reporting observer that was previously started from collecting reports.
 
 
-配置项
+Config options
 
-* types：一个字符串数组，代表该观察者要收集的报告类型。可用的类型包括 deprecation，intervention 和 crash。
-* buffered: 一个布尔值，它定义在可以创建观察者之前生成的报告是否应该可观察
+* types: An array of strings representing the types of reports this observer should collect. Available types include `deprecation`, `intervention`, and `crash`.
+* buffered: A boolean that defines whether reports generated before the observer was created should be observable.

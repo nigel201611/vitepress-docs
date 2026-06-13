@@ -1,15 +1,15 @@
-# 前端测试
+# Frontend Testing
 
-## Jest 测试学习大纲
+## Jest Testing Study Outline
 
 <br/>
-<img src="/images/jestTest.png" alt="Jest 测试学习大纲">
+<img src="/images/jestTest.png" alt="Jest testing study outline">
 
-### 基础API
+### Basic API
 
-* Jest 中的匹配器
+* Matchers in Jest
 ```js
-  // Truthiness​
+  // Truthiness
   test('null', () => {
   const n = null;
   expect(n).toBeNull();
@@ -47,7 +47,7 @@ const shoppingList = [
 test('the shopping list has milk on it', () => {
   expect(shoppingList).toContain('milk');
   expect(new Set(shoppingList)).toContain('milk');
-});​
+});
 
 // Exceptions
 function compileAndroidCode() {
@@ -63,7 +63,7 @@ test('compiling android goes as expected', () => {
 
 
 ```
-* Jest 中的钩子函数
+* Hook functions in Jest
 ```js
 // Repeating Setup For Many Tests
 beforeEach(() => {
@@ -87,7 +87,7 @@ afterAll(() => {
 });
 
 ```
-### 异步测试
+### Async Testing
 
 ```js
 // Callbacks use done
@@ -110,10 +110,10 @@ test('the data is peanut butter', () => {
     expect(data).toBe('peanut butter');
   });
 });
-// if you expect a promise to be rejected, use the .catch method. 
+// if you expect a promise to be rejected, use the .catch method.
 // Make sure to add expect.assertions to verify that a certain number of assertions are called. Otherwise, a fulfilled promise would not fail the test.
 test('the fetch fails with an error', () => {
-  // expect 至少执行一次，否则执行成功的 promise 必然也会通过该测试
+  // expect should be called at least once, otherwise a resolved promise would still pass the test
   expect.assertions(1);
   return fetchData().catch(e => expect(e).toMatch('error'));
 });
@@ -123,7 +123,7 @@ test('the data is peanut butter', () => {
 test('the fetch fails with an error', () => {
   return expect(fetchData()).rejects.toMatch('error');
 });
-// Async/Await​
+// Async/Await
 test('the data is peanut butter', async () => {
   const data = await fetchData();
   expect(data).toBe('peanut butter');
@@ -145,7 +145,7 @@ test('the fetch fails with an error', async () => {
 });
 ```
 
-### Mock 技巧
+### Mock Techniques
 
 ```js
 // # Mock Functions
@@ -160,7 +160,7 @@ expect(mockCallback.mock.calls[1][0]).toBe(1);
 // The return value of the first call to the function was 42
 expect(mockCallback.mock.results[0].value).toBe(42);
 
-// # Mock Return Values​
+// # Mock Return Values
 const myMock = jest.fn();
 console.log(myMock());
 // > undefined
@@ -168,7 +168,7 @@ myMock.mockReturnValueOnce(10).mockReturnValueOnce('x').mockReturnValue(true);
 console.log(myMock(), myMock(), myMock(), myMock());
 // > 10, 'x', true, true
 
-// # Mocking Modules​
+// # Mocking Modules
 // file users.js
 import axios from 'axios';
 class Users {
@@ -190,7 +190,7 @@ test('should fetch users', () => {
   return Users.all().then(data => expect(data).toEqual(users));
 });
 
-// # Mocking Partials​
+// # Mocking Partials
 // file foo-bar-baz.js
 export const foo = 'foo';
 export const bar = () => 'bar';
@@ -216,7 +216,7 @@ test('should do a partial mock', () => {
   expect(bar()).toBe('bar');
 });
 
-// # Mock Implementations​
+// # Mock Implementations
 const myMockFn = jest.fn(cb => cb(null, true));
 myMockFn((err, val) => console.log(val));
 // file foo.js
@@ -237,7 +237,7 @@ const myMockFn = jest
 console.log(myMockFn(), myMockFn(), myMockFn(), myMockFn());
 // > 'first call', 'second call', 'default', 'default'
 
-// # Custom Matchers​
+// # Custom Matchers
 // The mock function was called at least once
 expect(mockFunc).toHaveBeenCalled();
 // The mock function was called at least once with the specified args
@@ -252,7 +252,7 @@ expect(mockFunc.getMockName()).toBe('a mock name');
 
 ```
 
-### timer 测试
+### Timer Testing
 
 ```js
 // file timerGame.js
@@ -307,15 +307,15 @@ test('calls the callback after 1 second', () => {
 // (but not any new timers that get created during that process)
 jest.runOnlyPendingTimers();
 
-// # Advance Timers by Time​
+// # Advance Timers by Time
 jest.advanceTimersByTime(1000);
 
 ```
 
-### 快照测试
+### Snapshot Testing
 
 ```js
-// # Snapshot Testing with Jest​
+// # Snapshot Testing with Jest
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Link from '../Link';
@@ -337,7 +337,7 @@ exports[`renders correctly 1`] = `
 </a>
 `;
 
-// # Inline Snapshots​
+// # Inline Snapshots
 it('renders correctly', () => {
   const tree = renderer
     .create(<Link page="https://example.com">Example Site</Link>)
@@ -360,7 +360,7 @@ it('renders correctly', () => {
 </a>
 `);
 });
-// # Property Matchers​
+// # Property Matchers
 // Often there are fields in the object you want to snapshot which are generated (like IDs and Dates). If you try to snapshot these objects, they will force the snapshot to fail on every run:
 it('will check the matchers and pass', () => {
   const user = {
@@ -376,46 +376,46 @@ it('will check the matchers and pass', () => {
 
 ```
 
-### DOM 测试
+### DOM Testing
 
-Jest 模拟了 dom 的 api 也即是 jsDom
-所以可以设置jsDom环境，就可以正常操作dom api
+Jest simulates DOM APIs, i.e., jsdom
+So you can set up the jsdom environment to operate DOM APIs normally
 
-## vue Jest测试常用配置
+## Common Vue Jest Test Configuration
 
 ```javascript
 module.exports = {
-  // 模块解析后缀，导入模块进行测试时，可以省略一下后缀 
+  // Module resolution extensions, can omit the following suffixes when importing modules for testing
   moduleFileExtensions: [ 'js', 'jsx', 'json', 'vue' ],
-  // 对应后缀文件，使用对应模块进行转换
+  // Use corresponding modules to transform files with the given extensions
   transform: {
     '^.+\\.vue$': 'vue-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
     '^.+\\.jsx?$': 'babel-jest'
   },
-  // 匹配一下模式的文件或目录，不需要转换
+  // Files or directories matching these patterns do not need transformation
   transformIgnorePatterns: [
     '/node_modules/'
   ],
-  // 模块映射别名
+  // Module alias mapping
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  // 生成快照，格式化处理器
+  // Snapshot serialization processor
   snapshotSerializers: [
     'jest-serializer-vue'
   ],
-  // 匹配如下路径模式的文件，自动进行测试
+  // Files matching these path patterns will be automatically tested
   testMatch: [
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'
   ],
-  // 符合如下路径模式文件，忽略测试
+  // Files matching these path patterns will be ignored for testing
   testPathIgnorePatterns: [
     '.eslintrc.js'
   ],
-  // 模拟浏览器环境URL
+  // Mock browser environment URL
   testURL: 'http://localhost/',
-  // jest -w p模式交互体验 优化插件
+  // Jest -w p mode interactive experience optimization plugins
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'
@@ -424,7 +424,7 @@ module.exports = {
 
 ```
 
-## react Jest测试常用配置
+## Common React Jest Test Configuration
 
 ```js
 module.exports = {

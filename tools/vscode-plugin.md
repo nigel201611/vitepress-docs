@@ -1,11 +1,11 @@
-# VS Code 插件开发
-## 通过 Yeoman 脚手架自动生成插件模板
+# VS Code Plugin Development
+## Generate plugin templates via Yeoman scaffolding
 
 ```bash
 npm install -g yo generator-code
 yo code
 
-#命令行中效果如下
+# Effect in the command line as follows
 
      _-----_     ╭──────────────────────────╮
     |       |    │   Welcome to the Visual  │
@@ -30,13 +30,13 @@ yo code
 
 ```
 
-## 如何调式
+## How to Debug
 
-按F5，这将在新的扩展开发主机窗口中编译并运行扩展。
-从命令选项板运行命令(⇧⌘P）执行命令
+Press F5, this will compile and run the extension in a new Extension Development Host window.
+Run the command from the Command Palette (⇧⌘P).
 
-## 项目结构
-核心在于两个文件
+## Project Structure
+The core lies in two files:
 package.json
 ```js
 {
@@ -72,7 +72,7 @@ import * as vscode from 'vscode';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-    // 开发你需要的功能，比如注册命令
+    // Develop the functionality you need, e.g., register commands
     const syncpluginCommand = vscode.commands.registerCommand(
     `${vsPluginName}.syncplugin`,
     function () {}
@@ -81,47 +81,46 @@ export function activate(context: vscode.ExtensionContext) {
 }
 ```
 
-## 发布到VS Code插件市场
+## Publish to VS Code Marketplace
 
 ```bash
 npm i -g vsce
 vsce package
 # myExtension.vsix generated
-vsce login < your publisher id>
+vsce login <your publisher id>
 vsce publish
 # <publisherID>.myExtension published to VS Code Marketplace
 ```
-如果安装失败，比如报权限问题，可以通过设置 npm -g config set user root 来解决，也可以本地打包，然后在插件管理平台手动上传发布
+If the installation fails, e.g., due to permission issues, you can resolve it by setting `npm -g config set user root`, or you can package locally and manually upload to the plugin management platform for publishing.
 
-## VSCode调试配置项说明
-* request：请求配置类型，可以为launch（启动）或attach（附加）
-下面是launch 和 attach 类型共有的属性：
-* protocol：设置调试协议
-* auto： 尝试自动检测目标运行时使用的协议
-* inspector 新的V8调试器协议，解决遗留版本的多数问题，node versions >= 6.3 and Electron versions >= 1.7.4
-* legacy： 原始的v8调试器协议，node versions < v8.0 and Electron versions < 1.7.4.
-* port：调试使用的端口
-* address ：TCP/IP地址，用于远程调试
-* localRoot： 远程调试时映射的本地地址
-* remoteRoot： 远程调试时的远程目录地址
-* sourceMaps： 默认为true
-* outFiles ：当map文件不在js文件同目录时用于指定 sourceMaps的位置
-* restart ：自动重启调试
-* timeout： 配置自动附加的超时时间
-* stopOnEntry： 自动断点到第一行代码处
-* smartStep： 自动跳过未映射到源代码的代码
-* skipFiles :[]String,指定跳过单步调试的代码
-* trace ： 启用诊断输出
+## VSCode Debug Configuration Reference
+* request: Configuration type, can be launch or attach
+Below are common properties for both launch and attach types:
+* protocol: Set the debug protocol
+* auto: Attempt to auto-detect the protocol used by the target runtime
+* inspector: New V8 debugger protocol, resolves most issues from legacy versions, node versions >= 6.3 and Electron versions >= 1.7.4
+* legacy: Original V8 debugger protocol, node versions < v8.0 and Electron versions < 1.7.4
+* port: Port used for debugging
+* address: TCP/IP address for remote debugging
+* localRoot: Local directory mapping for remote debugging
+* remoteRoot: Remote directory path for remote debugging
+* sourceMaps: Defaults to true
+* outFiles: Used to specify the location of sourceMaps when map files are not in the same directory as JS files
+* restart: Automatically restart debugging
+* timeout: Configure timeout for auto-attach
+* stopOnEntry: Automatically breakpoint at the first line of code
+* smartStep: Automatically skip code that is not mapped to source
+* skipFiles: []String, specify code to skip during step debugging
+* trace: Enable diagnostic output
 
-以下是特定于类型 launch(启动)的配置属性：
-* program： 指定调试入口文件地址
-* args ： []String 传递给程序的参数,可在process.argv拿到
-* cwd ：指定程序启动调试的目录 ,当vscode启动目录不是项目根目录，并且调试npm script时非常有用
-* runtimeExecutable： 设置运行时可执行文件路径，默认是node
-可以是其他的执行程序，如npm、nodemon
-* runtimeArgs： 传递给运行时可执行文件的参数,例如：
-* runtimeVersion： 设置运行时可执行程序的版本，如果使用nvm，可以切换node.js版本
-* env： 添加额外的环境变量
-* envFile： 文件加载环境变量
-* console： 配置终端可以是外部终端或者内部集成终端，默认值internalConsole
-* autoAttachChildProcesses： 跟踪调试对象的所有子过程，并自动附加到在调试模式下启动的子过程
+The following are configuration properties specific to the launch type:
+* program: Specify the debug entry file path
+* args: []String, arguments passed to the program, accessible via process.argv
+* cwd: Specify the working directory for debugging startup, useful when the vscode startup directory is not the project root and when debugging npm scripts
+* runtimeExecutable: Set the runtime executable path, default is node; can be other executables like npm, nodemon
+* runtimeArgs: Arguments passed to the runtime executable, e.g.:
+* runtimeVersion: Set the runtime executable version; if using nvm, you can switch node.js version
+* env: Add additional environment variables
+* envFile: Load environment variables from file
+* console: Configure the terminal, can be external terminal or integrated terminal, default is internalConsole
+* autoAttachChildProcesses: Track all child processes of the debug target and automatically attach to child processes started in debug mode

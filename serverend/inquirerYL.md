@@ -1,13 +1,13 @@
-# inquirer 命令行交互原理
+# inquirer Command Line Interaction Principles
 
 ## ANSI-escape-code
->ANSI-escape-code查阅文档：https://handwiki.org/wiki/ANSI_escape_code
+>ANSI-escape-code reference: https://handwiki.org/wiki/ANSI_escape_code
 ```js
-// ANSI-escape-code ansi 转义序列
+// ANSI-escape-code escape sequences
 console.log('\x1B[41m\x1B[4m%s\x1B[0m', 'your name:');
 console.log('\x1B[2B%s', 'your name2:');
 ```
-## readline 用法
+## readline Usage
 
 ```js
 const readline = require('readline');
@@ -23,21 +23,21 @@ rl.question('your name: ', (answer => {
 }));
 
 ```
-## readline 原理
-监听键盘事件
+## readline Principles
+Listening to keyboard events
 ```js
 emitKeypressEvents(input, this);
 // `input` usually refers to stdin
 input.on('keypress', onkeypress);
 input.on('end', ontermend);
 ```
-### readline 核心实现原理流程图
+### readline Core Implementation Flowchart
 <br/>
-<img src="/images/readlineYM.jpg" alt="readline 核心实现原理">
+<img src="/images/readlineYM.jpg" alt="readline core implementation principles">
 
->readline利用了Generator函数的特性(https://es6.ruanyifeng.com/#docs/generator)
+>readline leverages Generator function features (https://es6.ruanyifeng.com/#docs/generator)
 
-## 手动实现inquirer 列表
+## Manual Implementation of inquirer List
 ```js
 const EventEmitter = require('events');
 const readline = require('readline');
@@ -90,7 +90,7 @@ class List extends EventEmitter {
     this.height = 0;
     this.keypress = fromEvent(this.rl.input, 'keypress')
       .forEach(this.onkeypress);
-    this.haveSelected = false; // 是否已经选择完毕
+    this.haveSelected = false;
   }
 
   onkeypress = (keymap) => {
@@ -127,7 +127,6 @@ class List extends EventEmitter {
       let title = '\x1B[32m?\x1B[39m \x1B[1m' + this.message + '\x1B[22m\x1B[0m \x1B[0m\x1B[2m(Use arrow keys)\x1B[22m\n';
       this.choices.forEach((choice, index) => {
         if (index === this.selected) {
-          // 判断是否为最后一个元素，如果是，则不加\n
           if (index === this.choices.length - 1) {
             title += '\x1B[36m❯ ' + choice.name + '\x1B[39m ';
           } else {
@@ -144,7 +143,6 @@ class List extends EventEmitter {
       this.height = this.choices.length + 1;
       return title;
     } else {
-      // 输入结束后的逻辑
       const name = this.choices[this.selected].name;
       let title = '\x1B[32m?\x1B[39m \x1B[1m' + this.message + '\x1B[22m\x1B[0m \x1B[36m' + name + '\x1B[39m\x1B[0m \n';
       return title;

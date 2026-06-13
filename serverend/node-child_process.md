@@ -1,12 +1,12 @@
-# child_process 用法原理
+# child_process Usage and Principles
 
-## child_process 用法
+## child_process Usage
 
 ```js
 const cp = require("child_process");
 const path = require("path");
 let child;
-// cp.exec 用来执行 shell 脚本，child 是 ChildProcess 子进程对象
+// cp.exec is used to execute shell scripts, child is a ChildProcess instance
 // cp.exec(command,options,callback) 
 // options: env,timeout,encoding,shell,maxBuffer
 child = cp.exec("ls -al|grep node_modules", function (err, stdout, stderr) {
@@ -45,8 +45,8 @@ child.on("close", () => {
   console.log("close!");
 });
 
-// 一般执行shell脚本文件，和exec相比，exec可以加入 grep 等管道筛选命令
-// 另外 exec 也可传入一个shell脚本文件，但不支持传额外参数
+// Generally used to execute shell script files. Compared to exec, exec can include pipe filtering commands like grep
+// Also, exec can take a shell script file, but does not support passing extra arguments
 // cp.execFile(file[, args][, options][, callback])
 // options: env,timeout,encoding,shell,maxBuffer
 cp.execFile(
@@ -59,7 +59,7 @@ cp.execFile(
   }
 );
 
-// spawn: 耗时任务（比如：npm install），需要不断接收日志，不断输出
+// spawn: long-running tasks (e.g., npm install), requires continuous log output
 // cp.spawn(file,args,options)
 const child2 = cp.spawn("npm", ["install"], {
   cwd: path.resolve("/Users/sam/Desktop/vue-test/imooc-test-lib"),
@@ -73,8 +73,8 @@ child2.stdout.on("data", function (chunk) {
 child2.stderr.on("data", function (chunk) {
   console.log(chunk.toString());
 });
-// exec/execFile: 开销比较小的任务
-// 会将结果一次性返回
+// exec/execFile: lightweight tasks
+// Returns results all at once
 // cp.exec(
 //   "npm install",
 //   {
@@ -97,7 +97,7 @@ child3.on("message", (msg) => {
 });
 console.log("main pid:", process.pid);
 
-// child_process 同步方法
+// child_process synchronous methods
 const ret = cp.execSync("ls -al|grep node_modules");
 console.log(ret.toString());
 const ret2 = cp.execFileSync("ls", ["-al"]);
@@ -105,24 +105,24 @@ console.log(ret2.toString());
 const ret3 = cp.spawnSync("ls", ["-al"]);
 console.log(ret3.stdout.toString());
 ```
->exec execFile spawn 返回的是子进程实例 
-child 上挂载的 stdin,stdout,stderr 都是socket实例
+> exec, execFile, and spawn return child process instances.
+> The stdin, stdout, stderr attached to the child are socket instances.
 
-## child_process 原理
+## child_process Principles
 
-### exec/execFile/spawn/fork的区别
-* exec：会对参数做一些处理，底层调用了 execFile
-* execFile：对参数做一些处理，底层调用 spawn 创建和执行子进程，并建立了回调，一次性将所有的 stdout 和 stderr 结果返回
-* spawn：原理是调用了 internal/child_process，实例化了 ChildProcess 子进程对象，再调用 child.spawn 创建子进程并执行命令，底层是调用了 child._handle.spawn 执行 process_wrap 中的 spawn 方法，执行过程是异步的，执行完毕后通过 PIPE 进行单向数据通信，通信结束后会子进程发起 onexit 回调，同时 Socket 会执行 close 回调
-* fork：原理是通过 spawn 创建子进程和执行命令，采用 node 执行命令，通过 setupchannel 创建 IPC 用于子进程和父进程之间的双向通信
-### data/error/exit/close回调的区别
-* data：主进程读取数据过程中通过 onStreamRead 发起的回调
-* error：命令执行失败后发起的回调
-* exit：子进程关闭完成后发起的回调
-* close：子进程所有 Socket 通信端口全部关闭后发起的回调
-* stdout close/stderr close：特定的 PIPE 读取完成后调用 onReadableStreamEnd 关闭 Socket 时发起的回调
+### Differences between exec/execFile/spawn/fork
+* exec: Processes arguments, internally calls execFile
+* execFile: Processes arguments, internally calls spawn to create and execute a child process, sets up a callback that returns all stdout and stderr results at once
+* spawn: Internally calls internal/child_process, instantiates a ChildProcess object, then calls child.spawn to create the child process and execute the command. Under the hood, it calls child._handle.spawn which executes the spawn method from process_wrap. Execution is asynchronous. After completion, one-way data communication happens via PIPE, and then the child process initiates a onexit callback, while Socket executes a close callback
+* fork: Creates a child process and executes commands via spawn, uses Node to execute commands, creates an IPC channel via setupchannel for bidirectional communication between child and parent processes
+### Differences between data/error/exit/close callbacks
+* data: Callback initiated via onStreamRead while the main process is reading data
+* error: Callback initiated after command execution fails
+* exit: Callback initiated after the child process completes shutdown
+* close: Callback initiated after all Socket communication ports of the child process are fully closed
+* stdout close/stderr close: Callback initiated when a specific PIPE finishes reading and closes the Socket via onReadableStreamEnd
 
-## exec 源码深入分析
+## exec Source Code Deep Dive
 child_process
 * exec
 * execFile
@@ -132,9 +132,9 @@ internal/child_process
 * ChildProcess
 * spawn
 
-<img src="/images/node-child_process.jpg" alt="child_process 源码流程图">
+<img src="/images/node-child_process.jpg" alt="child_process source code flow chart">
 
-## Node 多进程回调流程
+## Node Multi-process Callback Flow
 
 * spawn
 * Pipe
@@ -144,26 +144,26 @@ internal/child_process
 * close
 * exit
   
-<img src="/images/process_spawn_callback.jpg" alt="Node 多进程回调流程">
+<img src="/images/process_spawn_callback.jpg" alt="Node multi-process callback flow">
 
-## Node 多进程执行阶段总结
+## Node Multi-process Execution Phase Summary
 
 <br/>
-<img src="/images/process_spawn_callback2.jpg" alt="多进程执行阶段总结">
+<img src="/images/process_spawn_callback2.jpg" alt="Multi-process execution phase summary">
 
-## Fork 执行流程分析
-核心区别是创建 IPC Channel 取代 [stdin, stdout, stderr]
+## Fork Execution Flow Analysis
+The core difference is creating an IPC Channel instead of [stdin, stdout, stderr]
 
-## 知识储备
+## Prerequisite Knowledge
 
-### shell的使用
+### Using the Shell
 
-方法一：直接执行shell文件
+Method 1: Execute a shell file directly
 
 ```bash
 /bin/sh test.shell
 ```
-方法二：直接执行shell语句
+Method 2: Execute shell commands directly
 ```bash
 /bin/sh -c "ls -al|grep node_modules"
 ```

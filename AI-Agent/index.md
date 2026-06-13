@@ -1,85 +1,85 @@
-# AI Agent 相关资源
+# AI Agent Resources
 
-> 整理自 EX.IO/vara 浏览器书签，分类归档以便快速查阅。
+> Compiled from EX.IO/vara browser bookmarks, categorized for quick reference.
 
 ---
 
 ## Claude Code
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| Claude Code 官方文档 | 官方入门与功能概览 | [Docs](https://code.claude.com/docs/en/overview) |
-| Claude Code 原理与源码拆解 | 社区文章，解析 Claude Code 工作机制 | [Article](https://jwangkun.github.io/how-claude-code-works/) |
-| Codex 快速入门 | OpenAI Codex 开发环境指引 | [Get Started](https://chatgpt.com/zh-Hans-CN/codex/get-started/) |
-| ChatGPT | ChatGPT 对话 | [Chat](https://chatgpt.com/c/6a046a8a-93dc-8321-b0fc-2c0bd9ff5a77) |
+| Claude Code Official Docs | Official introduction and feature overview | [Docs](https://code.claude.com/docs/en/overview) |
+| Claude Code: How It Works & Source Code Analysis | Community article, analyzing how Claude Code works | [Article](https://jwangkun.github.io/how-claude-code-works/) |
+| Codex Quick Start | OpenAI Codex development environment guide | [Get Started](https://chatgpt.com/zh-Hans-CN/codex/get-started/) |
+| ChatGPT | ChatGPT conversation | [Chat](https://chatgpt.com/c/6a046a8a-93dc-8321-b0fc-2c0bd9ff5a77) |
 
-### 官方插件
+### Official Plugins
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| claude-plugins-official | Anthropic 官方维护的高质量 Claude Code 插件目录 | [GitHub](https://github.com/anthropics/claude-plugins-official) |
-| 创建你的第一个插件 | DeepWiki 插件开发入门指南 | [Guide](https://deepwiki.com/anthropics/claude-plugins-official/10.1-cicd-and-validation-systems) |
-| 开发插件组件 | DeepWiki 插件组件开发指南 | [Guide](https://deepwiki.com/anthropics/claude-plugins-official/10.3-developing-plugin-components) |
+| claude-plugins-official | High-quality Claude Code plugin directory maintained by Anthropic | [GitHub](https://github.com/anthropics/claude-plugins-official) |
+| Create Your First Plugin | DeepWiki plugin development getting started guide | [Guide](https://deepwiki.com/anthropics/claude-plugins-official/10.1-cicd-and-validation-systems) |
+| Developing Plugin Components | DeepWiki plugin component development guide | [Guide](https://deepwiki.com/anthropics/claude-plugins-official/10.3-developing-plugin-components) |
 
-### 社区项目
+### Community Projects
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| claude-code-guide | 社区 Claude Code 使用指南 — 安装、命令、工作流、Agent、技巧 | [GitHub](https://github.com/zebbern/claude-code-guide) |
-| claude-office | 实时像素艺术办公室模拟，可视化 Claude Code 操作 | [GitHub](https://github.com/paulrobello/claude-office) · [Demo](https://www.youtube.com/watch?v=AM2UjKYB8Ew) |
-| Claude-Code-Agent-Monitor | Claude Code 实时监控仪表盘（SQLite + Node + React） | [GitHub](https://github.com/hoangsonww/Claude-Code-Agent-Monitor) |
-| cc-switch | Claude Code 模型切换工具 | [Releases](https://github.com/farion1231/cc-switch/releases) |
+| claude-code-guide | Community Claude Code usage guide -- installation, commands, workflows, Agent, tips | [GitHub](https://github.com/zebbern/claude-code-guide) |
+| claude-office | Real-time pixel art office simulation, visualizing Claude Code operations | [GitHub](https://github.com/paulrobello/claude-office) · [Demo](https://www.youtube.com/watch?v=AM2UjKYB8Ew) |
+| Claude-Code-Agent-Monitor | Claude Code real-time monitoring dashboard (SQLite + Node + React) | [GitHub](https://github.com/hoangsonww/Claude-Code-Agent-Monitor) |
+| cc-switch | Claude Code model switching tool | [Releases](https://github.com/farion1231/cc-switch/releases) |
 
 ---
 
-## AI 平台
+## AI Platforms
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| DeepSeek 开放平台 | DeepSeek API 用量与密钥管理 | [Platform](https://platform.deepseek.com/usage) |
-| Kimi API Platform | Kimi API 密钥管理 | [Platform](https://platform.kimi.ai/console/api-keys) |
-| Kimi AI 建站工具 | Kimi 快速生成可交互真实网站 | [Website](https://www.kimi.com/websites) |
+| DeepSeek Open Platform | DeepSeek API usage and key management | [Platform](https://platform.deepseek.com/usage) |
+| Kimi API Platform | Kimi API key management | [Platform](https://platform.kimi.ai/console/api-keys) |
+| Kimi AI Website Builder | Kimi quickly generates interactive real websites | [Website](https://www.kimi.com/websites) |
 
 ---
 
-## AI Agent 框架
+## AI Agent Frameworks
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| UI-TARS (字节跳动) | 原生 GUI Agent，自动化 GUI 交互 | [GitHub](https://github.com/bytedance/UI-TARS) |
-| page-agent (阿里巴巴) | 浏览器内 JavaScript GUI Agent，用自然语言控制网页 | [GitHub](https://github.com/alibaba/page-agent) |
+| UI-TARS (ByteDance) | Native GUI Agent, automated GUI interaction | [GitHub](https://github.com/bytedance/UI-TARS) |
+| page-agent (Alibaba) | In-browser JavaScript GUI Agent, control web pages with natural language | [GitHub](https://github.com/alibaba/page-agent) |
 
 ---
 
-## 学习资源
+## Learning Resources
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| AI Prompting for Everyone | DeepLearning.AI 提示词工程课程 | [Course](https://learn.deeplearning.ai/courses/ai-prompting-for-everyone/lesson/de11nq6r/the-ai-novice-and-the-ai-power-user) |
-| Flutter 官方文档 | Flutter 跨平台开发文档 | [Docs](https://docs.flutter.dev/) |
+| AI Prompting for Everyone | DeepLearning.AI prompt engineering course | [Course](https://learn.deeplearning.ai/courses/ai-prompting-for-everyone/lesson/de11nq6r/the-ai-novice-and-the-ai-power-user) |
+| Flutter Official Docs | Flutter cross-platform development documentation | [Docs](https://docs.flutter.dev/) |
 
 ---
 
-## VARA 项目
+## VARA Project
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| dev.exiovara.com | VARA 开发环境 | [Dev](https://dev.exiovara.com/en) |
-| vara-prd | VARA 产品需求文档（GitLab） | [GitLab](https://gitlab.com/exiogroup/exio-pm/vara-prd/-/blob/main/deposit-withdrawal-travel-rule-aml-prd.md?ref_type=heads) |
+| dev.exiovara.com | VARA development environment | [Dev](https://dev.exiovara.com/en) |
+| vara-prd | VARA product requirements document (GitLab) | [GitLab](https://gitlab.com/exiogroup/exio-pm/vara-prd/-/blob/main/deposit-withdrawal-travel-rule-aml-prd.md?ref_type=heads) |
 
 ### Sumsub KYC
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| Sumsub 控制台 | Sumsub Applicants 管理后台 | [Dashboard](https://cockpit.sumsub.com/checkus/login?redirect=%2FsdkIntegrations%2FquestionnaireDetails%2Fexio-edd-doc-bank-statement%3FclientId%3Dex.io_168282) |
-| Sumsub WebSDK 文档 | Sumsub Web SDK 接入文档 | [Docs](https://docs.sumsub.com/docs/about-web-sdk) |
+| Sumsub Console | Sumsub Applicants management dashboard | [Dashboard](https://cockpit.sumsub.com/checkus/login?redirect=%2FsdkIntegrations%2FquestionnaireDetails%2Fexio-edd-doc-bank-statement%3FclientId%3Dex.io_168282) |
+| Sumsub WebSDK Docs | Sumsub Web SDK integration documentation | [Docs](https://docs.sumsub.com/docs/about-web-sdk) |
 
 ---
 
-## 开发工具
+## Development Tools
 
-| 资源 | 说明 | 链接 |
+| Resource | Description | Link |
 |------|------|------|
-| XMRth Mac 使用教程 | Mac 代理工具配置教程 | [Tutorial](https://www.xmrth.lol/user/tutorial?os=mac&client=clashx##) |
-| 飞书 Lark | 团队即时通讯 | [Lark](https://nextechsoft.sg.larksuite.com/next/messenger/) |
-| 币安 OTC | 场外交易平台 RFQ | [Binance](https://www.binance.com/zh-CN/otc/spot-trading) |
+| XMRth Mac Tutorial | Mac proxy tool configuration tutorial | [Tutorial](https://www.xmrth.lol/user/tutorial?os=mac&client=clashx##) |
+| Feishu Lark | Team instant messaging | [Lark](https://nextechsoft.sg.larksuite.com/next/messenger/) |
+| Binance OTC | OTC trading platform RFQ | [Binance](https://www.binance.com/zh-CN/otc/spot-trading) |

@@ -1,52 +1,52 @@
-# 函数式编程入门
+# Introduction to Functional Programming
 
-## 第一章 函数式编程基本概念
+## Chapter 1: Basic Concepts of Functional Programming
 
-## 大纲
+## Outline
 
-1. 背景
-2. 函数式编程特点
-3. 函数式编程好处
+1. Background
+2. Characteristics of Functional Programming
+3. Benefits of Functional Programming
 
-## 为什么需要函数式编程（背景）
+## Why Functional Programming (Background)
 
-Vue3、React 等都在推崇函数式编程，函数式编程也利于大型复杂项目的集成测试，单测。
-Vue3 中按需引入，createApp、createStore、createRouter、自定义 hooks。React 中的 useState、useCallback、useEffect、hooks 都有函数式编程的影子。
+Vue3, React, and others are all advocating functional programming. Functional programming is also beneficial for integration testing and unit testing in large, complex projects.
+In Vue3, features like on-demand imports, createApp, createStore, createRouter, and custom hooks all embody functional programming. In React, useState, useCallback, useEffect, and hooks all bear the imprint of functional programming.
 
-## 函数式编程特点
+## Characteristics of Functional Programming
 
-### 引用透明性
+### Referential Transparency
 
-引用透明性是分析哲学里兴起的概念，用于描述函数式编程不谋而合。大白话讲就是，相同的输入只会得到相同输出，使得并发运行和函数缓存成为可能。
+Referential transparency is a concept that originated in analytic philosophy and coincidentally describes functional programming well. In simple terms, the same input always produces the same output, making concurrent execution and function caching possible.
 
-### 声明式与抽象
+### Declarative and Abstract
 
-函数式编程主张声明式与抽象，声明式就是告诉计算机做什么，至于怎么做被抽象到函数或方法中处理。
-比如 forEach 函数的使用，就是一个声明式，命令式的 for 循环指令就是一步步告诉计算机如何做
+Functional programming advocates for declarative and abstract approaches. Being declarative means telling the computer what to do, while the how is abstracted into functions or methods.
+For example, using the forEach function is declarative, whereas an imperative for loop instructs the computer step by step on how to do something.
 
-## 函数式编程好处
+## Benefits of Functional Programming
 
-### 纯函数
+### Pure Functions
 
-JavaScript 里，函数作为一等公民，天生适合函数式编程，但却不是纯函数语言，所以需要函数式编程来规范。
-纯函数是后面章节函数柯里化等基础。纯函数即是引用透明性特点的实现，不依赖外部环境，只看输入参数。
-对于相同的输入只会得到相同输出。实现纯函数，有益于单测、后续维护，程序健壮性，bug 追踪。
+In JavaScript, functions are first-class citizens, making it naturally suited for functional programming. However, it is not a pure functional language, so functional programming practices are needed for standardization.
+Pure functions are the foundation for concepts like currying in later chapters. A pure function embodies referential transparency -- it does not depend on external environment, only on input parameters.
+The same input always produces the same output. Implementing pure functions is beneficial for unit testing, subsequent maintenance, program robustness, and bug tracking.
 
-### 并发运行
+### Concurrent Execution
 
-由于引用透明性特点，可以使得函数的运行互相独立，互不影响，为并发运行提供基础。减少同步运行造成的问题，提升性能
+Due to referential transparency, functions can execute independently without affecting each other, providing a foundation for concurrent execution. This reduces problems caused by synchronous execution and improves performance.
 
-### 可缓存
+### Cacheability
 
-可缓存相同的输入参数运行后函数结果，提升性能，避免重复计算
+The results of pure functions with the same input parameters can be cached, improving performance and avoiding redundant computation.
 
-## 第二章 抽象和高阶函数
+## Chapter 2: Abstraction and Higher-Order Functions
 
-在计算机语言中，抽象是指用计算机语言来描述事物之间的关系，比如使用语言中【类】来描述车子类型。
-抽象也是函数式编程里面重要的概念，也是高阶函数的基础。下面列举几个例子，用于理解高阶函数和代码抽象。
+In computer languages, abstraction refers to using the language to describe relationships between things, such as using a [class] in the language to describe a car type.
+Abstraction is also an important concept in functional programming and is the foundation of higher-order functions. Below are several examples to help understand higher-order functions and code abstraction.
 
 ```js
-// every（arr,fn） 函数，用于遍历给定数组，是否全部符合给定函参规定的条件
+// every(arr, fn) function, used to iterate over a given array and check if all items satisfy the condition specified by the given function parameter
 function every(arr, fn) {
   let result
   for (let i = 0; i < arr.length; i++) {
@@ -54,7 +54,7 @@ function every(arr, fn) {
   }
   return result
 }
-// some（arr,fn） 函数，用于遍历给定数组，是否至少有一项符合给定函参规定的条件
+// some(arr, fn) function, used to iterate over a given array and check if at least one item satisfies the condition specified by the given function parameter
 function some(arr, fn) {
   let result
   for (let i = 0; i < arr.length; i++) {
@@ -64,50 +64,50 @@ function some(arr, fn) {
 }
 ```
 
-上面函数， 对数组的遍历和条件判断封装在了函数体内，使用者只需要知道如何使用，不需知道实现细节。并且使用函参来判断条件，程序更健壮可拓展。
-这里在于讲解抽象和高阶概念，读者不需要纠结实现是否高效
+In the functions above, the array iteration and condition checking are encapsulated within the function body. Users only need to know how to use them, not the implementation details. Using function parameters to determine conditions makes the program more robust and extensible.
+The focus here is on explaining abstraction and higher-order concepts; readers do not need to dwell on implementation efficiency.
 
-### 排序经常用到的函数 sort(compareFn)
+### Commonly Used Sorting Function sort(compareFn)
 
 ```js
-// mock的数据
+// mock data
 const userInfo = [
   { firstName: 'aanigel', lastName: 'bbnigel' },
   { firstName: 'bbnigel', lastName: 'aanigel' }
 ]
-// 按照用户信息的 firstName 进行排序
+// Sort by firstName of user info
 userInfo.sort((a, b) => {
   return a.firstName - b.firstName < 1 ? -1 : a.firstName - b.firstName > 1 ? 1 : 0
 })
-// 按照用户信息的 lastName 进行排序
+// Sort by lastName of user info
 userInfo.sort((a, b) => {
   return a.lastName - b.lastName < 1 ? -1 : a.lastName - b.lastName > 1 ? 1 : 0
 })
 
-// 可以进一步抽象出比较函数，不需要每次写差不多一摸一样的重复比较代码
+// Can further abstract the comparison function to avoid writing almost identical repetitive comparison code each time
 function sortBy(key) {
   return (a, b) => (a[key] - b[key] < 1 ? -1 : a[key] - b[key] > 1 ? 1 : 0)
 }
 userInfo.sort(sortBy('firstName'))
 ```
 
-### 应用中实际可使用高阶函数
+### Practical Higher-Order Functions in Applications
 
-#### unary 函数
+#### unary Function
 
 ```js
-// unary 函数让多参函数变为单参函数,其实就是把后面参数忽略掉
+// The unary function converts a multi-parameter function into a single-parameter function, essentially ignoring the remaining parameters
 function unary(fn) {
   return fn.length === 1 ? fn : (arg) => fn(arg)
 }
 ;[1, 2, 3].map(unary(parseInt))
-// [1, 2, 3].map(parseInt) 结果是 [1, NaN, NaN]
+// [1, 2, 3].map(parseInt) results in [1, NaN, NaN]
 ```
 
-#### once 函数
+#### once Function
 
 ```js
-// once 函数用于在初始化只执行一次的函数
+// The once function is used for functions that should only execute once during initialization
 function once(fn) {
   let done = false
   return function () {
@@ -118,13 +118,13 @@ const doInit = once(() => {
   console.log('do init once')
 })
 doInit()
-// 后面再次执行 doInit() 不会再打印 'do init once' 了
+// Subsequent calls to doInit() will no longer print 'do init once'
 ```
 
-#### memoized 函数
+#### memoized Function
 
 ```js
-// memoized 可以让纯函数（纯函数前提） 只计算一次，后续计算使用缓存
+// memoized allows pure functions (pure function prerequisite) to compute only once, using cache for subsequent computations
 function memoized(fn) {
   const loopupTable = {}
   return (arg) => loopupTable[arg] || (loopupTable[arg] = fn(arg))
@@ -136,17 +136,17 @@ let fastFactorial = memoized((n) => {
   return n * fastFactorial(n - 1)
 })
 fastFactorial(5)
-// 后续你在计算 fastFactorial(6) 前面的 5 个 会走缓存提升效率
+// If you later compute fastFactorial(6), the previous 5 factorials will use cache for efficiency
 ```
 
-## 第三章 函数柯里化和偏函数
+## Chapter 3: Function Currying and Partial Functions
 
-### 函数柯里化
+### Function Currying
 
-> 函数柯里化是指将多参函数转为嵌套的一元函数过程
+> Function currying is the process of converting a multi-parameter function into nested unary functions.
 
 ```js
-// 将二元函数转换一元
+// Convert a binary function to unary
 function curry(fn) {
   return function (arg1) {
     return function (arg2) {
@@ -160,7 +160,7 @@ function sum(x, y) {
 const currySum = curry(sum)
 currySum(2)(3)
 
-// 将变参函数转换一元
+// Convert a variadic function to unary
 function curryN(fn) {
   if (typeof fn !== 'function') {
     throw new Error('fn must be a function')
@@ -179,7 +179,7 @@ function multiply(x, y, z) {
 }
 const curryMulti = curryN(multiply)
 curryMulti(1)(2)(3)
-// 针对日志打印 使用柯里化 减少样板代码
+// Using currying for logging to reduce boilerplate code
 function logInfo(mode, initialMsg, errMsg, lineNo) {
   switch (mode) {
     case 'WARNING':
@@ -195,27 +195,27 @@ function logInfo(mode, initialMsg, errMsg, lineNo) {
       throw new Error(`wrong mode: ${mode}`)
   }
 }
-// 平时调用前面两个参数经常会一样，如下
+// In practice, the first two parameters are often the same, as shown below
 logInfo('WARNING', 'invalid in stat.js', 'undefined function', 10)
 logInfo('WARNING', 'invalid in stat.js', 'undefined value', 55)
-// 优化
+// Optimization
 const logInfoWarn = curryN(logInfo)('WARNING')('invalid in stat.js')
 logInfoWarn('undefined function', 10)
 logInfoWarn('undefined value', 55)
 ```
 
-### 偏函数
+### Partial Functions
 
-> 可以让开发者应用部分函数参数
+> Allows developers to apply only part of the function parameters.
 
-例子说明如下
+Example explained below:
 
 ```js
-// 定时 固定时间，执行函数
+// Set a fixed time to execute a function
 setTimeout(() => console.log('do something X'), 10)
 setTimeout(() => console.log('do something Y'), 10)
-// 此处不能用柯里化优化（从左到右的），除非包装一下，改变函参的顺序（这里目的是要抽离不变的变量，时间10）
-// 使用偏函数，实现如下
+// Currying (left-to-right) cannot be used here unless wrapping changes the order of function parameters (the goal here is to extract the constant variable, the time 10)
+// Using partial functions, implemented as follows:
 function partial(fn, ...partialArgs) {
   if (typeof fn !== 'function') {
     throw new Error('fn must be a function')
@@ -236,9 +236,9 @@ partialTimeout(() => console.log('do something X'))
 partialTimeout(() => console.log('do something Y'))
 ```
 
-## 第四章 函数组合和管道
+## Chapter 4: Function Composition and Pipelines
 
-### 函数组合
+### Function Composition
 
 ```js
 function compose(...fns) {
@@ -261,18 +261,18 @@ const countWords = compose(count, splitInSpaces)
 console.log(countWords('this is a test'))
 ```
 
-### 组合函数特性
+### Composition Function Properties
 
-> 满足结合律
+> Satisfies the associative law
 
 ```js
-// 伪代码，结合律可自由组合我们需要的函数
+// Pseudocode: associativity allows us to freely compose the functions we need
 compose(f, compose(g, h)) = compose(compose(f, g), h)
 ```
 
-### 管道
+### Pipelines
 
-管道是和函数组合基本一样的实现，只不过数据流是从左到右的，和 Unix 系统的 '|' 基本类似
+Pipelines are essentially the same as function composition, except data flows from left to right, similar to the Unix system '|'.
 
 ```js
 function pipe(...fns) {
@@ -294,9 +294,9 @@ const countWords = pipe(splitInSpaces, count)
 console.log(countWords('this is a test'))
 ```
 
-选择使用函数组合还是管道，取决于想要什么样的数据流向，但不要混用两种
+Whether to use function composition or pipelines depends on the desired data flow direction, but do not mix the two approaches.
 
-### 函数式组合应用
+### Practical Application of Functional Composition
 
 ```js
 const apressBooks = [
@@ -332,14 +332,14 @@ const map = function (arr, fn) {
   return reuslt
 }
 
-// 取出 apressBooks 中 评分在4.5以上 书名和作者
+// Extract title and author from apressBooks with ratings above 4.5
 const projectTitleAndAuthor = function ({ title, author }) {
   return { title, author }
 }
 const isGoodBooks = function (item) {
   return item.rating[0] >= 4.5
 }
-// 这里需要 partial 一下，filter，map有两个参数，组合只能应用一元函数
+// Need to partial filter and map since both take two parameters but composition only works with unary functions
 const queryGoodBooks = partial(filter, undefined, isGoodBooks)
 const mapTitleAndAuthor = partial(map, undefined, projectTitleAndAuthor)
 
@@ -347,14 +347,14 @@ const titleAndAuthorForGoodbooks = compose(mapTitleAndAuthor, queryGoodBooks)
 console.log(titleAndAuthorForGoodbooks(apressBooks))
 ```
 
-## 第五章 函子，MayBe，Either
+## Chapter 5: Functors, MayBe, Either
 
-### 函子基础
+### Functor Basics
 
-> 函子是指实现 map 方法的容器对象或者类,该容器对象可以持有任何值
+> A functor is a container object or class that implements a map method. This container object can hold any value.
 
 ```js
-// 最基础的函子
+// Basic functor
 function Container(val) {
   this.value = val
 }
@@ -366,11 +366,11 @@ Container.of = function (value) {
 }
 ```
 
-上面函子同时也是 Pointed 函子（实现了 of 方法）
+The functor above is also a Pointed functor (it implements the of method).
 
-### MayBe 函子
+### MayBe Functor
 
-> MayBe 函子使用函数式方式来处理错误
+> The MayBe functor handles errors in a functional way.
 
 ```js
 function MayBe(val) {
@@ -387,23 +387,23 @@ MayBe.prototype.map = function (fn) {
 }
 ```
 
-### MayBe 函子的应用
+### MayBe Functor Application
 
 ```js
-// 简单示例
+// Simple example
 const maybe1 = MayBe.of('test').map((str) => str.toUpperCase())
 console.log(maybe1) // MayBe { value: 'TEST' }
 const maybe2 = MayBe.of(null).map((str) => str.toUpperCase())
 console.log(maybe2) // MayBe { value: null }
 ```
 
-上面示例可以看出不需关心传入的参数是否有问题，MayBe 函子帮我们做了判断和处理
+The above example shows that you don't need to worry about whether the passed parameters are valid; the MayBe functor handles the checking and processing for us.
 
-### Either 函子
+### Either Functor
 
-Either 函子对错误处理更全面一些，可以清楚知道那条分支出了问题
+The Either functor provides more comprehensive error handling, allowing you to clearly know which branch encountered the problem.
 
-### Either 函子定义
+### Either Functor Definition
 
 ```js
 function Nothing (val){
@@ -431,22 +431,22 @@ const Either = {
 }
 ```
 
-### Either 函子应用
+### Either Functor Application
 
-使用 Maybe 函子，某个 map 的映射出问题，不清楚具体是哪个 map 有问题，也不知道具体错误原因
+When using the Maybe functor, if a map transformation goes wrong, it's unclear which specific map had the problem, and the specific error reason is unknown.
 
 ```js
-// 使用 Maybe 来请求数据，并对数据做处理，如下伪代码
+// Using Maybe to request data and process it, as shown in the pseudocode below
 async function getTop10SubRedditData(url) {
   const response = await getTop10RedditPosts(url)
   return Maybe.of(response).map((arr)=>arr.data).map((arr)=>arr.children).map((arr)=>arrayUtil.map(arr,(item)=>{'title':item.title,'url':item.url}))
 }
 ```
 
-换成 Either 来对请求数据做处理
+Switch to Either for handling request data:
 
 ```js
-// 使用 Either 来请求数据，并对数据做处理，如下伪代码
+// Using Either to request data and process it, as shown in the pseudocode below
 async getTop10RedditPosts(url){
   try{
     const response = Either.Some.of(JSON.parse( await fetch(url).then(data=>data.json())))
@@ -460,14 +460,14 @@ async function getTop10SubRedditData(url) {
 }
 ```
 
-使用 MayBe 还是 Either 根据个人需要
+Whether to use MayBe or Either depends on your needs.
 
-## 第六章 深入 Monad 函子
+## Chapter 6: Deep Dive into Monad Functor
 
-上一章节 MayBe 函子可能会发生 map 多层嵌套取数问题，看如下例子
+In the previous chapter, the MayBe functor may have issues with multi-level nested map data retrieval. Consider the following example:
 
 ```js
-// 伪代码
+// Pseudocode
 async function mergedVieMaybe(searchText) {
   const MayBeReddits = Maybe.of(await searchReddit(searchText))
   return MayBeReddits.map((obj) => obj.data)
@@ -491,32 +491,32 @@ async function mergedVieMaybe(searchText) {
 }
 ```
 
-上面例子就是多层嵌套获取评论数据例子，需要如下方式拿到 comments 数据,对于使用者非常不友好。
+The above example shows multi-level nesting to get comment data, requiring the following approach to access comments data, which is very unfriendly for users.
 
 ```js
-// 伪代码
+// Pseudocode
 const answers = await mergedVieMaybe('function propram')
 answers.map(
   arrUtils.map(arr, (item) => {
-    // item.coments 这里是一个 MayBe 对象 MayBe { value: comments }
+    // item.coments is a MayBe object MayBe { value: comments }
     item.coments.map(
       arrUtils.map(arr, (comment) => {
-        // 拿到 comment 数据
+        // Get comment data
       })
     )
   })
 )
 ```
 
-可以使用 join 来处理下，join 定义如下
+We can use join to handle this. The join definition is as follows:
 
 ```js
-// join 定义
+// join definition
 MayBe.prototype.join = function () {
   return this.isNothing() ? MayBe.of(null) : this.value
 }
-// 使用join 处理 上述例子
-// 伪代码
+// Using join to handle the above example
+// Pseudocode
 async function mergedVieJoin(searchText) {
   const MayBeReddits = Maybe.of(await searchReddit(searchText))
   return MayBeReddits.map((obj) => obj.data)
@@ -541,24 +541,24 @@ async function mergedVieJoin(searchText) {
 }
 ```
 
-通过 join 打平了 Maybe, 现在去获取 comment 方式如下
+By flattening Maybe with join, accessing comment data now looks like this:
 
 ```js
 arrUtils.map(arr, (item) => {
-  // 拿到 comments 数据
+  // Get comments data
   console.log(item.comments)
 })
 ```
 
-### 实现 chain 方法
+### Implementing the chain Method
 
-上一节中，总是需要 map 后面 添加 join,可以封装在 chain 方法中
+In the previous section, always needing to add join after map can be encapsulated in a chain method.
 
 ```js
 MayBe.prototype.chain = function (f) {
   return this.map(f).join()
 }
-// chain 优化改造
+// Optimization using chain
 async function mergedVieChain(searchText) {
   const MayBeReddits = Maybe.of(await searchReddit(searchText))
   return MayBeReddits.map((obj) => obj.data)
@@ -580,7 +580,7 @@ async function mergedVieChain(searchText) {
       })
     )
 }
-// 上述添加chain 方法，可以更加灵活处理数据，如 coments 返回评论数量
+// The above addition of the chain method allows more flexible data processing, e.g., returning the comment count for coments
 ```
 
-> 总结： 实现 chain 方法的 Pointed 函子 就是 Monad
+> Summary: A Pointed functor that implements the chain method is a Monad.

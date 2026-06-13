@@ -1,34 +1,34 @@
-# TRON (波场)
+# TRON
 
-## 开发文档
+## Development Docs
 
-- [TRON 开发者文档](https://developers.tron.network/v4.0/docs/transaction) — 交易相关开发文档
-- [TronWeb SDK 文档](https://tronweb.network/docu/docs/intro/) — JavaScript SDK
+- [TRON Developer Documentation](https://developers.tron.network/v4.0/docs/transaction) — Transaction-related development docs
+- [TronWeb SDK Documentation](https://tronweb.network/docu/docs/intro/) — JavaScript SDK
 - [TronWeb API - sendTrx](https://tronweb.network/docu/docs/4.0.0/API%20List/transactionBuilder/sendTrx/)
-- [GitHub - tronprotocol/tronweb](https://github.com/tronprotocol/tronweb) — TronWeb 源码
-- [GitHub - tronprotocol/protocol](https://github.com/tronprotocol/protocol) — 协议定义
+- [GitHub - tronprotocol/tronweb](https://github.com/tronprotocol/tronweb) — TronWeb source code
+- [GitHub - tronprotocol/protocol](https://github.com/tronprotocol/protocol) — Protocol definitions
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
-| 主网 | [TRONSCAN](https://tronscan.org/) |
-| Nile 测试网 | [Nile TRONSCAN](https://nile.tronscan.org/) |
+| Network | Explorer |
+|---------|---------|
+| Mainnet | [TRONSCAN](https://tronscan.org/) |
+| Nile Testnet | [Nile TRONSCAN](https://nile.tronscan.org/) |
 
-## 测试网水龙头
+## Testnet Faucets
 
-- [Nile 测试网 Faucet](https://nileex.io/join/getJoinPage)
+- [Nile Testnet Faucet](https://nileex.io/join/getJoinPage)
 - [Triangle Faucet - TRON Shasta](https://faucet.triangleplatform.com/tron/shasta)
 - [Triangle Faucet - TRON Nile](https://faucet.triangleplatform.com/tron/nile)
 
-## 节点服务 / RPC
+## Node Services / RPC
 
 - [ZAN - Tron Broadcast Transaction](https://docs.zan.top/reference/tron-wallet-broadcasttransaction)
-- [TronGrid](https://www.trongrid.io/) — TRON 基础设施服务
+- [TronGrid](https://www.trongrid.io/) — TRON infrastructure service
 - [Tron Broadcast Transaction (BTC Schools)](https://www.btcschools.net/tron/tron_broadcast_tx.php)
 
-## 钱包
+## Wallets
 
-- [TronLink Wallet](https://www.tronlink.org/dlDetails/) — 官方钱包
-- [TronLink 开发文档 - 自定义代币](https://docs.tronlink.org/tronlink-app/asset-management/custom-token)
+- [TronLink Wallet](https://www.tronlink.org/dlDetails/) — Official wallet
+- [TronLink Developer Docs - Custom Tokens](https://docs.tronlink.org/tronlink-app/asset-management/custom-token)
 - [ZAN Node - Chain RPC](https://zan.top/service/apikeys/9a2bdbcd-851f-4f22-8412-010ad236fd32/started)

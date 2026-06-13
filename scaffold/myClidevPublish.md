@@ -1,61 +1,61 @@
-# 脚手架发布架构设计
-## 前端发布流程
+# Scaffold Publish Architecture Design
+## Frontend Publish Flow
 
 <img src="/images/my-cli-dev-publish.jpg">
 
-## 前端发布架构设计
+## Frontend Publish Architecture Design
 <br>
 <img src="/images/publish-init.png">
 
-## 前端发布GitFlow+云构建+云发布
+## Frontend Publish: GitFlow + Cloud Build + Cloud Publish
 
 <br/>
 <img src="/images/publish-detail.png">
 
-## GitFlow主流程
+## GitFlow Main Flow
 
 <img src="/images/gitflow1.jpg">
 
-### GitFlow多人协作流程
+### GitFlow Multi-person Collaboration Flow
 
 <img src="/images/gitflow2.jpg">
 
-## 云构建
+## Cloud Build
 
-### 为什么需要云构建
-* 减少发布过程中的重新劳动
-  * 打包构建
-  * 上传静态资源服务器
-  * 上传CDN
-* 避免不同环境间造成的差异，保证依赖版本的一致性
-* 提升构建性能
-* 对构建过程进行统一、集中管控
-  * 发布前代码统一规则检查，解决大量安全隐患或者性能瓶颈
-  * 例1：要求接口全部使用 https
-  * 例2：对于某些落后版本的依赖要求强制更新
-  * 封网日统一发布卡口
+### Why Cloud Build Is Needed
+* Reduce repetitive work in the release process
+  * Bundle and build
+  * Upload to static resource server
+  * Upload to CDN
+* Avoid differences between environments, ensure dependency version consistency
+* Improve build performance
+* Centralized management and control of the build process
+  * Unified code rule checks before release, addressing many security issues or performance bottlenecks
+  * Example 1: Require all APIs to use HTTPS
+  * Example 2: Force updates for certain outdated dependency versions
+  * Unified release gate during lockdown periods
 
-### 云构建架构设计图
+### Cloud Build Architecture Design Diagram
 
 <img src="/images/cloundBuild_1.jpg">
 
-## WebSocket & Redis 快速入门
-WebSocket 入门
-### 什么是 WebSocket？
+## WebSocket & Redis Quick Start
+WebSocket Quick Start
+### What is WebSocket?
 
-WebSocket 基本概念：https://www.runoob.com/html/html5-websocket.html
+WebSocket basic concepts: https://www.runoob.com/html/html5-websocket.html
 
-### WebSocket 开发流程
+### WebSocket Development Flow
 
-WebSocket 开发流程：https://eggjs.org/zh-cn/tutorials/socketio.html
+WebSocket development flow: https://eggjs.org/zh-cn/tutorials/socketio.html
 
-### WebSocket 服务开发流程
+### WebSocket Server Development Flow
 
-安装依赖
+Install dependencies
 ```js
 npm i -S egg-socket.io
 ```
-更新配置文件
+Update configuration file
 ```js
 // config.default.js
 config.io = {
@@ -76,13 +76,13 @@ exports.io = {
   enable: true,
   package: 'egg-socket.io',
 };
-修改路由配置
+Update route configuration
 // router.js
 // app.io.of('/')
 app.io.route('chat', app.io.controller.chat.index);
 // app.io.of('/chat')
 app.io.of('/chat').route('chat', app.io.controller.chat.index);
-// 开发 middleware
+// Develop middleware
 // app/io/middleware/auth.js
 'use strict';
 module.exports = () => {
@@ -93,7 +93,7 @@ module.exports = () => {
     console.log('disconnect!');
   };
 };
-// 开发 controller
+// Develop controller
 // app/io/controller/chat.js
 'use strict';
 module.exports = app => {
@@ -108,7 +108,7 @@ module.exports = app => {
   return Controller;
 };
 ```
-### WebSocket 客户端开发流程
+### WebSocket Client Development Flow
 ```js
 // or http://127.0.0.1:7001/chat
 const socket = require('socket.io-client')('http://127.0.0.1:7001');
@@ -120,18 +120,18 @@ socket.on('res', msg => {
   console.log('res from server: %s!', msg);
 });
 ```
-## Redis 入门
-### 什么是 Redis？
+## Redis Quick Start
+### What is Redis?
 
-Redis 基本概念：https://www.runoob.com/redis/redis-tutorial.html
+Redis basic concepts: https://www.runoob.com/redis/redis-tutorial.html
 
-Redis 安装方法
-* Windows & Linux：https://www.runoob.com/redis/redis-install.html
-* MacOS：https://www.cnblogs.com/pangkang/p/12612292.html
-Redis 开发流程
-Redis 开发流程：https://www.npmjs.com/package/egg-redis
+Redis Installation Methods
+* Windows & Linux: https://www.runoob.com/redis/redis-install.html
+* MacOS: https://www.cnblogs.com/pangkang/p/12612292.html
+Redis Development Flow
+Redis development flow: https://www.npmjs.com/package/egg-redis
 
 
-## 云发布架构图
+## Cloud Publish Architecture Diagram
 
 <img src="/images/cloundPublish.jpg">

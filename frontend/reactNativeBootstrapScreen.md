@@ -1,20 +1,23 @@
-# react-native项目添加启动图片
-App每次打开都会有一个白屏的时间，实际上哪怕使用原生的代码写Android应用或者iOS应用，也会稍微有那么一点点的白屏时间,这个白屏主要是因为系统在启动应用的时候，需要初始化一些然后继续加载js代码，这个时间会比原生的应用会长一点
+# Adding a Splash Screen to a React Native Project
 
-选择使用react-native-splash-screen库来解决白屏问题。
-这个库的原理就是在应用刚刚加载时显示一张图片，等js代码加载完毕之后，将这个图片隐藏，这样看起来就不是白屏了。
+Every time the App is opened, there is a brief white screen period. In fact, even native Android or iOS applications have a slight white screen time. This white screen is mainly because the system needs to initialize some resources when starting the application, then continue loading JS code, which takes a bit longer than native apps.
 
-另外还有一个react-native-bootsplash，这个库也是一个非常优秀的库，也是用于解决白屏问题的，它的优点在于能够通过一张图片，通过命令自动生成Android和iOS需要的启动图片，不用自己去创建。
+We choose to use the `react-native-splash-screen` library to solve the white screen problem.
+
+The principle of this library is to display an image when the application first loads, and then hide this image once the JS code has finished loading, so it no longer appears as a white screen.
+
+There is also another library called `react-native-bootsplash`, which is also an excellent library for solving the white screen problem. Its advantage is that it can automatically generate the splash screen images needed for Android and iOS from a single image via a command, without having to create them manually.
 
 ```js
-// 安装react-native-splash-screen的依赖
+// Install react-native-splash-screen dependency
 yarn add react-native-splash-screen
 ```
-## 配置安卓启动图片
-接下来，准备好启动图片，放在res文件夹中
-然后创建一个Android的布局文件
+## Configuring Android Splash Screen
+
+Next, prepare the splash screen image and place it in the res folder.
+Then create an Android layout file.
 app/src/main/res/layout/launch_screen.xml
-在这个布局中显示一张图片，也就是我们的启动图片
+Display an image in this layout, which will be our splash screen.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,36 +26,36 @@ app/src/main/res/layout/launch_screen.xml
     <ImageView android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/launch_screen" android:scaleType="centerCrop" />
 </RelativeLayout>
 ```
-接下来，创建一个colors文件夹，新创建color.xml
+Next, create a colors folder and create color.xml.
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimaryDark">#FFFFFF</color>
 </resources>
 ```
-在styles.xml中添加一个主题，这个主题配置了colorPrimaryDark属性，这个属性是配置状态栏的颜色的，当然这个属性是只能在Android5.0版本以上才有效。但是这个只是小问题，毕竟不会影响使用，没有必要去花太多的时间去适配低版本的Android系统。
+Add a theme in styles.xml. This theme configures the colorPrimaryDark property, which sets the status bar color. Note that this property is only effective on Android 5.0 and above. However, this is a minor issue since it doesn't affect functionality, so there's no need to spend too much time adapting to lower Android versions.
 ```xml
 <style name="SplashScreenTheme" parent="SplashScreen_SplashTheme">
 	<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 </style>
 ```
-最后，打开android/app/src/main/java/com/ximalaya/MainActivity.java
+Finally, open `android/app/src/main/java/com/ximalaya/MainActivity.java`.
 ```java
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {
-    // 重写onCreate方法，整个RN项目的加载的入口
+    // Override the onCreate method, the entry point for loading the entire RN project
    @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 显示启动屏，第二个参数是我们自定义主题的引用
+        // Show the splash screen, the second parameter is a reference to our custom theme
         SplashScreen.show(this, R.style.SplashScreenTheme);
         super.onCreate(savedInstanceState);
     }
 }
 ```
-这样应用在启动的时候，就会显示一张图片了，接下来，我们需要在合适的机会隐藏掉这个图片。
-在src/index.tsx中添加componentDidMount函数
+This way, the application will display an image when it starts. Next, we need to hide this image at the appropriate time.
+Add the componentDidMount function in src/index.tsx.
 ```java
 import SplashScreen from 'react-native-splash-screen';
 
@@ -61,57 +64,58 @@ componentDidMount() {
 }
 
 ```
-在终端中重新安装应用
+Reinstall the application in the terminal:
 yarn android
 
-## 配置iOS启动图片
-接下来，我们来配置一下iOS端的启动屏。
-在项目根目录下执行
+## Configuring iOS Splash Screen
+
+Next, let's configure the splash screen for iOS.
+Execute the following in the project root directory:
 ```bash
 cd ios && pod install && cd ..
 ```
-实际上目前的项目中，iOS上打开应用是有一个启动屏的，这个启动屏是项目创建时就已经存在的`LaunchScreen.xib`。
-`storyboard`和`xib`都是描述软件界面的文件，`storyboard`一般描述整个软件界面，`xib`用来描述局部界面。
-以前可能在iOS项目上是通过创建LauchImage来制作启动屏的，但是iOS目前最新的审核机制是强制使用LaunchScreen制作启动屏的，不能再使用launchImage创建启动屏了。
-### 接下来就添加一个LaunchScreen.storyboard 来为RN应用添加启动屏
-打开项目文件夹，进入ios目录，双击xxx.xcworkspace，打开xcode
-在左侧文件导航面板右键选择新建文件：
+In fact, in the current project, the iOS app already has a splash screen when opened. This splash screen is the `LaunchScreen.xib` that was created when the project was initialized.
+`storyboard` and `xib` are both files that describe the software interface. `storyboard` generally describes the entire software interface, while `xib` is used to describe a partial interface.
+Previously, iOS projects might use `LaunchImage` to create splash screens, but the latest iOS review mechanism now mandates the use of `LaunchScreen` for creating splash screens; `launchImage` can no longer be used.
+### Next, add a LaunchScreen.storyboard to add a splash screen for the RN application
+Open the project folder, navigate to the ios directory, double-click `xxx.xcworkspace` to open xcode.
+Right-click in the left file navigation panel and select New File:
 
-<img src="/images/reactNativeBS1.jpeg" alt="打开xcode在左侧文件导航面板右键选择新建文件">
+<img src="/images/reactNativeBS1.jpeg" alt="Open xcode, right-click in the left file navigation panel, select New File">
 
-创建LaunchScreen.storyboard
+Create LaunchScreen.storyboard
 
 <img src="/images/reactNativeBS2.jpeg" alt="LaunchScreen.storyboard">
 
-创建LaunchScreen Image Set
+Create LaunchScreen Image Set
 
 <img src="/images/reactNativeBS3.jpeg" alt="LaunchScreen Image Set">
 
-打开Images.xcassets然后添加名为LaunchScreen的Image Set，拖入准备好的启动图标
+Open Images.xcassets and add an Image Set named LaunchScreen, then drag in the prepared splash screen image.
 
 <img src="/images/reactNativeBS4.jpeg" alt="LaunchScreen Image Set">
 
 
-接下来，在LaunchScreen.storyboard中添加ImageView
+Next, add an ImageView in LaunchScreen.storyboard.
 
 <img src="/images/reactNativeBS5.jpeg" alt="LaunchScreen Image Set">
 
-调整好位置，在为其绑定LaunchScreen Image Set：
+Adjust the position, then bind it to the LaunchScreen Image Set:
 
 <img src="/images/reactNativeBS6.png" alt="LaunchScreen Image Set">
 
-最后还需要在TARGETS中设置Launch Screen File：
+Finally, set the Launch Screen File in TARGETS:
 
 <img src="/images/reactNativeBS7.png" alt="LaunchScreen Image Set">
 
-打开AppDelegate.m文件
+Open the AppDelegate.m file.
 
 ```java
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-// 导入声明文件
+// Import declaration file
 #import "RNSplashScreen.h" 
 
 @implementation AppDelegate
@@ -119,12 +123,11 @@ cd ios && pod install && cd ..
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // ...other code
-    // 调用RNSplashScreen的show方法
+    // Call the show method of RNSplashScreen
     [RNSplashScreen show];  // here
     return YES;
 }
 ```
 
-重新安装iOS应用，模拟器查看效果
-现在我们的应用看起来就比较有模有样了哈
-
+Reinstall the iOS application and check the effect in the simulator.
+Now our application looks quite polished!

@@ -1,29 +1,29 @@
 # Base (Coinbase L2)
 
-## 开发文档
+## Development Docs
 
-- [Base 开发文档](https://docs.base.org/get-started/base) — 官方入门指南
+- [Base Development Docs](https://docs.base.org/get-started/base) — Official getting started guide
 - [Base JSON-RPC - eth_getTransactionReceipt](https://docs.base.org/base-account/reference/core/provider-rpc-methods/eth_getTransactionReceipt)
-- [Base 合约地址](https://docs.base.org/base-chain/network-information/base-contracts) — 网络合约部署地址
-- [GitHub - base/chains](https://github.com/base/chains) — Chain ID 和网络元数据
-- [OP Stack 交易费用](https://docs.optimism.io/op-stack/transactions/fees) — Optimism L2 费用机制
+- [Base Contract Addresses](https://docs.base.org/base-chain/network-information/base-contracts) — Network contract deployment addresses
+- [GitHub - base/chains](https://github.com/base/chains) — Chain IDs and network metadata
+- [OP Stack Transaction Fees](https://docs.optimism.io/op-stack/transactions/fees) — Optimism L2 fee mechanism
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
-| 主网 | [BaseScan](https://basescan.org/) |
-| Sepolia 测试网 | [BaseScan Sepolia](https://sepolia.basescan.org/) |
+| Network | Explorer |
+|---------|---------|
+| Mainnet | [BaseScan](https://basescan.org/) |
+| Sepolia Testnet | [BaseScan Sepolia](https://sepolia.basescan.org/) |
 
-## Gas 追踪
+## Gas Tracker
 
-- [Base Gas Tracker](https://basescan.org/gastracker) — 实时 Gas 费用监控
+- [Base Gas Tracker](https://basescan.org/gastracker) — Real-time gas fee monitoring
 
-## 测试网水龙头
+## Testnet Faucets
 
-- [Coinbase Faucet](https://portal.cdp.coinbase.com/products/faucet) — Base Sepolia 水龙头
+- [Coinbase Faucet](https://portal.cdp.coinbase.com/products/faucet) — Base Sepolia faucet
 
-## 节点服务 / RPC
+## Node Services / RPC
 
 - [ZAN - Base eth_accounts](https://docs.zan.top/reference/eth-accounts-base)
 - [ZAN - Base eth_getBlockReceipts](https://docs.zan.top/reference/eth-getblockreceipts-base)

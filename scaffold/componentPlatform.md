@@ -1,22 +1,22 @@
-# 组件平台架构设计
-## 前端物料体系介绍
-* 问题1：为什么会形成前端物料体系？
-    * 回答：由于前端项目规模不断增大，代码中不断出现重复或类似代码，因此需要将这些代码抽象和复用，以提高开发效率。在实践过程中不断出现新的物料类型，单纯组件库已经无法满足代码复用的需求
-* 问题2：为什么要了解前端物料的概念？
-    * 问答：在工作中能够更好地以物料的维度去思考项目的复用问题
-* 问题3：前端物料体系和组件库的关系是什么？
-    * 问答：组件库是物料体系的一部分，物料体系包括所有可复用的前端代码
-* 问题4：前端物料包括哪些？
-    * 问答：组件（基础组件+业务组件）、区块、页面模板、工程模板、JS库、CSS库、代码片段等等……
+# Component Platform Architecture Design
+## Introduction to Frontend Material System
+* Question 1: Why did the frontend material system emerge?
+    * Answer: As frontend project scale continues to grow, repetitive or similar code keeps appearing. Therefore, it is necessary to abstract and reuse this code to improve development efficiency. During practice, new material types continue to emerge, and a simple component library is no longer sufficient to meet code reuse needs.
+* Question 2: Why understand the concept of frontend materials?
+    * Answer: To better think about project reuse problems from the perspective of materials in your work.
+* Question 3: What is the relationship between the frontend material system and the component library?
+    * Answer: The component library is part of the material system. The material system includes all reusable frontend code.
+* Question 4: What does frontend material include?
+    * Answer: Components (basic components + business components), blocks, page templates, project templates, JS libraries, CSS libraries, code snippets, and more.
 
 
 <img src="/images/componentPlatform.png">
 
-## 前端组件平台架构设计
+## Frontend Component Platform Architecture Design
 
 <img src="/images/componentPlatform2.jpg">
 
-## 组件平台架构设计图
+## Component Platform Architecture Design Diagram
 
 <img src="/images/componentPlatform3.png">
 

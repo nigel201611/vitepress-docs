@@ -1,4 +1,4 @@
-# 绘图工具
+# Drawing Tools
 
-* OmniGraffle - Macbook Appstore 搜索安装
-* whimsical - https://whimsical.com/  在线文档绘图工具
+* OmniGraffle - Search and install from Macbook Appstore
+* whimsical - https://whimsical.com/  Online document drawing tool

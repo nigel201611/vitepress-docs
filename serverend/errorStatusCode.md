@@ -1,23 +1,23 @@
-# 错误码设计原则
+# Error Code Design Principles
 
-## 统一格式 A-BB-CCC
+## Unified Format A-BB-CCC
 
-* A：错误级别，如1代表系统级错误，2代表服务级错误
-* B：项目或模块名称，一般团队不会超过99个项目，这里使用01代表用户模块
-* C：具体错误编码，自增即可，一个项目999种错误码应该够用
+* A: Error level, e.g., 1 for system-level error, 2 for service-level error
+* B: Project or module name, usually a team won't exceed 99 projects, e.g., 01 for user module
+* C: Specific error code, auto-increment; 999 error codes per project should be sufficient
 
-## 加密方案选择
+## Encryption Scheme Selection
 
-### md5 hash 保存 - 碰撞，彩虹表
+### MD5 Hash Storage - Collision, Rainbow Table
 
 ```js
 MD5('123') = 202CB962AC59075B964B07152D234B70
 username: nigel
 password: 202CB962AC59075B964B07152D234B70
 ```
-### md5 hash + salt（盐）保存
+### MD5 Hash + Salt Storage
 
-盐（Salt），在密码学中，是指在hash之前将明文内容（例如：密码）的任意固定位置插入特定的字符串。
+A salt is a random string inserted at a fixed position in the plaintext (e.g., password) before hashing.
 
 ```js
 MD5('123' + '1ck12b13k1jmjxrg1h0129h2lj') = '6c22ef52be70e11b6f3bcf0f672c96ce'
@@ -27,8 +27,8 @@ salt: 1ck12b13k1jmjxrg1h0129h2lj
 ```
 
 ### bcrypt
-一种加盐的单向Hash，不可逆的加密算法，同一种明文（plaintext），每次加密后的密文都不一样，而且不可反向破解生成明文，破解难度很大。
-node.js 实现 - https://github.com/kelektiv/node.bcrypt.js
+A salted one-way hash, an irreversible encryption algorithm. The same plaintext produces different ciphertext each time, and it is very difficult to reverse-engineer the plaintext.
+Node.js implementation - https://github.com/kelektiv/node.bcrypt.js
 
 ```js
 bcrypt('123') = $2b$10$69SrwAoAUNC5F.gtLEvrNON6VQ5EX89vNqLEqU655Oy9PeT

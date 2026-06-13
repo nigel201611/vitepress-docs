@@ -1,23 +1,23 @@
-# 阿里云 OSS
+# Alibaba Cloud OSS
 
->node.js SDK: https://help.aliyun.com/document_detail/32068.html
+>Node.js SDK: https://help.aliyun.com/document_detail/32068.html
 
-## 基于 Node.js SDK 封装的插件
+## Plugin Wrapper Based on Node.js SDK
 
-egg-oss：https://github.com/eggjs/egg-oss/
+egg-oss: https://github.com/eggjs/egg-oss/
 
-## 几个需要的参数
+## Required Parameters
 
 ```js
-// 所有配置参数
+// All configuration parameters
 https://help.aliyun.com/document_detail/64097.html
-// access key 名称
-accessKeyId: process.env.ALC_ACCESS_KEY,,
-// accessSecre
+// access key name
+accessKeyId: process.env.ALC_ACCESS_KEY,
+// access secret
 accessKeySecret: process.env.ALC_SECRET_KEY,
-// bucket 名称
+// bucket name
 bucket: 'logo-backend',
-// 访问域名和数据中心
+// endpoint and region
 // https://help.aliyun.com/document_detail/31837.html
 endpoint: 'oss-cn-shanghai.aliyuncs.com'
 ```

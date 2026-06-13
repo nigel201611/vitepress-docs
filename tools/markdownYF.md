@@ -1,27 +1,27 @@
-# markdown
+# Markdown
 
-## 生成流程图
+## Generate Flowcharts
 
 ```
 tag=>type: content:>url
 ```
-tag：元素名字，
-type：是这个元素的类型，分别为：
-* start # 开始
-* end # 结束
-* operation # 操作
-* subroutine # 子程序
-* condition # 条件
-* inputoutput # 输入或产出
-url是一个连接，与框框中的文本相绑定，content就是在框框中要写的内容，注意type后的冒号与内容文本之间一定要有个空格。
+tag: Element name,
+type: The type of this element, which can be:
+* start
+* end
+* operation
+* subroutine
+* condition
+* inputoutput
+url is a link bound to the text in the box. content is the text written inside the box. Note that there must be a space between the colon after type and the content text.
 
-连接元素的语法：
-用->来连接两个元素，需要注意的是condition类型，因为他有yes和no两个分支，所以要写成
+Syntax for connecting elements:
+Use `->` to connect two elements. Special note for the condition type, since it has yes and no branches, it should be written as:
 ```
 cond(yes)->e 
 cond(no)->op
 ```
-示例
+Example:
 ```flow
 st=>start: Start
 op=>operation: Your Operation
@@ -32,11 +32,10 @@ cond(yes)->e
 cond(no)->op
 ```
 
-## 生成目录结构
+## Generate Directory Structure
 
 1. npm install mddir --save
-2. 打开终端或命令提示符，并cd进入mddir模块/src文件夹
-3. 执行 node mddir "../../../"
+2. Open the terminal or command prompt and cd into the mddir module/src folder
+3. Run node mddir "../../../"
 
-执行结果会生成的markdown文件结构'directoryList.md'
-
+The result will generate a markdown file structure 'directoryList.md'

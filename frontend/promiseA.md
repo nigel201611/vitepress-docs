@@ -1,4 +1,4 @@
-# PromiseA+规范的实现
+# Implementation of the Promise/A+ Specification
 ```js
 const STATUS = {
     PENDING: 'PENDING',
@@ -11,8 +11,8 @@ class Promise {
         this.status = STATUS.PENDING;
         this.value = undefined;
         this.reason = undefined;
-        this.onResolvedCallbacks = []; // 存放成功的回调
-        this.onRejectedCallbacks = []; // 存放失败的回调
+        this.onResolvedCallbacks = []; // Stores resolved callbacks
+        this.onRejectedCallbacks = []; // Stores rejected callbacks
         const resolve = (val) => {
             if (this.status === STATUS.PENDING) {
                 this.status = STATUS.FUFILLED;
@@ -29,25 +29,25 @@ class Promise {
         }
 
         try {
-            // new Promise时就执行 executor函数
+            // Execute the executor function when new Promise is created
             executor(resolve, reject);
         } catch (e) {
-            // 抛出错误就走失败逻辑
+            // If an error is thrown, go to the rejection logic
             reject(e);
         }
 
     }
     then(onFufilled, onRejected) {
-        // 同步函数逻辑
+        // Synchronous logic
         if (this.status === STATUS.FUFILLED) {
             onFufilled(this.value);
         }
-     // 同步函数逻辑
+     // Synchronous logic
         if (this.status === STATUS.REJECTED) {
             onRejected(this.reason);
         }
         if (this.status === STATUS.PENDING) {
-          // 当promise的resolve或reject是在异步执行时，先将onFulfilled 或 onRejected 函数收集起来
+          // When the promise's resolve or reject is called asynchronously, collect the onFulfilled or onRejected functions first
             this.onResolvedCallbacks.push(() => {
                 onFufilled(this.value);
             })
@@ -60,9 +60,9 @@ class Promise {
 module.exports = Promise;
 ```
 
-## 版本升级
-处理new Promise中resolve包含一个Promise 和 then返回值是promise的情况、
-实现catch、静态resolve、静态reject
+## Version Upgrade
+Handle the case where resolve contains a Promise in new Promise and the then return value is a promise.
+Implement catch, static resolve, static reject.
 ```js
 const STATUS = {
     PENDING: 'PENDING',
@@ -70,25 +70,25 @@ const STATUS = {
     REJECTED: "REJECTED"
 }
 
-// ************处理then返回值是promise的情况****************
+// ************Handle the case where the then return value is a promise****************
 function resolvePromise(x, promise2, resolve, reject) {
-    // 这里的resolve 与 reject一直是then要返回的promise对象内的值
-    if (promise2 == x) { // 防止自己等自己的情况
-        return reject(new TypeError('出错了'))
+    // The resolve and reject here always refer to the values in the promise object that then should return
+    if (promise2 == x) { // Prevent waiting for itself
+        return reject(new TypeError('Error occurred'))
     }
 
-    // 看x 是普通值 还是promise 如果是promise要采用他的状态
+    // Check if x is a normal value or a promise. If it's a promise, adopt its state.
     if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
         let called;
-        try { // x可以是一个对象 或者是函数
-            let then = x.then; // 就看一下这个对象是否有then方法
+        try { // x can be an object or a function
+            let then = x.then; // Check if this object has a then method
             if (typeof then == 'function') {
 
-                // then 是函数 我就认为这个x是一个promise
-                then.call(x, function(y) { // 调用返回的promise 用它的结果 作为下一个then的结果
+                // then is a function, so I consider x to be a promise
+                then.call(x, function(y) { // Call the returned promise, use its result as the result of the next then
                     if (called) return
                     called = true;
-                    // 递归解析成功的值直到他是普通值
+                    // Recursively resolve the successful value until it is a normal value
                     resolvePromise(y, promise2, resolve, reject);
                 }, function(r) {
                     if (called) return
@@ -97,29 +97,29 @@ function resolvePromise(x, promise2, resolve, reject) {
                 })
 
             } else {
-                resolve(x); // 此时x就是一个普通对象
+                resolve(x); // x is now a normal object
             }
         } catch (e) {
             if (called) return
             called = true;
-            reject(e); // 取then时抛出错误了
+            reject(e); // An error occurred while accessing then
         }
 
     } else {
-        resolve(x); // 此时x就是一个普通对象
+        resolve(x); // x is now a normal object
     }
 }
-// ************处理then返回值是promise的情况****************
+// ************Handle the case where the then return value is a promise****************
 class Promise {
     constructor(executor) {
         this.status = STATUS.PENDING;
         this.value = undefined;
         this.reason = undefined;
-        this.onResolvedCallbacks = []; // 存放成功的回调
-        this.onRejectedCallbacks = []; // 存放失败的回调
+        this.onResolvedCallbacks = []; // Stores resolved callbacks
+        this.onRejectedCallbacks = []; // Stores rejected callbacks
         const resolve = (val) => {
-            // --------------解析resolve传入的值是一个promise -------------------------
-           // ，要进行递归解析，这里实现可以说是有延时效果
+            // --------------Resolve when the passed value is a promise------------------------
+           // Perform recursive resolution; this implementation effectively has a delay effect
             if (val instanceof Promise) {
                 return val.then(resolve, reject);
             }
@@ -127,7 +127,7 @@ class Promise {
             if (this.status === STATUS.PENDING) {
                 this.status = STATUS.FUFILLED;
                 this.value = val;
-                // 用于异步发布
+                // Used for async publication
                 this.onResolvedCallbacks.forEach(fn => fn());
             }
         }
@@ -141,22 +141,22 @@ class Promise {
         try {
             executor(resolve, reject);
         } catch (e) {
-            // 抛出错误就走失败逻辑
+            // If an error is thrown, go to the rejection logic
             reject(e);
         }
 
     }
     then(onFufilled, onRejected) {
-        // 可选参数
+        // Optional parameters
         onFufilled = typeof onFufilled === 'function' ? onFufilled : data => data
         onRejected = typeof onRejected === 'function' ? onRejected : err => { throw err }
         let promise2 = new Promise((resolve, reject) => {
-            // 同步
+            // Synchronous
             if (this.status === STATUS.FUFILLED) {
                 setTimeout(() => {
                     try {
                         let x = onFufilled(this.value);
-                        // x是then回调返回的值 promise2是then需要返回的promise对象
+                        // x is the value returned by the then callback, promise2 is the promise object that then needs to return
                         resolvePromise(x, promise2, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -173,7 +173,7 @@ class Promise {
                     }
                 }, 0)
             }
-            // 异步
+            // Asynchronous
             if (this.status === STATUS.PENDING) {
                 this.onResolvedCallbacks.push(() => {
                     setTimeout(() => {
@@ -200,7 +200,7 @@ class Promise {
         })
         return promise2
     }
-    catch (err) { // 默认没有成功 只有失败
+    catch (err) { // Default: no success, only failure
         return this.then(null, err);
     }
     static resolve(val) {
@@ -208,14 +208,14 @@ class Promise {
             resolve(val)
         })
     }
-    static reject(reason) { // 失败的promise
+    static reject(reason) { // Rejected promise
         return new Promise((resolve, reject) => {
             reject(reason)
         })
     }
 }
 
-Promise.defer = Promise.deferred = function() { // 稍后继续说 catch
+Promise.defer = Promise.deferred = function() { // We'll talk about catch later
     let dfd = {}
     dfd.promise = new Promise((resolve, reject) => {
         dfd.resolve = resolve;
@@ -225,7 +225,7 @@ Promise.defer = Promise.deferred = function() { // 稍后继续说 catch
 }
 module.exports = Promise;
 ```
-## Promise.all 的实现原理
+## Implementation of Promise.all
 ```js
 const fs = require('fs').promises
 
@@ -267,6 +267,6 @@ Promise.all = function(values) {
 let p = Promise.all([read('./age.txt', 'utf8'), read('./age.txt', 'utf8')]).then(data => {
     console.log(data)
 }, err => {
-    console.log('err的值', err)
+    console.log('err value', err)
 })
 ```

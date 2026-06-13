@@ -1,33 +1,33 @@
 # Bitcoin
 
-## 开发文档
+## Development Docs
 
-- [Bitcoin Developer Guide - Block Chain](https://developer.bitcoin.org/devguide/block_chain.html) — 比特币区块开发指南
-- [Bitcoin Script 迷你编程语言](https://learnmeabitcoin.com/technical/script/) — 学习比特币脚本
-- [Magic Bytes - 网络消息标识](https://learnmeabitcoin.com/technical/networking/magic-bytes/) — 比特币网络消息标识字节
-- [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) — 比特币核心客户端
+- [Bitcoin Developer Guide - Block Chain](https://developer.bitcoin.org/devguide/block_chain.html) — Bitcoin block development guide
+- [Bitcoin Script Mini Programming Language](https://learnmeabitcoin.com/technical/script/) — Learn Bitcoin Script
+- [Magic Bytes - Network Message Identifiers](https://learnmeabitcoin.com/technical/networking/magic-bytes/) — Bitcoin network message magic bytes
+- [Bitcoin Core](https://bitcoin.org/en/bitcoin-core/) — Bitcoin core client
 
-## 区块链浏览器
+## Blockchain Explorers
 
-| 网络 | 浏览器 |
-|------|--------|
+| Network | Explorer |
+|---------|---------|
 | Testnet | [Blockstream Testnet Explorer](https://blockstream.info/testnet/) |
 | Testnet | [mempool.space Testnet](https://mempool.space/testnet) |
 
-## 测试网水龙头
+## Testnet Faucets
 
 - [coinfaucet.eu BTC Testnet](https://coinfaucet.eu/en/btc-testnet/)
 - [testnet.help BTC Faucet](https://testnet.help/en/btcfaucet/testnet)
 - [bitcoinfaucet.uo1.net](https://bitcoinfaucet.uo1.net/send.php)
-- [Bitcoin Testnet Faucets 汇总](https://gist.github.com/devgir/335afe61d0b5ec607b19ff3ab48afa15) — GitHub Gist
+- [Bitcoin Testnet Faucets Collection](https://gist.github.com/devgir/335afe61d0b5ec607b19ff3ab48afa15) — GitHub Gist
 
-## 节点服务 / RPC
+## Node Services / RPC
 
-- [Blockstream Esplora API](https://github.com/blockstream/esplora/blob/master/API.md) — 开源的区块链浏览器 API
-- [Blockstream Dashboard](https://login.blockstream.com/) — Blockstream 开发者仪表盘
-- [ZAN getUTXO](https://docs.zan.top/reference/zan_getutxo-enhance) — ZAN 节点 UTXO 查询
-- [Tatum API - BTC 交易查询](https://docs.tatum.io/reference/btcgettxbyaddress) — 查询比特币地址交易
+- [Blockstream Esplora API](https://github.com/blockstream/esplora/blob/master/API.md) — Open-source blockchain explorer API
+- [Blockstream Dashboard](https://login.blockstream.com/) — Blockstream developer dashboard
+- [ZAN getUTXO](https://docs.zan.top/reference/zan_getutxo-enhance) — ZAN node UTXO query
+- [Tatum API - BTC Transaction Query](https://docs.tatum.io/reference/btcgettxbyaddress) — Query Bitcoin address transactions
 
-## 协议 & 生态
+## Protocol & Ecosystem
 
-- [BRC-20 Ordinals - Chirp Chirp](https://chirpchirp.xyz/) — 第一个 BRC 2.0 Ordinals 合集
+- [BRC-20 Ordinals - Chirp Chirp](https://chirpchirp.xyz/) — The first BRC 2.0 Ordinals collection

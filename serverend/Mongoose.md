@@ -1,32 +1,32 @@
 # Mongoose
-## 什么是 Mongoose
-### 问题
-使用 ** 原生的 mongoDB nodejs driver ** 数据结构以及操作过于灵活。
-Mongoose：https://mongoosejs.com/
+## What is Mongoose
+### Problem
+Using the ** native MongoDB Node.js driver **, the data structures and operations are too flexible.
+Mongoose: https://mongoosejs.com/
 
-* 建立在 native mongoDB nodejs driver 之上
-* 提出 Model，数据模型的概念，用来约束集合中的数据结构
-* 非常多扩展的内容
-* 它是一个 ODM（Object Document Mapping）工具。
+* Built on top of the native MongoDB Node.js driver
+* Introduces the concept of Model to constrain data structures in collections
+* Many extended features
+* It is an ODM (Object Document Mapping) tool.
 
 
-## 谈谈 ORM
->ORM 指的是 Object Relational Mapping
-简单说，ORM 就是通过实例对象的语法，完成关系型数据库的操作的技术。
+## About ORM
+>ORM stands for Object Relational Mapping
+Simply put, ORM is a technique that uses the syntax of instance objects to perform relational database operations.
 
-### 优点
+### Advantages
 
-* 不需要再去写晦涩的 SQL 语句。
-* 使用面向对象的方式操作数据，代码量少，语义性好，容易理解。
-* Classes 类- Tables
-* Objects 实例 - Records（表中的一行数据）
-* Attributes 属性 - Records 中的值
-* 内置很多功能，数据验证，清洗，预处理等等操作。
+* No need to write obscure SQL statements.
+* Operate data in an object-oriented way, with less code, good semantics, and easy to understand.
+* Classes - Tables
+* Instances (Objects) - Records (a row of data in a table)
+* Attributes - Values in Records
+* Built-in many features such as data validation, sanitization, preprocessing, etc.
 
-### 例子
+### Example
 
 ```js
-//使用 sql 操作
+// Using SQL
 let sql =
     "INSERT INTO Users (username, password) VALUES ('john-doe', 'oomygooturulob')";
 conn.query(sql, function (error, result) {
@@ -36,33 +36,33 @@ conn.query(sql, function (error, result) {
     console.log(result);
   }
 });
-// 使用 ORM 进行操作
-//Defining User model
+// Using ORM
+// Defining User model
 const User = sequelize.define("User", {
-	username: Sequelize.STRING,
-	password: Sequelize.STRING,
+    username: Sequelize.STRING,
+    password: Sequelize.STRING,
 });
-//Inserting user
+// Inserting user
 User.create({
-	username: "john-doe",
-	password: "okbro",
+    username: "john-doe",
+    password: "okbro",
 }).then(function (user) {
-	console.log(user);
+    console.log(user);
 }
 
 ```
 
->ODM 针对 noSql 数据库，关注文档模型
+>ODM is for NoSQL databases, focusing on document models
 
 ```js
 const User = mongoose.model("User", {
-	username: { type: String },
-	password: { type: String },
+    username: { type: String },
+    password: { type: String },
 });
-//user object
+// user object
 const newUser = new User({
-	username: "john-doe",
-	password: "helloworld",
+    username: "john-doe",
+    password: "helloworld",
 })
 await newUser.save()
 

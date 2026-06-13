@@ -1,24 +1,24 @@
 # JWT
->token 一种最流行的实现方式 JWT（json web token）https://jwt.io/
+>One of the most popular token implementations is JWT (JSON Web Token) https://jwt.io/
 
-基本工作流程
+Basic Workflow
 
 <img src="/images/jwt.png">
 
-## JWT token 的组成
+## Composition of a JWT Token
 
-* Header：JSON对象，描述 JWT 的元数据，加密算法以及类型
-* Payload：JSON对象，存放数据需要传递的数据
-* Signature：对前两部分的签名，防止数据篡改。需要指定一个密钥（secret）。这个密钥只有服务器才知道，不能泄露给用户。
+* Header: A JSON object describing the metadata of the JWT, including the signing algorithm and type
+* Payload: A JSON object containing the data that needs to be transmitted
+* Signature: A signature of the first two parts to prevent data tampering. It requires a secret key that only the server knows and must not be disclosed to users.
 
-## Token 优点
+## Token Advantages
 
-* token 是无状态的（stateless），服务器不需要记录任何信息，不占用内存
-* 多进程，多服务器集群没有影响，易于扩展
-* 假如不记录在 cookie 中，没有跨域的影响
-* 和服务器端解耦，任何设备都可以生成token。
+* Tokens are stateless; the server does not need to store any information, saving memory
+* No impact on multi-process or multi-server clusters, easy to scale
+* If not stored in cookies, there are no cross-domain issues
+* Decoupled from the server; any device can generate tokens.
 
-## Token 的缺点
+## Token Disadvantages
 
-* 无法废弃，没有办法对快速对已经登录的用户做处理。
-* 空间更大，所有数据是通过 base64进行编码的，会随着数据量的增大而变大。
+* Cannot be revoked; there is no way to quickly handle already logged-in users.
+* Larger in size; all data is base64-encoded and grows as the data size increases.

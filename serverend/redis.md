@@ -1,113 +1,113 @@
-# redis
+# Redis
 
-## 手机验证码登录的功能
+## Phone Verification Code Login Feature
 
-检查验证码
+Check verification code
 
 <img src="/images/genVeriCode.png">
 
-创建用户
+Create user
 
 <img src="/images/createByPhoneNumber.png">
 
 
-## 验证码持久化
+## Verification Code Persistence
 
-* 速度要快
-* 操作简单，key value 最佳
-* 有自动的过期删除机制
+* Must be fast
+* Simple to operate, key-value is best
+* Has automatic expiration and deletion mechanism
 
-## 使用 Redis
+## Using Redis
 
->地址：https://redis.io/
-开源的，高性能的 key-value 数据库。
+>Website: https://redis.io/
+An open-source, high-performance key-value database.
 
-### 特点
+### Features
 
-* 默认运行在内存中，也可以持久化到硬盘。
-* 性能极高 读：110000次/s，写： 81000次/s
-* 支持更复杂的数据结构：list, set, zset, hash 等
-* 丰富的特性 – 还支持 原子操作,publish/subscribe, 通知, key 过期等等特性
+* Runs in memory by default, can also persist to disk.
+* Very high performance - Read: 110,000 ops/s, Write: 81,000 ops/s
+* Supports more complex data structures: list, set, zset, hash, etc.
+* Rich features - also supports atomic operations, publish/subscribe, notifications, key expiration, etc.
 
 
-### 安装 redis
+### Installing Redis
 
 ```bash
 brew install redis
 ```
-### 源代码编译安装
+### Compile and Install from Source
 ```js
-# 下载
+# Download
 sudo curl -O https://download.redis.io/releases/redis-6.2.6.tar.gz
-# 解压缩
+# Extract
 sudo tar -zvxf redis-6.2.6.tar.gz
-# 这里不想老是 sudo 的话，可以修改一下文件夹的权限
-# 修改所有者
-# sudo chown -R liusha（用户名）redis-6.2.6
-# 或修改权限
+# To avoid using sudo often, modify folder permissions
+# Change owner
+# sudo chown -R liusha(username) redis-6.2.6
+# Or modify permissions
 # sudo chmod -R 777 redis-6.2.6
-# 进入文件夹
+# Enter the folder
 cd redis-6.2.6
-# 编译
+# Compile
 make
-# 运行
+# Run
 cd src
 ./redis-server
-# 修改配置文件, 可以讲配置文件放在任意位置，比如和 mongo 放在一起 /usr/local/etc
+# Edit configuration file, can be placed anywhere, e.g., with mongo at /usr/local/etc
 vim ../redis.conf
-# 配置后台运行
+# Configure to run in background
 daemonize yes
-# 带配置文件运行
+# Run with configuration file
 ./redis-server ../redis.conf
-// 查看后台运行
+// Check background process
 ps aux | grep redis
 ```
 ### Redis CLI
 ```js
-# 基本语法
-COMMAND KEY_NAME（VALUE）
-# 数据类型为字符串 https://redis.io/commands#string
-# 增改
+# Basic syntax
+COMMAND KEY_NAME(VALUE)
+# String data type https://redis.io/commands#string
+# Set
 SET name viking
-# 查
+# Get
 GET name
-# 删除
+# Delete
 DEL name
 
-# 数据类型为列表 https://redis.io/commands#list
-# 增 头部
+# List data type https://redis.io/commands#list
+# Add to head
 LPUSH software redis
 LPUSH software mongo
-# 增 尾部
+# Add to tail
 RPUSH software mysql
-# 查
+# Get range
 LRANGE software 0 10
-# 获取长度
+# Get length
 LLEN software
-# 删除一项
+# Remove one item
 LPOP software
 RPOP software
-# 改
+# Update
 LSET software 1 mongoDB
-# 整体删除
-DEL software software
-# 数据结构为哈希表 https://redis.io/commands#hash
-#  增
+# Delete entire list
+DEL software
+# Hash data type https://redis.io/commands#hash
+# Set
 HMSET person name "viking" age 30
-# 查
+# Get all
 HGETALL person
 HGET person name
-# 改
+# Update
 HSET person name "lily"
-# 删
+# Delete
 HDEL person name
 ```
 
 
-### Redis Node.js 客户端
+### Redis Node.js Client
 
->Node.js 客户端：https://redis.io/clients#nodejs
+>Node.js clients: https://redis.io/clients#nodejs
 
-### 其中的翘楚
+### Top Choices
 * ioredis: https://github.com/luin/ioredis
-* node-redis:https://github.com/redis/node-redis
+* node-redis: https://github.com/redis/node-redis

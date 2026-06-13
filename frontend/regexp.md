@@ -1,22 +1,24 @@
-# 常见正则
+# Common Regular Expressions
 
-## (?:pattern) 非捕获分组
+## (?:pattern) Non-capturing Group
 
-(?:)表示非捕获分组，和捕获分组唯一的区别在于，非捕获分组匹配的值不会保存起来
+(?:) indicates a non-capturing group. The only difference from a capturing group is that the matched value of a non-capturing group is not saved.
 
-## (?=pattern) 正向肯定预查
+## (?=pattern) Positive Lookahead
 
-正向肯定预查，匹配pattern前面的位置。这是一个非捕获匹配。
-简单说，以 xxx(?=pattern)为例，就是捕获以pattern结尾的内容xxx
+Positive lookahead matches the position before pattern. This is a non-capturing match.
+Simply put, using xxx(?=pattern) as an example, it captures the content xxx that ends with pattern.
 
-## (?!pattern) 正向否定预查
+## (?!pattern) Negative Lookahead
 
-正向否定预查，任何不匹配pattern的字符串开始处匹配查找字符串。
-简单说，以 xxx(?!pattern)为例，就是捕获不以pattern结尾的内容xxx
+Negative lookahead matches at the beginning of any string that does not match pattern.
+Simply put, using xxx(?!pattern) as an example, it captures the content xxx that does not end with pattern.
 
-## (?<=pattern) 反向肯定预查
-反向肯定预查，与正向肯定预查类似，只是方向相反。
-简单说，以(?<=pattern)xxx为例，就是捕获以pattern开头的内容xxx。
+## (?<=pattern) Positive Lookbehind
 
-## (?<！pattern) 反向否定预查
-简单说，以(?<!pattern)xxx为例，就是捕获不以pattern开头的内容xxx。
+Positive lookbehind is similar to positive lookahead, but in the opposite direction.
+Simply put, using (?<=pattern)xxx as an example, it captures the content xxx that starts with pattern.
+
+## (?<!pattern) Negative Lookbehind
+
+Simply put, using (?<!pattern)xxx as an example, it captures the content xxx that does not start with pattern.

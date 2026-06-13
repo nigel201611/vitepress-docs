@@ -1,29 +1,29 @@
 # vue3
 
-## 副作用
+## Side Effects
 
-副作用 跟函数外部环境发生的交互
+Side effects are interactions with the external environment of a function.
 
-* 网络请求
-* DOM 操作
-* 订阅数据来源
-* 写入文件系统
-* 获取用户输入
+* Network requests
+* DOM operations
+* Subscribing to data sources
+* Writing to the file system
+* Getting user input
 
+### React's Approach
+Using the useEffect hook function to add side effects to functions.
 
-### React 的方式
-使用 useEffect 钩子函数添加函数的副作用
+### Vue3's Approach
 
-### Vue3 的方式
+Using the watchEffect hook function to add side effects to functions.
+Any update to the interface will trigger this effect.
+It automatically tracks the variables used within the function body -- only the values that are used will trigger automatically.
 
-使用 watchEffect 钩子函数来添加函数的副作用
-任何界面的更新都会触发这个 effect
-它会自动追踪在函数体内的变量，只有使用到的值就会自动的触发
-### 深入 watchEffect
+### Deep Dive into watchEffect
 
-* 自动收集依赖并且触发
-* 可手动销毁 effect  (const stop = watchEffect())
-* 使副作用失效 
+* Automatically collects dependencies and triggers
+* Can manually destroy the effect (const stop = watchEffect())
+* Invalidate side effects
   ```js
     watchEffect((onInvalidate)=>{
         onInvalidate(()=>{
@@ -31,42 +31,42 @@
         })
     })
   ```
-* 副作用执行顺序 (watchEffect(()=>{},{flush:'post'}))
-  
-React 的执行顺序不可调整，都只在组件 updated 之后触发
+* Execution order of side effects (watchEffect(()=>{},{flush:'post'}))
 
-## Watch 精确控制 effect
+React's execution order cannot be adjusted; they are only triggered after the component has updated.
 
-### watch 的基本用法
+## Watch: Precise Control of Effects
+
+### Basic Usage of watch
   ```js
   watch(count,(newVal,oldVal)=>{
       console.log(newVal,oldVal)
   })
   ```
-### watch reactive 的单个值
- 
-使用 toRefs
+### Watching a Single Value of reactive
+
+Using toRefs
  ```js
   const { msg } = toRefs(props)
    watch(msg,(newVal,oldVal)=>{
       console.log(newVal,oldVal)
   })
   ```
-使用 getter 函数
+Using a getter function
   ```js
    watch(()=>props.msg,(newVal,oldVal)=>{
       console.log(newVal,oldVal)
   })
   ```
 
-### watch 多个值
+### Watching Multiple Values
 ```js
   const { msg } = toRefs(props)
    watch([msg,count],(newVal,oldVal)=>{
       console.log(newVal,oldVal)
   })
   ```
-### React 的做法和 watchEffect 对比
-* 懒执行副作用
-* 什么状态应该触发 watcher 重新运行
-* 访问数据变化前后的值
+### Comparison Between React's Approach and watchEffect
+* Lazy execution of side effects
+* Which states should trigger the watcher to re-run
+* Accessing values before and after data changes

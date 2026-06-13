@@ -1,46 +1,45 @@
-# 自研脚手架
+# Self-Developed Scaffold
 
-## 开发背景
-现有项目使用各种各样框架、技术栈、工具集合。从一个项目到另一项目，没有统一开发环境，开发者切换不同项目，熟悉项目需要不少的时间成本，且对于一些旧项目不能及时更新框架或更新换代，更新成本高，重构代价大，后续维护和重构成本很高，以至后面无人维护。由脚手架统一管理项目版本依赖，工具集合、框架升级，用脚手架来统一开发环境、开发规范，开发者切换不同项目极少有心智负担，有更多时间专注于需求，节约开发者时间成本，提升效率。
+## Development Background
 
-## 目标
+Existing projects use various frameworks, tech stacks, and tool collections. From one project to another, there is no unified development environment. Developers switching between different projects need significant time to familiarize themselves with each project. Some older projects cannot be updated to newer frameworks in a timely manner, with high update costs, high refactoring costs, and subsequent maintenance and refactoring expenses being very high, to the point that no one maintains them. By using a scaffold to uniformly manage project version dependencies, tool collections, and framework upgrades, we can provide a unified development environment and development standards. Developers switching between different projects experience minimal cognitive load, have more time to focus on requirements, saving development time and improving efficiency.
 
-通过脚手架统一管理框架、项目依赖版本、打包工具、工具辅助函数，从而将打包工具、项目依赖、工具辅助函数和项目源码解耦，降低开发关注点，专注于需求本身。同时借助节脚手架统一管理和维护。
+## Goal
 
+Unify the management of frameworks, project dependency versions, bundling tools, and utility helper functions through the scaffold, thereby decoupling bundling tools, project dependencies, utility functions, and project source code, reducing development focus points, and allowing developers to concentrate on the requirements themselves. At the same time, use the scaffold for unified management and maintenance.
 
+## Scaffold Usage
 
-## 脚手架使用
-
-### 安装
+### Installation
 ```
 npm i -g @pa/one-cli
 ```
-### 初始化项目
+### Initialize Project
 
 ```bash
 npx one init
 ```
 
-### 开发
+### Development
 
 ```bash
 one dev --env=dev
 ```
 
-### 构建
+### Build
 
 ```bash
 one build --env=prd
 ```
 
-### 用户配置
+### User Configuration
 
-项目根目录下新增 one.config.js
+Add `one.config.js` to the project root directory
 ```js
 module.exports = {
     isMulti: true,
     port: '9000',
-    deployPath: '', // 部署路径，或者线上部署配置中的应用目录
+    deployPath: '',
     assetsPublicPath: '/pay/sfk/',
     appDirPath: 'src/container/',
     packTool: 'webpack',
@@ -50,40 +49,40 @@ module.exports = {
     shareSdkVer: '3.0.2',
     safeToolsVer: '1.0.23',
     adverSdkVer: '3.0.0',
-    filterPackages: [], 
+    filterPackages: [],
     report: false,
 };
 
 ```
 
-| 字段 | 描述 | 默认值 |
+| Field | Description | Default Value |
 | ------ | ----- | ------ |
-|  isMulti |  是否多页面 |  true | 
-|  port |  开发服务器启动的端口 |  9000 | 
-| deploy |  部署路径，或者线上部署配置中的应用目录 | '' |
-|  assetsPublicPath |  打包构建后静态资源所在目录，默认 '/' |  / | 
-|  appDirPath |  页面源代码所在目录  |  src/container/ | 
-|  packTool |  打包构建工具，后续支持 vite、rspack  |  webpack | 
-|  PUIVer | poppy ui 版本  |  5.0.30 | 
-|  authSdkVer | auth sdk 版本  |  1.0.0 | 
-|  aladdinVer | aladdin  版本  |  1.0.22 | 
-|  shareSdkVer | 分享 sdk  版本  |  3.0.2 | 
-|  safeToolsVer | 安全工具箱 sdk  版本  |  1.0.23 | 
-|  adverSdkVer | 广告 sdk  版本  |  3.0.0 | 
-|  filterPackages | 全量构建可以通过 filterPackages 过滤某些子包  |  [] | 
-|  report | 是否需要构建分析，分析包资源大小情况  |  false | 
+|  isMulti |  Whether multi-page |  true |
+|  port |  Port for dev server |  9000 |
+| deploy |  Deploy path, or application directory in online deploy config | '' |
+|  assetsPublicPath |  Directory for static assets after build, default '/' |  / |
+|  appDirPath |  Directory for page source code |  src/container/ |
+|  packTool |  Bundling tool, future support for vite, rspack |  webpack |
+|  PUIVer | Poppy UI version |  5.0.30 |
+|  authSdkVer | Auth SDK version |  1.0.0 |
+|  aladdinVer | Aladdin version |  1.0.22 |
+|  shareSdkVer | Share SDK version |  3.0.2 |
+|  safeToolsVer | Security toolkit SDK version |  1.0.23 |
+|  adverSdkVer | Advertising SDK version |  3.0.0 |
+|  filterPackages | Full build can filter certain sub-packages via filterPackages |  [] |
+|  report | Whether to generate build analysis (bundle size analysis) |  false |
 
-### 增量打包
+### Incremental Bundling
 
-多页面模式，本地通过环境变量 --packages=子包1:子包2:子包3 进行增量打包
+In multi-page mode, use the environment variable `--packages=sub-package1:sub-package2:sub-package3` for incremental bundling locally
 
 ```bash
-one build --env=prd --packages=子包1:子包2
+one build --env=prd --packages=sub-package1:sub-package2
 ```
 
-线上部署环境通过透传方式，如下RMS3.0线上部署配置文件.wermsrc.yml
+For online deployment environments, pass through via configuration, such as the RMS3.0 online deployment configuration file `.wermsrc.yml`
 ```bash
-# 语言环境配置， 目前只支持node环境
+# Language environment config, currently only supports node environment
 language: node_js
 version: v14.16.3
 
@@ -93,35 +92,35 @@ env:
 
 before_build:
   - [ ${CLEAN} = 1 ] && anpm i --registry=http://repo.pab.com.cn/artifactory/api/npm/npm-arch-frontend
-# 构建相关
+# Build related
 build:
-  # 执行构建的脚本
+  # Script to execute the build
   script:
     - echo ${PACKAGES}
     - echo ${TYPE}
     - npm run build:${ENV} --  --packages=${PACKAGES}
 
   dist_dir: dist/${ENV}/pay/sfk/
-# 构建完之后的操作
+# Post-build operations
 after_build:
    - echo Success!!
 ```
 
-透传方式
+Pass-through method
 ```bash
 npm run build:${ENV} --  --packages=${PACKAGES}
 ```
 
-### 环境变量
+### Environment Variables
 
-根目录下新增不同环境配置文件
+Add configuration files for different environments in the project root directory
 
 * .env.dev
 * .env.fat
 * .env.prd
 
 
-## 更新工具函数库--开发中
+## Update Utility Function Library -- In Development
 
 ```bash
 one upate
@@ -129,9 +128,9 @@ one upate
 
 
 
-## 迁移旧项目
+## Migrating Legacy Projects
 
-### 1、packages.json 新增
+### 1. Add to package.json
 
 ```json
 "scripts": {
@@ -142,7 +141,7 @@ one upate
 }
 ```
 
-### 2、 新增配置 one.config.js
+### 2. Add `one.config.js`
 
 ```js
 module.exports = {
@@ -162,60 +161,58 @@ module.exports = {
 };
 ```
 
-### 3、 静态资源
+### 3. Static Assets
 
-静态资源放入根目录 static下,static下的资源不会经过构建工具编译，一般用于存放第三方库，图片等资源。
-
-
+Place static assets in the root `static` directory. Assets under `static` will not be compiled by the build tool and are generally used for storing third-party libraries, images, etc.
 
 
 
 
 
 
-## 根据模块的功能拆分：
-- 核心模块：core
-- 命令模块：commands
-- 模型模块：models
-- 工具模块：utils
 
-### core 模块技术方案
+## Module Breakdown by Function:
+- Core module: core
+- Command module: commands
+- Model module: models
+- Utility module: utils
 
->命令执行流程
-1. 准备阶段
-2. 命令注册
-3. 命令执行
+### Core Module Technical Architecture
 
-<img src="/images/myCliDev-core.png" alt="core 模块技术方案">
+> Command execution flow
+1. Preparation phase
+2. Command registration
+3. Command execution
 
-## 架构优化
+<img src="/images/myCliDev-core.png" alt="Core module technical architecture">
+
+## Architecture Optimization
 <br/>
-<img src="/images/cli-dev-init.jpg" alt="脚手架初始架构">
-这样的架构设计已经可以满足一般脚手架需求，但是有以下两个问题：
+<img src="/images/cli-dev-init.jpg" alt="Initial scaffold architecture">
+This architecture design can already meet general scaffold requirements, but has the following two issues:
 
-1. cli 安装速度慢：所有 package 都集成在 cli 里，因此当命令较多时，会减慢 cli 的安装速度
-2. 灵活性差：init 命令只能使用 @cli-dev/init 包，对于集团公司而言，每个部门的 init 命令可能都各不相同，可能需要实现 init 命令动态化，如：
-* 团队 A 使用 @cli-dev/init 作为初始化模块
-* 团队 B 使用自己开发的 @cli-dev/my-init 作为初始化模块
-* 团队 C 使用自己开发的 @cli-dev/your-init 作为初始化模块
-这时对我们的架构设计就提出挑战，要求我们能够动态加载 init 模块，这将增加架构的复杂度，但大大提升脚手架的可扩展性，将脚手架框架和业务逻辑解耦
+1. Slow CLI installation: All packages are integrated into the CLI, so when there are many commands, it slows down the CLI installation speed
+2. Poor flexibility: The `init` command can only use the `@cli-dev/init` package. For a group company, each department's `init` command may be different, requiring dynamic `init` commands, such as:
+* Team A uses `@cli-dev/init` as the initialization module
+* Team B uses their own `@cli-dev/my-init` as the initialization module
+* Team C uses their own `@cli-dev/your-init` as the initialization module
+This poses a challenge to our architecture design, requiring us to dynamically load `init` modules. This increases architectural complexity but greatly improves scaffold extensibility, decoupling the scaffold framework from business logic.
 
-<img src="/images/cli-dev-optimize.png" alt="脚手架架构优化图">
+<img src="/images/cli-dev-optimize.png" alt="Optimized scaffold architecture">
 
 
-### 命令模块动态加载功能架构设计
+### Command Module Dynamic Loading Architecture Design
 <br/>
-<img src="/images/cli-dev-execComand.jpg" alt="脚手架命令动态加载功能架构设计">
+<img src="/images/cli-dev-execComand.jpg" alt="Scaffold command dynamic loading architecture design">
 
-### 项目、组件创建功能架构设计
-架构背后的思考
-* 可扩展：能够快速复用到不同团队，适应不同团队之间的差异（自定安装）
-* 低成本：在不改动脚手架源码的情况下，能够新增模板，且新增模板的成本很低（模板信息存数据库）
-* 高性能：控制存储空间，安装时充分利用 Node 多进程提升安装性能
-  
+### Project and Component Creation Architecture Design
+Thoughts behind the architecture
+* Extensibility: Can be quickly reused across different teams, adapting to differences between teams (custom installation)
+* Low cost: New templates can be added without modifying the scaffold source code, and the cost of adding templates is very low (template information stored in database)
+* High performance: Control storage space, fully utilize Node multi-process during installation to improve installation performance
+
 <br/>
-<img src="/images/cli-dev-createProject.png" alt="脚手架项目创建功能架构设计">
-
+<img src="/images/cli-dev-createProject.png" alt="Scaffold project creation architecture design">
 
 
 

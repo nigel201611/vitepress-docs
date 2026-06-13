@@ -1,39 +1,39 @@
-# OAuth2 完成用户登录
->OAuth是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用，是用来授权第三方应用。
+# OAuth2 for User Login
+>OAuth is an open network standard for authorization, widely used around the world to authorize third-party applications.
 
-## 传统方式的缺陷
+## Disadvantages of Traditional Methods
 
-* 为了后续的服务，会保存用户的密码，这样不是很安全。
-* 没法限制用户获得授权的范围和有效期。
-* 用户只有修改密码，才能收回赋予第三方应用的权力。
-* 只要有一个第三方应用程序被破解，就会导致用户密码泄漏，以及所有被密码保护的数据泄漏。
+* To provide subsequent services, the user's password is stored, which is not very secure.
+* There is no way to limit the scope and validity period of the authorization granted to third-party applications.
+* Users can only revoke the authority granted to third-party applications by changing their password.
+* If any third-party application is compromised, the user's password and all data protected by that password will be leaked.
 
-## Oauth2 的思路
+## OAuth2 Concept
 
-* OAuth在"客户端"与"服务提供商"之间，设置了一个授权层（authorization layer）
-* 客户端"不能直接登录"服务提供商"，只能登录授权层，以此将用户与客户端区分开来。
-* "客户端"登录授权层所用的令牌（token），与用户的密码不同。用户可以在登录的时候，指定授权层令牌的权限范围和有效期。
+* OAuth sets up an authorization layer between the "client" and the "service provider".
+* The "client" cannot directly log in to the "service provider"; it can only log in to the authorization layer, thereby separating the user from the client.
+* The token used by the "client" to log in to the authorization layer is different from the user's password. Users can specify the scope and validity period of the authorization layer token when logging in.
 
-## Token 的优点
+## Advantages of Tokens
 
-* 令牌是短期的，到期会自动失效，用户自己无法修改。
-* 令牌可以被数据所有者撤销，会立即失效。
-* 令牌有权限范围（scope）
+* Tokens are short-term and will automatically expire; users cannot modify them.
+* Tokens can be revoked by the data owner and will become invalid immediately.
+* Tokens have a permission scope (scope).
 
-## Oatuh2 的授权方式
+## OAuth2 Authorization Methods
 
-* 授权码（authorization-code）
-* 隐藏式（implicit）
-* 密码式（password）：
-* 客户端凭证（client credentials）
+* Authorization code (authorization-code)
+* Implicit (implicit)
+* Password (password)
+* Client credentials (client credentials)
 
-## 授权码方式的工作流程
+## Authorization Code Workflow
 
 <img src="/images/oauth2.png">
 
-## Gitee 文档地址
-* [Oauth 文档](https://gitee.com/api/v5/oauth_doc#/)
-* [获取用户信息 API 文档](https://gitee.com/api/v5/swagger#/getV5User)
+## Gitee Documentation
+* [OAuth Documentation](https://gitee.com/api/v5/oauth_doc#/)
+* [Get User Info API Documentation](https://gitee.com/api/v5/swagger#/getV5User)
 
-## oauth2 前端调用流程
+## OAuth2 Frontend Call Flow
 <img src="/images/oauth21.png">

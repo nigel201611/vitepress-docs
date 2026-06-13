@@ -1,46 +1,46 @@
-# Docker 简介
+# Docker Introduction
 
-我们希望有一个工具可以帮我们一键智能部署，假如你要部署在多台不同的机器上，可以不用在担心不同系统，不同版本的差异，以及运行之前需要安装不同软件的痛苦。
+We want a tool that can help us with one-click intelligent deployment. If you need to deploy on multiple different machines, you no longer have to worry about differences in operating systems, versions, or the pain of installing various software before running.
 
-## 解决
+## Solution
 
-当红的虚拟化软件：Docker https://www.docker.com/
+The popular virtualization software: Docker https://www.docker.com/
 
-## Docker 的进化
+## Docker Evolution
 
 <img src="/images/docker.png">
 
-* 传统虚拟机，虚拟硬件以后，需要在上面安装一个完整的操作系统。
-* Docker：推出了容器的概念，每个容器不需要安装完成的操作系统，里面的进程直接运行在 Docker 创造的宿主内核中，不需要虚拟硬件。
+* Traditional virtual machines virtualize hardware and then need to install a complete operating system on top.
+* Docker: Introduced the concept of containers. Each container does not need to install a complete operating system. Processes inside run directly in the host kernel created by Docker, without virtualizing hardware.
 
-## Docker 的优点
+## Docker Advantages
 
-* 更快速的启动速度
-* 更少的资源占用
-* 一致的运行环境
-* 微服务架构， docker 天生适配微服务架构
+* Faster startup speed
+* Less resource usage
+* Consistent running environment
+* Microservices architecture; Docker is naturally suited for microservices
 
-## 下载使用 Docker
+## Download and Use Docker
 
->下载地址：https://www.docker.com/products/docker-desktop
+>Download link: https://www.docker.com/products/docker-desktop
 
-## Docker images
+## Docker Images
 
-可以在 https://hub.docker.com/search?q=&type=image 中获取各种官方的镜像, 并且可以上传你自己的自定义镜像
+You can get various official images at https://hub.docker.com/search?q=&type=image, and you can also upload your own custom images.
 
-Docker 镜像仓库获取镜像的命令是 docker pull
+The command to pull images from a Docker registry is `docker pull`.
 
 ```js
-# 下载镜像 
+# Download image 
 docker pull <image-name>:<tag>
-# 查看以及下载的镜像
+# List downloaded images
 docker images
-# 删除镜像
+# Delete image
 docker rmi <image-id>
-# 上传
+# Push image
 docker push <username>/<repository>:<tag>
 ```
-使用镜像代理
+Using a registry mirror
 ```js
   "registry-mirrors": [
     "https://docker.mirrors.ustc.edu.cn/",
@@ -49,88 +49,88 @@ docker push <username>/<repository>:<tag>
 ```
 ## Docker Container
 
-启动 Docker 容器
+Start a Docker container
 ```js
 docker run -d -p 81:80 --name container-name image-name
-# -d 后台运行
-# -p 端口映射 81 为主机的端口，80为镜像中的端口
-# --name 自定义容器名称
-# image-name 镜像名称，假如本地没有下载，会先自动 pull 一次镜像
+# -d run in background
+# -p port mapping, 81 is the host port, 80 is the container port
+# --name custom container name
+# image-name image name; if not available locally, Docker will automatically pull it first
 ```
-其他命令
+Other commands
 ```js
-# 查看所有容器
+# List all containers
 docker ps
-# 停止容器
+# Stop container
 docker stop container-id
-# 删除容器 
+# Remove container 
 docker rm container-id
-# 启动已终止容器
+# Start a stopped container
 docker container start container-id
 ```
 
-进入容器内部
+Enter a container
 ```js
 docker exec -it <container-id> command
--i :即使没有附加也保持STDIN 打开
--t :分配一个伪终端
+-i : Keep STDIN open even if not attached
+-t : Allocate a pseudo-TTY
 ```
 
-## 持久化容器数据
+## Persisting Container Data
 
-使用 -v 参数
+Use the -v parameter
 
 ```js
 docker run -d -p 81:80 -v host:container image-name
 ```
 
-创建对应的 volumn
+Create a volume
 
 ```js
-# 创建
-docker volume create <volumn-name>
-# 使用 volumn 启动
-docker run -d -v <volumn-name>:/data/db mongo
-# 检查
-docker volume inspect <volumn-name>
-# 删除
-docker volumn remove mongo
+# Create
+docker volume create <volume-name>
+# Start with volume
+docker run -d -v <volume-name>:/data/db mongo
+# Inspect
+docker volume inspect <volume-name>
+# Remove
+docker volume rm <volume-name>
 ```
 
-## 使用 Dockerfile 自定义镜像
+## Using Dockerfile to Create Custom Images
 
-Dockerfile 是一个特殊的文本文件，里面包括一系列的指令，用来构建对应的镜像
-** 所有指令**
+A Dockerfile is a special text file containing a series of instructions used to build an image.
+**All instructions**
 https://docs.docker.com/engine/reference/builder/#from
 ```js
-# 指定基础镜像 从 node14 构建
+# Specify base image, build from node14
 FROM node:14
-# 创建对应的文件夹，作为项目运行的位置
+# Create the corresponding folder as the project's working directory
 RUN mkdir -p /usr/src/app
-# 指定工作区，后面的运行任何命令都是在这个工作区中完成的
+# Set working directory, all subsequent commands will run in this directory
 WORKDIR /usr/src/app
-# 从本地拷贝对应的文件 到 工作区
+# Copy files from local to the working directory
 COPY server.js /usr/src/app
-# 告知当前Docker image 暴露的是 3000 端口
+# Inform that this Docker image exposes port 3000
 EXPOSE 3000
-# 执行启动命令，一个 Dockerfile 只能有一个
+# Execute startup command, only one CMD per Dockerfile
 CMD node server.js
 
 ```
 
-## Docker build 构建自定义镜像
+## Docker build - Building Custom Images
 
 ```js
-# 这里特别注意上下文的概念，不要在根目录使用 Dockerfile
-docker build [选项] <上下文路径/URL/->
+# Pay special attention to the context concept; do not use Dockerfile in the root directory
+docker build [options] <context-path/URL/-> 
 ```
 
-## 多个容器互相通信
+## Communication Between Multiple Containers
 
->信条：Docker 中每一个 container 应该只完成一个工作，并且把它做好
+>Principle: Each container in Docker should do one thing and do it well
 
-优点有：
+Advantages:
 
-* 解耦，这样不同的服务和后端代码都可以完全分离开来，方便管理以及未来的扩展。
-* 服务的更新以及升级都是完全独立的。
-* 在一个container 中，启动多个不同的进程，需要一个进程管理器。
+* Decoupling: Different services and backend code are completely separated, making management and future expansion easier.
+* Service updates and upgrades are completely independent.
+* Starting multiple different processes in one container requires a process manager.

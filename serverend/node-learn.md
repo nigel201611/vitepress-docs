@@ -1,42 +1,40 @@
-# Node.js 一些知识
+# Node.js Knowledge
 
-## 让 Node 支持 ES Module
+## Enable ES Modules in Node
 
-node 14 以上版本支持，使用 .mjs 作为文件后缀
-14以下版本 需要额外添加命令行参数 --experimental-modules
+Supported in Node 14+, use `.mjs` as file extension.
+For versions below 14, you need to add the command line argument `--experimental-modules`.
 
-## Node 版本管理工具
+## Node Version Management Tools
 
 ### nvm
 
-macOS安装方法
->github地址：https://github.com/nvm-sh/nvm
+Installation on macOS
+>GitHub URL: https://github.com/nvm-sh/nvm
 
-安装nvm
+Install nvm
 ```bash
 # 1
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 # 2
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 ```
-在环境变量文件中填写如下内容，
-任选以下任一个环境变量文件：~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc
+Add the following content to one of your shell profile files,
+choose any one of: `~/.bash_profile`, `~/.zshrc`, `~/.profile`, or `~/.bashrc`
 ```bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
-使用
+Usage
 ```bash
-nvm ls # 查看本地node版本
-nvm ls-remote # 查看远程node版本
-nvm use 12.9.0 # 将本地node版本切换至12.9.0
-nvm install 14.15.1 # 在本地安装node 14.15.1版本
+nvm ls # List locally installed Node versions
+nvm ls-remote # List remote Node versions
+nvm use 12.9.0 # Switch local Node version to 12.9.0
+nvm install 14.15.1 # Install Node 14.15.1 locally
 ```
 
-## 另外一种 Node 版本管理
->n 是另一个 Node 版本管理方案，用法也非常简单，大家可以直接参考官方文档即可：https://www.npmjs.com/package/n
-
-
+## Another Node Version Management Tool
+> `n` is another Node version management tool, also very simple to use. Please refer to the official documentation: https://www.npmjs.com/package/n
 
 

@@ -1,7 +1,7 @@
-# 团队分享
+# Team Sharing
 
-团队内部技术分享、项目文档和知识沉淀。
+Internal team technical sharing, project documentation, and knowledge base.
 
-## 目录
+## Table of Contents
 
-- 内容整理中...
+- [Frontend Identity & Value in the AI Agent Era](./frontend-ai-agent-era)

@@ -1,69 +1,67 @@
-# 复用代码
+# Code Reuse
 
-## 为什么要复用代码？
+## Why Reuse Code?
 
-## 核心目的
+## Core Goal
 
-提高人效，降低开发成本，计算公式：
-
-```
-节约工时 = 复用代码节约工时 * 代码复用系数 * 使用次数
-
-1. 页面（表单）8小时，复用代码节约工时 = 8
-2. 复用到新场景中，4小时，物料复用系数 = 0.5
-3. 使用次数，20次
-节约工时 = 8 * 0.5 * 20 = 80小时 = 80 / 22 约等于 4 人日
-如果我们有10个类似的页面模板，40人日
+Improve human efficiency, reduce development cost. The formula:
 
 ```
+Time saved = Code reuse time saved * Code reuse factor * Number of uses
 
-## 背后思考
+1. A page (form) takes 8 hours, code reuse saves 8 hours
+2. When reused in a new scenario, 4 hours, material reuse factor = 0.5
+3. Number of uses: 20
+Time saved = 8 * 0.5 * 20 = 80 hours = 80 / 22 approximately 4 person-days
+If we have 10 similar page templates, 40 person-days
 
-* 不同开发者、团队之间会产生了大量重复、通用的代码
-* 这些代码散落在各自团队的项目代码里
-* 复用的时候大家习惯于直接拷贝这些代码到项目中，因为这样做对个人成本最低（开发者往往更熟悉自己写的代码）
-* 但这种做法不利于团队间的代码共享，因为每个人开发不同的业务，对不同页面的熟悉程度不一样，而代码复用的宗旨就是要尽可能将团队中开发者的整体水平拉齐
-* 所以需要通过工具化的方式降低代码复用的成本
+```
 
+## Thoughts Behind It
 
-## 大厂代码复用的实践
-实现代码复用必须要回答的4个问题：
+* Different developers and teams produce a large amount of repetitive, common code
+* This code is scattered across each team's project code
+* When reusing, people tend to directly copy code into projects, because this has the lowest personal cost (developers are often more familiar with their own code)
+* However, this practice is not conducive to code sharing between teams, because different developers work on different businesses and have varying levels of familiarity with different pages. The purpose of code reuse is to level up the overall capability of developers in the team as much as possible
+* Therefore, we need to use tool-based approaches to reduce the cost of code reuse
 
-* 问题1：可复用的代码有哪些？
-* 问题2：如何提取可复用代码，度量的标准是什么？
-* 问题3：如何管理复用代码？如何进行维护？
-* 问题4：如何使用复用的代码？
-这个问题在不同团队会得出不同的答案，每个团队应当根据自己的业务特点，选择适合自己团队的解法。下面分享一下大厂针对这4个问题的答案
+## Code Reuse Practices in Large Companies
 
-可复用的代码有哪些？
+Four questions that must be answered to implement code reuse:
+
+* Question 1: What reusable code exists?
+* Question 2: How to extract reusable code, and what is the measurement standard?
+* Question 3: How to manage reusable code? How to maintain it?
+* Question 4: How to use the reusable code?
+Different teams will arrive at different answers to these questions. Each team should choose solutions that suit their own business characteristics. Below are the answers from large companies to these four questions.
+
+What reusable code exists?
 
 <img src="/images/reusecode.jpg">
 
-如何提取可复用代码，度量的标准是什么？
+How to extract reusable code, and what is the measurement standard?
 
-* 在现有项目代码中复用次数？（>3次）
-* 是否被基础组件包含？（不包含）
-* 未来是否可能有复用场景？（有）
-* 是否已经和现有复用代码重复？（不重复）
+* How many times it has been reused in existing project code? (> 3 times)
+* Is it already included in basic components? (not included)
+* Is there likely a reuse scenario in the future? (yes)
+* Does it already duplicate existing reusable code? (not duplicated)
 
+How to manage reusable code? How to maintain it?
 
-如何管理复用代码？如何进行维护？
+* Have a unified material (a general term for reusable code) management platform, managing materials as assets
+* Have a unified material production, management, maintenance, and consumption process and tool chain
+* In this course, we will use a scaffold for the production, maintenance, and consumption of reusable code, and manage these materials through a platform
 
-* 有统一的物料（对可复用代码的总称）管理平台，将物料作为资产进行管理
-* 有统一的物料生产、管理、维护、消费流程和工具链
-* 课程里我们会通过脚手架进行可复用代码的生产、维护和消费，通过平台来管理这些物料
+How to use reusable code?
 
+Quick:
+* Manual copy
+* Using IDE capabilities
 
-如何使用复用的代码？
+Advanced:
+* Scaffold installation
+* Integration with IDE (using plugins or extensions)
 
-快速：
-* 手动拷贝
-* 使用IDE能力
-
-高级：
-* 脚手架安装
-* 与IDE集成（使用插件或者扩展）
-
-## 添加页面流程
+## Add Page Flow
 <br/>
 <img src="/images/addCodeTemp.jpg">

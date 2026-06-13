@@ -1,9 +1,9 @@
-# ejs源码详解
+# ejs Source Code Analysis
 
-## ejs执行流程
+## ejs Execution Flow
 
 <br/>
-<img src="/images/ejsYL.jpg" alt="ejs执行流程">
+<img src="/images/ejsYL.jpg" alt="ejs execution flow">
 
-* new Template：初始化 Template 对象
-* compile：编译 Template，并返回一个新的 Function，需要传入 data 参数完成渲染模板
+* new Template: Initialize the Template object
+* compile: Compile the Template and return a new Function, requiring the `data` parameter to render the template

@@ -1,4 +1,4 @@
-# nodeModulePaths 源码学习
+# nodeModulePaths Source Code Study
 
 ```js
   Module._nodeModulePaths = function(from) {
