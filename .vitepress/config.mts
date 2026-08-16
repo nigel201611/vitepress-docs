@@ -24,6 +24,7 @@ export default defineConfig({
           { text: 'Scaffold', link: '/scaffold/scaffoldYL', activeMatch: '/scaffold/' },
           { text: 'Blockchain', link: '/blockchain/', activeMatch: '/blockchain/' },
           { text: 'Team Sharing', link: '/team-sharing/', activeMatch: '/team-sharing/' },
+          { text: 'LeetCode 150', link: '/leetCode150/', activeMatch: '/leetCode150/' },
         ],
         sidebar: {
           '/frontend/': [
@@ -137,6 +138,36 @@ export default defineConfig({
               ]
             }
           ],
+          '/leetCode150/': [
+            {
+              text: 'LeetCode 150',
+              items: [
+                { text: 'Overview', link: '/leetCode150/' },
+                { text: 'Array / String', link: '/leetCode150/数组字符串/' },
+                { text: 'Two Pointers', link: '/leetCode150/双指针/' },
+                { text: 'Sliding Window', link: '/leetCode150/滑动窗口/' },
+                { text: 'Hash Table', link: '/leetCode150/哈希表/' },
+                { text: 'Matrix', link: '/leetCode150/矩阵/' },
+                { text: 'Binary Search', link: '/leetCode150/二分查找/' },
+                { text: 'Stack', link: '/leetCode150/栈/' },
+                { text: 'Linked List', link: '/leetCode150/链表/' },
+                { text: 'Binary Tree', link: '/leetCode150/二叉树/' },
+                { text: 'Binary Tree BFS', link: '/leetCode150/二叉树层次遍历/' },
+                { text: 'Binary Search Tree', link: '/leetCode150/二叉搜索树/' },
+                { text: 'Graph', link: '/leetCode150/图/' },
+                { text: 'Backtracking', link: '/leetCode150/回溯/' },
+                { text: 'Divide & Conquer', link: '/leetCode150/分治/' },
+                { text: 'Kadane', link: '/leetCode150/Kadane 算法/' },
+                { text: 'Heap', link: '/leetCode150/堆/' },
+                { text: 'Intervals', link: '/leetCode150/区间/' },
+                { text: 'Math', link: '/leetCode150/数学/' },
+                { text: 'Bit Manipulation', link: '/leetCode150/位运算/' },
+                { text: 'Trie', link: '/leetCode150/Trie/' },
+                { text: '1D DP', link: '/leetCode150/一维动态规划/' },
+                { text: 'Multidimensional DP', link: '/leetCode150/多维动态规划/' },
+              ]
+            }
+          ],
         },
       }
     },
@@ -156,6 +187,7 @@ export default defineConfig({
           { text: '脚手架', link: '/zh/scaffold/scaffoldYL', activeMatch: '/zh/scaffold/' },
           { text: '区块链', link: '/zh/blockchain/', activeMatch: '/zh/blockchain/' },
           { text: '团队分享', link: '/zh/team-sharing/', activeMatch: '/zh/team-sharing/' },
+          { text: '力扣 150', link: '/zh/leetCode150/', activeMatch: '/zh/leetCode150/' },
         ],
         sidebar: {
           '/zh/frontend/': [
@@ -266,6 +298,36 @@ export default defineConfig({
               items: [
                 { text: '首页', link: '/zh/team-sharing/' },
                 { text: 'AI Agent 时代下前端的定位与价值思考', link: '/zh/team-sharing/frontend-ai-agent-era' },
+              ]
+            }
+          ],
+          '/zh/leetCode150/': [
+            {
+              text: '力扣 150',
+              items: [
+                { text: '总览', link: '/zh/leetCode150/' },
+                { text: '数组 / 字符串', link: '/zh/leetCode150/数组字符串/' },
+                { text: '双指针', link: '/zh/leetCode150/双指针/' },
+                { text: '滑动窗口', link: '/zh/leetCode150/滑动窗口/' },
+                { text: '哈希表', link: '/zh/leetCode150/哈希表/' },
+                { text: '矩阵', link: '/zh/leetCode150/矩阵/' },
+                { text: '二分查找', link: '/zh/leetCode150/二分查找/' },
+                { text: '栈', link: '/zh/leetCode150/栈/' },
+                { text: '链表', link: '/zh/leetCode150/链表/' },
+                { text: '二叉树', link: '/zh/leetCode150/二叉树/' },
+                { text: '二叉树层次遍历', link: '/zh/leetCode150/二叉树层次遍历/' },
+                { text: '二叉搜索树', link: '/zh/leetCode150/二叉搜索树/' },
+                { text: '图', link: '/zh/leetCode150/图/' },
+                { text: '回溯', link: '/zh/leetCode150/回溯/' },
+                { text: '分治', link: '/zh/leetCode150/分治/' },
+                { text: 'Kadane 算法', link: '/zh/leetCode150/Kadane 算法/' },
+                { text: '堆', link: '/zh/leetCode150/堆/' },
+                { text: '区间', link: '/zh/leetCode150/区间/' },
+                { text: '数学', link: '/zh/leetCode150/数学/' },
+                { text: '位运算', link: '/zh/leetCode150/位运算/' },
+                { text: 'Trie', link: '/zh/leetCode150/Trie/' },
+                { text: '一维动态规划', link: '/zh/leetCode150/一维动态规划/' },
+                { text: '多维动态规划', link: '/zh/leetCode150/多维动态规划/' },
               ]
             }
           ],

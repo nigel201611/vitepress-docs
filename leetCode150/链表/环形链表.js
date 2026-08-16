@@ -1,0 +1,39 @@
+// 给你一个链表的头节点 head ，判断链表中是否有环。
+
+// 如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。注意：pos 不作为参数进行传递 。仅仅是为了标识链表的实际情况。
+
+// 如果链表中存在环 ，则返回 true 。 否则，返回 false 。
+
+// 示例 1：
+
+// 输入：head = [3,2,0,-4], pos = 1
+// 输出：true
+// 解释：链表中有一个环，其尾部连接到第二个节点。
+
+// 方法一：哈希表
+// 思路及算法
+
+// 最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。
+
+// 具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，如果该节点已经存在于哈希表中，
+// 则说明该链表是环形链表，否则就将该节点加入哈希表中。重复这一过程，直到我们遍历完整个链表即可。
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function (head) {
+	if (head == null || head.next == null) {
+		return false
+	}
+	let slow = head
+	let fast = head.next
+	while (slow != fast) {
+		if (fast == null || fast.next == null) {
+			return false
+		}
+		slow = slow.next
+		fast = fast.next.next
+	}
+	return true
+}
