@@ -188,6 +188,7 @@ export default defineConfig({
           { text: '区块链', link: '/zh/blockchain/', activeMatch: '/zh/blockchain/' },
           { text: '团队分享', link: '/zh/team-sharing/', activeMatch: '/zh/team-sharing/' },
           { text: '力扣 150', link: '/zh/leetCode150/', activeMatch: '/zh/leetCode150/' },
+          { text: '华为机考', link: '/zh/huaweijikao/', activeMatch: '/zh/huaweijikao/' },
         ],
         sidebar: {
           '/zh/frontend/': [
@@ -328,6 +329,18 @@ export default defineConfig({
                 { text: 'Trie', link: '/zh/leetCode150/Trie/' },
                 { text: '一维动态规划', link: '/zh/leetCode150/一维动态规划/' },
                 { text: '多维动态规划', link: '/zh/leetCode150/多维动态规划/' },
+              ]
+            }
+          ],
+          '/zh/huaweijikao/': [
+            {
+              text: '华为机考',
+              items: [
+                { text: '总览', link: '/zh/huaweijikao/' },
+                { text: 'zt 系列（31 题）', link: '/zh/huaweijikao/zt' },
+                { text: '2024 真题（7 题）', link: '/zh/huaweijikao/2024' },
+                { text: 'Q4B 截图 · 100 分', link: '/zh/huaweijikao/q4b-100' },
+                { text: 'Q4B 截图 · 200 分', link: '/zh/huaweijikao/q4b-200' },
               ]
             }
           ],
